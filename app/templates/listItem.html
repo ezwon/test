@@ -1,0 +1,23 @@
+<div class="list-items">
+
+    <div ng-repeat="item in list" class="video-thumbnails" ng-if="!previewVideo">
+        <img src="{{item.thumbnail_url}}">
+
+        <h2>{{item.title}}</h2>
+         <span class="btn btn-large btn-success" ng-click="playVideo(item.url);">
+             <i class="fa fa-play"></i>
+             Play
+         </span>
+    </div>
+    <div class="video-player" ng-if="previewVideo">
+        <video html5-video='{{ videoUrls }}'
+               autoplay='true' controls='true'>
+        </video>
+        <br>
+
+        <span class="btn btn-large btn-success" ng-click="backToList();">
+             <i class="fa fa-arrow-left"></i>
+             back to list
+         </span>
+    </div>
+</div>
