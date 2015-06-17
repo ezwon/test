@@ -1,13 +1,3 @@
-/*
- *  JS Filename:
- *   wetc.widget-name.dir.js
- *  Template Filename:
- *   wetc.widget-template.tpl.html
- *
- *  1. Do not control model on controller, user Service instead.
- *
- * */
-
 (function () {
     'use strict';
 
