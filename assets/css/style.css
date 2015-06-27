@@ -656,6 +656,7 @@ footer h5{
 }
 .schedule-date ul li a h3{
 	line-height: 2rem;
+	cursor: pointer;
 }
 .schedule-date ul li a.schedule-active{
 	color: #fff;
@@ -870,14 +871,27 @@ footer h5{
 .schedule-content{
 	background: #fafafa url("../images/schedule-bg.jpg") repeat-x;
 	position: relative;
-	padding:40px 20px 80px 20px;
+	/*padding:40px 20px 80px 20px;*/
+	padding:40px 0 80px 0;
+	overflow: hidden;
 }
+
+.schedule-day-list-wrapper{
+	width: 4000px;position: relative;display: inline-block;left: 0;
+	-webkit-transition: left linear 100ms;
+	-moz-transition: left linear 100ms;
+	-o-transition: left linear 100ms;
+	transition: left linear 100ms;
+}
+
 .schedule-day{
-	margin: auto;
+	float: left;
+	margin: 0 30px;
 	background: #fff;
 	max-width: 1100px;
-	border:1px solid #e7e7e7;
+	border: 1px solid #e7e7e7;
 }
+
 .schedule-details{
 	margin:50px 0;
 }

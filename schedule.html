@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="AffiliateWorldAsia" ng-controller="ScheduleCtrl">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -16,8 +16,11 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="assets/js/modernizr-2.6.1.min.js"></script>
 
+    <script src="vendor/angular/angular.min.js"></script>
+    <script src="app/awc.app.js"></script>
+
 </head>
-<body>
+<body ng-cloak>
 
 <section class="schedule-header">
     <div class="container">
@@ -31,9 +34,11 @@
             <div class="col-lg-12">
                 <div class="schedule-date">
                     <ul>
-                        <li><a href="#" class="schedule-active"><h3>Monday, 7 December</h3></a></li>
-                        <li><a href="#"><h3>Tuesday, 8 December</h3></a></li>
-                        <li><a href="#"><h3>Wednesday, 9 December</h3></a></li>
+                        <li ng-repeat="tab in tabs">
+                            <a ng-click="SelectTab(tab);" ng-class="{'schedule-active':tab.isSelected}">
+                                <h3>{{tab.scheduleDateStr}}</h3>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -120,86 +125,88 @@
 </section>
 
 <section class="schedule-content">
-    <div class="schedule-day">
-        <div class="container-fluid">
-            <div class="row no-gutters">
-                <div class="col-lg-12">
-                    <div class="schedule-details">
-                        <h1>Wednesday, 13 December</h1>
-                        <ul>
-                            <li>
-                                <div class="row list-width">
-                                    <div class="col-sm-3">
-                                        <i class="fa fa-clock-o sched-icon"></i><p>9am-10am</p>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <h4>von carcha</h4>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <i class="fa fa-comments-o sched-icon"></i><p>When too many call to actions come back to bite</p>
-                                        <a href="#"><i class="fa fa-angle-down sched-arrow"></i></a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="sched-active">
-                                <div class="row list-width">
-                                    <div class="col-sm-3">
-                                        <i class="fa fa-clock-o sched-icon"></i><p>9am-10am</p>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <h4>david savory</h4>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <i class="fa fa-comments-o sched-icon"></i><p>How to pay designers in your sleep</p>
-                                        <a href="#"><i class="fa fa-angle-down sched-arrow"></i></a>
-                                    </div>
-                                </div>
-                                <div class="sched-slider">
-                                    <div class="row">
-                                        <div class="col-lg-2 col-lg-offset-2 ">
-                                            <span class="test-image"></span>
+    <div class="schedule-day-list-wrapper">
+        <div class="schedule-day" ng-repeat="tab in tabs" >
+            <div class="container-fluid">
+                <div class="row no-gutters">
+                    <div class="col-lg-12">
+                        <div class="schedule-details">
+                            <h1>Wednesday, 13 December</h1>
+                            <ul>
+                                <li>
+                                    <div class="row list-width">
+                                        <div class="col-sm-3">
+                                            <i class="fa fa-clock-o sched-icon"></i><p>9am-10am</p>
                                         </div>
-                                        <div class="col-lg-6">
-                                            <div class="speaker-details">
-                                                <h2>David Savory</h2>
-                                                <h5>President of iStack Manila</h5>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel sodales velit. Nullam sodales mi euismod enim congue gravida.</p>
-                                                <a href="#" class="primary light"><i class="fa fa-link"></i>Visit website</a>
-                                                <a href="#" class="primary light"><i class="fa fa-cloud-download"></i>add to calendar</a>
+                                        <div class="col-sm-3">
+                                            <h4>von carcha</h4>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <i class="fa fa-comments-o sched-icon"></i><p>When too many call to actions come back to bite</p>
+                                            <a href="#"><i class="fa fa-angle-down sched-arrow"></i></a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="sched-active">
+                                    <div class="row list-width">
+                                        <div class="col-sm-3">
+                                            <i class="fa fa-clock-o sched-icon"></i><p>9am-10am</p>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <h4>david savory</h4>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <i class="fa fa-comments-o sched-icon"></i><p>How to pay designers in your sleep</p>
+                                            <a href="#"><i class="fa fa-angle-down sched-arrow"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="sched-slider">
+                                        <div class="row">
+                                            <div class="col-lg-2 col-lg-offset-2 ">
+                                                <span class="test-image"></span>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="speaker-details">
+                                                    <h2>David Savory</h2>
+                                                    <h5>President of iStack Manila</h5>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel sodales velit. Nullam sodales mi euismod enim congue gravida.</p>
+                                                    <a href="#" class="primary light"><i class="fa fa-link"></i>Visit website</a>
+                                                    <a href="#" class="primary light"><i class="fa fa-cloud-download"></i>add to calendar</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="row list-width">
-                                    <div class="col-sm-3">
-                                        <i class="fa fa-clock-o sched-icon"></i><p>9am-10am</p>
+                                </li>
+                                <li>
+                                    <div class="row list-width">
+                                        <div class="col-sm-3">
+                                            <i class="fa fa-clock-o sched-icon"></i><p>9am-10am</p>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <h4>von carcha</h4>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <i class="fa fa-comments-o sched-icon"></i><p>When too many call to actions come back to bite</p>
+                                            <a href="#"><i class="fa fa-angle-down sched-arrow"></i></a>
+                                        </div>
                                     </div>
-                                    <div class="col-sm-3">
-                                        <h4>von carcha</h4>
+                                </li>
+                                <li>
+                                    <div class="row list-width list-width-last">
+                                        <div class="col-sm-3">
+                                            <i class="fa fa-clock-o sched-icon"></i><p>9am-10am</p>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <h4>von carcha</h4>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <i class="fa fa-comments-o sched-icon"></i><p>When too many call to actions come back to bite</p>
+                                            <a href="#"><i class="fa fa-angle-down sched-arrow"></i></a>
+                                        </div>
                                     </div>
-                                    <div class="col-sm-6">
-                                        <i class="fa fa-comments-o sched-icon"></i><p>When too many call to actions come back to bite</p>
-                                        <a href="#"><i class="fa fa-angle-down sched-arrow"></i></a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="row list-width list-width-last">
-                                    <div class="col-sm-3">
-                                        <i class="fa fa-clock-o sched-icon"></i><p>9am-10am</p>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <h4>von carcha</h4>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <i class="fa fa-comments-o sched-icon"></i><p>When too many call to actions come back to bite</p>
-                                        <a href="#"><i class="fa fa-angle-down sched-arrow"></i></a>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
