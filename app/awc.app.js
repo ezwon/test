@@ -2,16 +2,19 @@
     'use strict';
     angular
         .module('AffiliateWorldAsia', [])
-        .controller('ScheduleCtrl', ScheduleCtrl);
+        .controller('ScheduleCtrl', ScheduleCtrl)
+        .filter('timeLineStart', timeLineStart)
+        .filter('timeLineLength', timeLineLength);
+
 
     function ScheduleCtrl($scope, $timeout, $window) {
         var w = angular.element($window);
 
-        console.log(moment({hour: 14, minute: 0}));
         //mock data object for Schedules
         var tabs = [
             {
                 scheduleID: 0, isSelected: true, scheduleDateStr: "Monday, 7 December",
+                timeLineStart: moment({hour: 10, minute: 0}),
                 itinerary: [
                     {
                         title: "speeches & panels",
@@ -21,14 +24,27 @@
                         timeEntries: [
                             {
                                 title: "David Savory",
+                                showDetails:false,
                                 secondTitle: "President of iStack Manila",
                                 websiteUrl: 'http://istackholdings.com/',
                                 imageUrl: '',
                                 shortDescription: "How to pay designers in your sleep",
                                 longDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel sodales velit. Nullam sodales mi euismod enim congue gravida.",
-                                timeStr: "11:00am - 12:00nn",
-                                timeStart: moment({hour: 14, minute: 0}),
-                                minutes: 60
+                                timeStr: "10:00am - 12:00nn",
+                                timeStart: moment({hour: 11, minute: 0}),
+                                duration: 120 //in minutes
+                            },
+                            {
+                                title: "Jayson Daquer",
+                                showDetails:false,
+                                secondTitle: "Web Developer",
+                                websiteUrl: 'http://jaysondaquer.com/',
+                                imageUrl: '',
+                                shortDescription: "How to pay designers in your sleep",
+                                longDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel sodales velit. Nullam sodales mi euismod enim congue gravida.",
+                                timeStr: "1:00pm - 2:30pm",
+                                timeStart: moment({hour: 13, minute: 30}),
+                                duration: 90 //in minutes
                             }
                         ]
                     },
@@ -37,7 +53,19 @@
                         enabled: true,
                         cssClass: "market",
                         colorScheme: "#6dcff6",
-                        timeEntries: []
+                        timeEntries: [
+                            {
+                                title: "David Savory",
+                                secondTitle: "President of iStack Manila",
+                                websiteUrl: 'http://istackholdings.com/',
+                                imageUrl: '',
+                                shortDescription: "How to pay designers in your sleep",
+                                longDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel sodales velit. Nullam sodales mi euismod enim congue gravida.",
+                                timeStr: "10:00am - 12:00nn",
+                                timeStart: moment({hour: 11, minute: 0}),
+                                duration: 120 //in minutes
+                            }
+                        ]
                     },
                     {
                         title: "traffic source meetups",
@@ -64,6 +92,7 @@
             },
             {
                 scheduleID: 1, isSelected: false, scheduleDateStr: "Tuesday, 8 December",
+                timeLineStart: moment({hour: 10, minute: 0}),
                 itinerary: [
                     {
                         title: "speeches & panels",
@@ -73,14 +102,27 @@
                         timeEntries: [
                             {
                                 title: "David Savory",
+                                showDetails:false,
                                 secondTitle: "President of iStack Manila",
                                 websiteUrl: 'http://istackholdings.com/',
                                 imageUrl: '',
                                 shortDescription: "How to pay designers in your sleep",
                                 longDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel sodales velit. Nullam sodales mi euismod enim congue gravida.",
-                                timeStr: "11:00am - 12:00nn",
-                                timeStart: moment({hour: 14, minute: 0}),
-                                minutes: 60
+                                timeStr: "10:00am - 12:00nn",
+                                timeStart: moment({hour: 16, minute: 0}),
+                                duration: 40 //in minutes
+                            },
+                            {
+                                title: "Jayson Daquer",
+                                showDetails:false,
+                                secondTitle: "President of iStack Manila",
+                                websiteUrl: 'http://istackholdings.com/',
+                                imageUrl: '',
+                                shortDescription: "How to pay designers in your sleep",
+                                longDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel sodales velit. Nullam sodales mi euismod enim congue gravida.",
+                                timeStr: "1:00pm - 2:30pm",
+                                timeStart: moment({hour: 11, minute: 30}),
+                                duration: 90 //in minutes
                             }
                         ]
                     },
@@ -89,7 +131,19 @@
                         enabled: true,
                         cssClass: "market",
                         colorScheme: "#6dcff6",
-                        timeEntries: []
+                        timeEntries: [
+                            {
+                                title: "David Savory",
+                                secondTitle: "President of iStack Manila",
+                                websiteUrl: 'http://istackholdings.com/',
+                                imageUrl: '',
+                                shortDescription: "How to pay designers in your sleep",
+                                longDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel sodales velit. Nullam sodales mi euismod enim congue gravida.",
+                                timeStr: "10:00am - 12:00nn",
+                                timeStart: moment({hour: 11, minute: 0}),
+                                duration: 120 //in minutes
+                            }
+                        ]
                     },
                     {
                         title: "traffic source meetups",
@@ -116,6 +170,7 @@
             },
             {
                 scheduleID: 2, isSelected: false, scheduleDateStr: "Wednesday, 9 December",
+                timeLineStart: moment({hour: 10, minute: 0}),
                 itinerary: [
                     {
                         title: "speeches & panels",
@@ -130,9 +185,20 @@
                                 imageUrl: '',
                                 shortDescription: "How to pay designers in your sleep",
                                 longDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel sodales velit. Nullam sodales mi euismod enim congue gravida.",
-                                timeStr: "11:00am - 12:00nn",
-                                timeStart: moment({hour: 14, minute: 0}),
-                                minutes: 60
+                                timeStr: "10:00am - 12:00nn",
+                                timeStart: moment({hour: 11, minute: 0}),
+                                duration: 120 //in minutes
+                            },
+                            {
+                                title: "Jayson Daquer",
+                                secondTitle: "President of iStack Manila",
+                                websiteUrl: 'http://istackholdings.com/',
+                                imageUrl: '',
+                                shortDescription: "How to pay designers in your sleep",
+                                longDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel sodales velit. Nullam sodales mi euismod enim congue gravida.",
+                                timeStr: "1:00pm - 2:30pm",
+                                timeStart: moment({hour: 13, minute: 30}),
+                                duration: 90 //in minutes
                             }
                         ]
                     },
@@ -141,7 +207,19 @@
                         enabled: true,
                         cssClass: "market",
                         colorScheme: "#6dcff6",
-                        timeEntries: []
+                        timeEntries: [
+                            {
+                                title: "David Savory",
+                                secondTitle: "President of iStack Manila",
+                                websiteUrl: 'http://istackholdings.com/',
+                                imageUrl: '',
+                                shortDescription: "How to pay designers in your sleep",
+                                longDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel sodales velit. Nullam sodales mi euismod enim congue gravida.",
+                                timeStr: "10:00am - 12:00nn",
+                                timeStart: moment({hour: 11, minute: 0}),
+                                duration: 120 //in minutes
+                            }
+                        ]
                     },
                     {
                         title: "traffic source meetups",
@@ -165,7 +243,7 @@
                         timeEntries: []
                     }
                 ]
-            },
+            }
         ];
 
 
@@ -226,6 +304,22 @@
             $scope.UpdateSize();
         }, 100)
 
+    }
+
+    function timeLineStart() {
+        return function (input, timeLineStart) {
+            console.log("input: ", input);
+            console.log("start: ", timeLineStart);
+
+            console.log(input.diff(timeLineStart, 'minutes'));
+            return input.diff(timeLineStart, 'minutes') * 1.5;
+        }
+    }
+
+    function timeLineLength() {
+        return function (input) {
+            return input * 1.5;
+        }
     }
 })();
 
