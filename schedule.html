@@ -124,14 +124,13 @@
 
                             <ul ng-repeat="item in tab.itinerary">
                                 <li>
-                                    <h1>{{item.title}}</h1>
+                                    <h1 style="color:{{item.colorScheme}}">{{item.title}}</h1>
                                 </li>
                                 <li ng-repeat="entry in item.timeEntries"
                                     ng-class="{'sched-active':entry.showDetails}">
                                     <div class="row list-width">
                                         <div class="col-sm-3">
                                             <i class="fa fa-clock-o sched-icon"></i>
-
                                             <p>{{entry.timeStr}}</p>
                                         </div>
                                         <div class="col-sm-3">
