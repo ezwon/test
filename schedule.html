@@ -122,7 +122,7 @@
                         <div class="schedule-details">
                             <h1>{{tab.scheduleDateStr}}</h1>
 
-                            <ul ng-repeat="item in tab.itinerary">
+                            <ul ng-if="item.timeEntries.length > 0" ng-repeat="item in tab.itinerary">
                                 <li>
                                     <h1 style="color:{{item.colorScheme}}">{{item.title}}</h1>
                                 </li>
