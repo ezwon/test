@@ -68,7 +68,7 @@ p.bold{
 a.primary{
 	display: inline-block;
 	font-size: 0.875rem;
-	line-height: 0.875rem;
+	line-height: 1rem;
 	padding: 20px 40px;
 	text-transform: uppercase;
 	letter-spacing: 0.100em;
@@ -94,14 +94,18 @@ a.primary i{
 .dark{
 	background: #242433;
 }
-/* header */
 
+/* header */
 header{
 	width: 100%;
-	background: #333 url("../images/home-bg.jpg") center top no-repeat;
-	background-size: cover;
+	background: #333 url("../images/home-bg.jpg") center no-repeat;
 	padding:120px 0 170px 0;
 }
+	@media screen and (min-width:1900px){
+  	header{
+		background-size:cover;
+		}
+  	}	
 .title{
 	width: 100%;
 	padding: 0 20px;
@@ -140,7 +144,7 @@ header{
   		}
   	}
 
-/* slogan */
+/* slogan homepage*/
 .slogan{
 	background: #fff;
 	padding: 90px 0;
@@ -188,13 +192,9 @@ header{
 	margin:40px 0 0 0;
 	text-align: center;
 }
-	@media screen and (max-width:568px){
-  	.slogan-margin{
-  		margin: 0 0 20px 0 !important;
-  		}
-  	}
 
-/* sponsor */
+
+/* sponsor homepage*/
 .sponsor{
 	padding: 50px 0;
 	background: #fcfcfc;
@@ -208,7 +208,7 @@ header{
 	margin: 30px auto 0;
 }
 
-/* ticket */
+/* ticket homepage*/
 .ticket{
 	padding:90px 0;
 	background: #fff;
@@ -267,11 +267,13 @@ header{
 	right:0;
 	top: 10px;
 	background: transparent url("../images/form-submit.png") center no-repeat;
+	background-size: contain;
 	border:none;
 	width: 50px;
-	height: 52px;
+	height: 53px;
 	cursor: pointer;
 	z-index: 1;
+	padding:10px;
 }
 
 /* footer */
@@ -319,9 +321,13 @@ header{
 /* ticket content */
 .ticket-content{
 	padding:160px 0 60px 0;
-	background: #2a3338;
+	background: #293338 url("../images/ticket-bg.jpg") center top no-repeat;
 }
-
+	@media screen and (min-width:1900px){
+  	.ticket-content{
+		background-size:cover;
+		}
+  	}	
 .ticket-toggle{
 	width: 100%;
 	height: 57px;
@@ -410,60 +416,24 @@ header{
 		padding: 10px;
 		}
   	}
-.ticket-price h3 span{
+.ticket-price h2{
+	line-height: 2.75rem;
+	color: #666666;
+}
+.ticket-price h2 span{
 	color: #fa7b65;
 }
 .ribbon{
 	position: absolute;
-	top:19px;
-	right:-5px;
-	background: #fa7b65;
+	top:-3px;
+	right:-3px;
+	background: url("../images/ribbon.png") no-repeat;
+	background-size:contain;
 	padding: 0 10px;
 	height:22px;
-	transform:rotateZ(45deg);
-	-webkit-transform:rotateZ(45deg);
-	-moz-transform:rotateZ(45deg);
-	-o-transform:rotateZ(45deg);
-	-ms-transform:rotateZ(45deg);
-}
-.ribbon h5{
-	color: #fff;
-	line-height: 22px;
 	display: block;
-	font-weight: 500;
-	letter-spacing: normal;
-}
-.ribbon-left{
-	position: absolute;
-	left:-13px;
-	top:0px;
-	width: 0; 
-	height: 0; 
-	border-top: 16px solid transparent;
-	border-bottom: 16px solid transparent;
-	border-left: 16px solid #fa7b65;
-	display: block;
-	transform:rotateZ(45deg);
-	-webkit-transform:rotateZ(45deg);
-	-moz-transform:rotateZ(45deg);
-	-ms-transform:rotateZ(45deg);
-	-o-transform:rotateZ(45deg);
-}
-.ribbon-right{
-	position: absolute;
-	right:-13px;
-	top:0px;
-	width: 0; 
-	height: 0; 
-	border-top: 16px solid transparent;
-	border-bottom: 16px solid transparent;
-	border-left: 16px solid #fa7b65;
-	display: block;
-	transform:rotateZ(135deg);
-	-webkit-transform:rotateZ(135deg);
-	-moz-transform:rotateZ(135deg);
-	-o-transform:rotateZ(135deg);
-	-ms-transform:rotateZ(135deg);
+	width: 96px;
+	height: 94px;
 }
 .ticket-price h2{
 	font-weight: 300;
@@ -478,6 +448,7 @@ header{
 	line-height: 22px;
 }
 .ticket-price p{
+	color: #666666;
 	margin: 20px 0 0 0;
 }
 .ticket-price ul{
@@ -513,20 +484,66 @@ header{
 .ticket-price a i{
 	vertical-align: middle;
 }
+.ticket-toggle-left{
+	width: 85px;
+	height:35px;
+	background: url("../images/toggle-1.png") no-repeat;
+	background-size:contain;
+	display: block;
+	position: absolute;
+	top: 12px;
+	left: 50%;
+	transform: translate(-50%, 0); 
+  	-webkit-transform: translate(-50%, 0); 
+  	-moz-transform: translate(-50%, 0); 
+  	-o-transform: translate(-50%, 0); 
+  	-ms-transform: translate(-50%, 0);
+  	z-index: 10;
+}
+.ticket-toggle-right{
+	width: 85px;
+	height:35px;
+	background: url("../images/toggle-2.png") no-repeat;
+	background-size:contain;
+	display: block;
+	position: absolute;
+	top: 12px;
+	left: 50%;
+	transform: translate(-50%, 0); 
+  	-webkit-transform: translate(-50%, 0); 
+  	-moz-transform: translate(-50%, 0); 
+  	-o-transform: translate(-50%, 0); 
+  	-ms-transform: translate(-50%, 0);
+  	z-index: 10;
+}
+a.ticket-button{
+	display: block;
+	color: #fff;
+	margin:40px auto 0;
+	text-align: center;
+	background: rgba(255, 255, 255, 0.07);
+}
+.ticket-button-wrapper{
+	padding:0 40px;
+}
 
 /* events */
 .event-content{
 	padding:160px 0 150px 0;
 	background: #2a3338 url("../images/event-bg.jpg") center no-repeat;
-	background-size: cover;
 }
+	@media screen and (min-width:1900px){
+  	.event-content{
+		background-size:cover;
+		}
+  	}
 .main-content{
 	background: #fff;
 	overflow: hidden;
 }
 .content-left{
 	position: relative;
-	height: 500px;
+	eight:h 500px;
 }
 .content-right{
 	position: relative;
@@ -688,9 +705,14 @@ header{
 /* schedule widget*/
 .schedule-header{
 	padding:160px 0 0 0;
-	background: #2a3338;
+	background: #293338 url("../images/speaker-bg.jpg") center top no-repeat;
 	overflow: hidden;
 }
+	@media screen and (min-width:1600px){
+  	.location-header{
+		background-size:cover;
+		}
+  	}
 .schedule-date{
 	text-align: center;
 }
@@ -893,7 +915,7 @@ header{
 	color: #6dcff6;
 }
 .traffic{
-	color: #6a7378;
+	color: #cee866;
 }
 .timeline-disabled{
 	color: #293237;
@@ -924,7 +946,6 @@ header{
 .schedule-content{
 	background: #fafafa url("../images/schedule-bg.jpg") repeat-x;
 	position: relative;
-	/*padding:40px 20px 80px 20px;*/
 	padding:40px 0 80px 0;
 	overflow: hidden;
 }
@@ -985,13 +1006,13 @@ i.sched-arrow{
 	float:right;
 }
 li.sched-active{
-	background: #273035;
+	background: #fa7b65;
 }
 li.sched-active p, li.sched-active h4, li.sched-active i.sched-arrow{
 	color:#fff;
 }
 li.sched-active div.list-width{
-	border-bottom: 1px solid #273035;
+	border-bottom: 1px solid #fa7b65;
 }
 .sched-slider{
 	background: #fafafa;
@@ -1027,8 +1048,13 @@ li.sched-active div.speaker-details p{
 /* location */
 .location-header{
 	padding:160px 0 120px 0;
-	background: #2a3338;
+	background: #2a3338 url("../images/details-bg.jpg") center no-repeat;
 }
+	@media screen and (min-width:1900px){
+  	.location-header{
+		background-size:cover;
+		}
+  	}
 .location-content{
 	padding: 80px 0;
 	background: #fff;
