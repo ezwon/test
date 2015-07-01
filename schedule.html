@@ -132,7 +132,7 @@
 </section>
 
 <section class="schedule-content">
-    <div class="schedule-day-list-wrapper">
+    <div class="schedule-day-list-wrapper" style="width:{{tab.length * 1500}}px;">
         <div class="schedule-day" ng-repeat="tab in tabs">
             <div class="container-fluid">
                 <div class="row no-gutters">
@@ -209,15 +209,15 @@
             <div class="col-lg-12">
                 <ul>
                     <!-- featured speaker list -->
-                    <li>
+                    <li ng-repeat="item in MockMajorSponsors">
                         <div class="row">
                             <div class="col-lg-2">
                                 <span class="test-image"></span>
                             </div>
                             <div class="col-lg-4">
                                 <div class="speaker-details">
-                                    <h2>Barack Obama</h2>
-                                    <h5>President of the USA</h5>
+                                    <h2>{{item.Name}}</h2>
+                                    <h5>{{item.Position}}</h5>
                                     <a href="#"><i class="fa fa-link"></i></a>
                                     <a href="#"><i class="fa fa-facebook-official"></i></a>
                                     <a href="#"><i class="fa fa-twitter"></i></a>
@@ -226,114 +226,34 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="speaker-details">
-                                    <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. </p>
-                                    <p>of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id <a href="#">Read more</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row">
-                            <div class="col-lg-2">
-                                <span class="test-image"></span>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="speaker-details">
-                                    <h2>Barack Obama</h2>
-                                    <h5>President of the USA</h5>
-                                    <a href="#"><i class="fa fa-link"></i></a>
-                                    <a href="#"><i class="fa fa-facebook-official"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-instagram"></i></a>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="speaker-details">
-                                    <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. </p>
-                                    <p>of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id <a href="#">Read more</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row">
-                            <div class="col-lg-2">
-                                <span class="test-image"></span>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="speaker-details">
-                                    <h2>Barack Obama</h2>
-                                    <h5>President of the USA</h5>
-                                    <a href="#"><i class="fa fa-link"></i></a>
-                                    <a href="#"><i class="fa fa-facebook-official"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-instagram"></i></a>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="speaker-details">
-                                    <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. </p>
-                                    <p>of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id <a href="#">Read more</a></p>
+                                    <p>{{item.Description}}</p>
+                                    <p>{{item.OtherInfo}} <a href="{{item.OtherInfoUrl}}">Read more</a></p>
                                 </div>
                             </div>
                         </div>
                     </li>
 
+
                     <!-- not featured speaker list -->
-                    <li>
+                    <li ng-repeat="item in MockSponsors">
                         <div class="row">
                             <div class="col-lg-2">
                                 <span class="test-image-2"></span>
                             </div>
                             <div class="col-lg-4">
                                 <div class="speaker-details">
-                                    <h3>Barack Obama</h3>
-                                    <h5>President of the USA</h5>
+                                    <h3>{{item.Name}}</h3>
+                                    <h5>{{item.Position}}</h5>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="speaker-details">
-                                    <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. </p>
+                                    <p>{{item.Description}} </p>
                                 </div>
                             </div>
                         </div>
                     </li>
-                    <li>
-                        <div class="row">
-                            <div class="col-lg-2">
-                                <span class="test-image-2"></span>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="speaker-details">
-                                    <h3>Barack Obama</h3>
-                                    <h5>President of the USA</h5>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="speaker-details">
-                                    <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. </p>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row">
-                            <div class="col-lg-2">
-                                <span class="test-image-2"></span>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="speaker-details">
-                                    <h3>Barack Obama</h3>
-                                    <h5>President of the USA</h5>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="speaker-details">
-                                    <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. </p>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
+
                 </ul>
 
             </div>

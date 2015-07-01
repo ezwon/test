@@ -951,7 +951,8 @@ a.ticket-button{
 }
 
 .schedule-day-list-wrapper{
-	width: 4000px;position: relative;display: inline-block;left: 0;
+	width: 40000px;
+	position: relative;display: inline-block;left: 0;
 	-webkit-transition: left linear 100ms;
 	-moz-transition: left linear 100ms;
 	-o-transition: left linear 100ms;

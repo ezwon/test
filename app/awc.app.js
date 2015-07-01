@@ -4,14 +4,143 @@
         .module('AffiliateWorldAsia', [])
         .controller('ScheduleCtrl', ScheduleCtrl)
         .filter('timeLineStart', timeLineStart)
-        .filter('timeLineLength', timeLineLength);
+        .filter('timeLineLength', timeLineLength)
+        .service('apiService',apiService);
 
 
-    function ScheduleCtrl($scope, $timeout, $window) {
+    function ScheduleCtrl($scope, $timeout, $window, apiService) {
         var w = angular.element($window);
+        w.bind('resize', function () {
+            $scope.$apply();
+        });
+        $(window).resize(UpdateSizeWindow);
 
-        //mock data object for Schedules
-        var tabs = [
+        $scope.SelectTab = function (tab) {
+
+            for (var i = 0; i < $scope.tabs.length; i++)
+                $scope.tabs[i].isSelected = false;
+
+            tab.isSelected = true;
+            $scope.UpdateSize(tab.scheduleID);
+        }
+        $scope.UpdateSize = function (index) {
+            var windowWidth = w[0].innerWidth,
+                schedEdntryWidth = ($(".schedule-day")[0].clientWidth) + 60, //60 - total margin left and right for each schedule entry
+                pixelToCenter = 0,
+                schedEntryExcessWidth = 0,
+                selectedIndex = index;
+
+            $scope.selectedIndex = selectedIndex;
+
+            var windowWidthHalf = windowWidth / 2,
+                schedEdntryWidthHalf = schedEdntryWidth / 2;
+
+            if (schedEdntryWidth > windowWidthHalf) {
+                schedEntryExcessWidth = schedEdntryWidth - windowWidthHalf;
+                pixelToCenter = schedEdntryWidthHalf - schedEntryExcessWidth - 8;
+            }
+
+            selectedIndex -= 1;
+            if (selectedIndex > 0)
+                pixelToCenter -= (selectedIndex * schedEdntryWidth);
+
+            $(".schedule-day-list-wrapper").css("left", (pixelToCenter) + "px");
+
+            //console.log("selectedIndex: ", selectedIndex);
+            //console.log("window width: ", windowWidth);
+            //console.log("entry width: ", schedEdntryWidth);
+            //console.log("window width half: ", windowWidthHalf);
+            //console.log("entry width half: ", schedEdntryWidthHalf);
+            //console.log("schedEntryExcessWidth: ", schedEntryExcessWidth);
+            //console.log("pixelToCenter: ", pixelToCenter);
+
+        }
+
+        function UpdateSizeWindow() {
+            $scope.UpdateSize($scope.selectedIndex);
+        }
+
+        $scope.MockMajorSponsors = apiService.mockMajorSponsor;
+        $scope.MockSponsors = apiService.mockSponsors;
+
+        apiService.get(1).then(function(response){
+            var event = response.data.data,
+                tabs = [],
+                schedule = null,
+                itinerary = [],
+                timeEntries = [];
+
+            console.log("Event: ",event);
+
+            for (var i = 0; i < event.schedules.length; i++) {
+                schedule = event.schedules[i];
+                itinerary = [];
+                timeEntries = [];
+
+                for (var j = 0; j < schedule.itineraries.length; j++) {
+                    var obj = schedule.itineraries[j];
+
+                    timeEntries = [];
+                    for (var k = 0; k < obj.entries.length; k++) {
+                        var entry = obj.entries[k];
+
+
+                        timeEntries.push({
+                            title: entry.title,
+                            showDetails:false,
+                            secondTitle: entry.second_title,
+                            websiteUrl: entry.website,
+                            imageUrl: entry.image_url,
+                            shortDescription: entry.short_description,
+                            longDescription: entry.long_description,
+                            timeStr: entry.time_starts + " - " + entry.time_ends,
+                            timeStart: moment({hour: 11, minute: 0}), //moment(new Date(schedule.date_time_start)),
+                            duration: 60 //in minutes
+                        })
+                    }
+
+                    itinerary.push({
+                        title: obj.title,
+                        enabled: obj.enabled == "1" ? true:false,
+                        cssClass: '',
+                        colorScheme: obj.color_scheme,
+                        timeEntries:timeEntries
+                    });
+                }
+
+                tabs.push({
+                    scheduleID: schedule.id,
+                    isSelected: i == 0 ? true:false,
+                    scheduleDateStr: moment(new Date(schedule.date_time_start)).format('dddd, d MMMM'),
+                    timeLineStart: moment({hour: 10, minute: 0}),
+                    itinerary:itinerary
+                });
+
+            }
+
+            $scope.tabs = tabs;
+            $scope.selectedIndex = 0;
+            $timeout(function () {
+                $scope.UpdateSize();
+            }, 100)
+        });
+
+    }
+
+    function timeLineStart() {
+        return function (input, timeLineStart) {
+            return input.diff(timeLineStart, 'minutes') * 1.5;
+        }
+    }
+
+    function timeLineLength() {
+        return function (input) {
+            return input * 1.5;
+        }
+    }
+
+    function apiService($http){
+        var mockTabs = [
             {
                 scheduleID: 0, isSelected: true, scheduleDateStr: "Monday, 7 December",
                 timeLineStart: moment({hour: 10, minute: 0}),
@@ -245,81 +374,89 @@
                 ]
             }
         ];
-
-
-        w.bind('resize', function () {
-            $scope.$apply();
-        });
-
-        $(window).resize(UpdateSizeWindow);
-
-        $scope.tabs = tabs;
-        $scope.selectedIndex = 0;
-
-        $scope.SelectTab = function (tab) {
-
-            for (var i = 0; i < $scope.tabs.length; i++)
-                tabs[i].isSelected = false;
-
-            tab.isSelected = true;
-            $scope.UpdateSize(tab.scheduleID);
-        }
-        $scope.UpdateSize = function (index) {
-            var windowWidth = w[0].innerWidth,
-                schedEdntryWidth = ($(".schedule-day")[0].clientWidth) + 60, //60 - total margin left and right for each schedule entry
-                pixelToCenter = 0,
-                schedEntryExcessWidth = 0,
-                selectedIndex = index;
-
-            $scope.selectedIndex = selectedIndex;
-
-            var windowWidthHalf = windowWidth / 2,
-                schedEdntryWidthHalf = schedEdntryWidth / 2;
-
-            if (schedEdntryWidth > windowWidthHalf) {
-                schedEntryExcessWidth = schedEdntryWidth - windowWidthHalf;
-                pixelToCenter = schedEdntryWidthHalf - schedEntryExcessWidth - 8;
+        var mockMajorSponsors = [
+            {
+                Name:"Barack Obama",
+                Position:"President of the USA",
+                AvatarUrl:"",
+                Description:"This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris.",
+                OtherInfo:"of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id",
+                OtherInfoUrl:''
+            },
+            {
+                Name:"Barack Obama",
+                Position:"President of the USA",
+                AvatarUrl:"",
+                Description:"This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris.",
+                OtherInfo:"of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id",
+                OtherInfoUrl:''
+            },
+            {
+                Name:"Barack Obama",
+                Position:"President of the USA",
+                AvatarUrl:"",
+                Description:"This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris.",
+                OtherInfo:"of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id",
+                OtherInfoUrl:''
             }
+        ];
+        var mockSponsors = [
+            {
+                Name:"Barack Obama",
+                Position:"President of the USA",
+                AvatarUrl:"",
+                Description:"This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris."
 
-            if (selectedIndex > 0)
-                pixelToCenter -= (selectedIndex * schedEdntryWidth);
+            },
+            {
+                Name:"Barack Obama",
+                Position:"President of the USA",
+                AvatarUrl:"",
+                Description:"This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris."
 
-            $(".schedule-day-list-wrapper").css("left", (pixelToCenter) + "px");
+            },
+            {
+                Name:"Barack Obama",
+                Position:"President of the USA",
+                AvatarUrl:"",
+                Description:"This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris."
 
-            //console.log("selectedIndex: ", selectedIndex);
-            //console.log("window width: ", windowWidth);
-            //console.log("entry width: ", schedEdntryWidth);
-            //console.log("window width half: ", windowWidthHalf);
-            //console.log("entry width half: ", schedEdntryWidthHalf);
-            //console.log("schedEntryExcessWidth: ", schedEntryExcessWidth);
-            //console.log("pixelToCenter: ", pixelToCenter);
-
+            }
+        ]
+        var svc = {
+            get:get,
+            mockMajorSponsor:mockMajorSponsors,
+            mockSponsors:mockSponsors
         }
 
-        function UpdateSizeWindow() {
-            $scope.UpdateSize($scope.selectedIndex);
+        return svc;
+
+        function get(id){
+            return awaAPI("GET", "events/" + id + "?with=schedules.itineraries.entries");
         }
 
-        $timeout(function () {
-            $scope.UpdateSize();
-        }, 100)
+        function awaAPI(method, resource,  data) {
 
+            /*
+             *  POST, GET to http://awa-api.istackmanila.com/{resource}
+             *  PUT, DELETE and GET to http://awa-api.istackmanila.com/{resource}/{id}
+             *
+             *  http://awa-api.istackmanila.com/events/1?with=schedules ----with schedules
+             *  http://awa-api.istackmanila.com/events/1?with=schedules.itineraries --with itineraries under schedules
+             *  http://awa-api.istackmanila.com/events/1?with=schedules.itineraries.entries with entries under itineraries under schedules
+             */
+
+            $http.defaults.cache = true;
+            return $http({
+                method: method,
+                url: 'http://awa-api.istackmanila.com/' + resource,
+                responseType: 'json',
+                contentType: "application/json",
+                data: data,
+                cache:true
+            });
+        }
     }
 
-    function timeLineStart() {
-        return function (input, timeLineStart) {
-            console.log("input: ", input);
-            console.log("start: ", timeLineStart);
-
-            console.log(input.diff(timeLineStart, 'minutes'));
-            return input.diff(timeLineStart, 'minutes') * 1.5;
-        }
-    }
-
-    function timeLineLength() {
-        return function (input) {
-            return input * 1.5;
-        }
-    }
 })();
 
