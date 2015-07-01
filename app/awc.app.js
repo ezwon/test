@@ -1,8 +1,9 @@
 (function () {
     'use strict';
     angular
-        .module('AffiliateWorldAsia', [])
+        .module('AffiliateWorldAsia', ['ngRoute'])
         .controller('ScheduleCtrl', ScheduleCtrl)
+        .controller('LocationCtrl', LocationCtrl)
         .filter('timeLineStart', timeLineStart)
         .filter('timeLineLength', timeLineLength)
         .service('apiService',apiService);
@@ -124,6 +125,34 @@
                 $scope.UpdateSize();
             }, 100)
         });
+
+    }
+
+    function LocationCtrl($scope){
+        //google map custom marker
+        console.log("aw");
+        var myCenter=new google.maps.LatLng(22.300708, 114.172569);
+
+        function initialize()
+        {
+            var mapProp = {
+                center:myCenter,
+                zoom:17,
+                mapTypeId:google.maps.MapTypeId.ROADMAP
+            };
+
+            var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+            var marker=new google.maps.Marker({
+                position:myCenter,
+                icon:'assets/images/marker.png'
+            });
+
+            marker.setMap(map);
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+        console.log("aw");
 
     }
 
