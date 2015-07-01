@@ -112,7 +112,7 @@
                 tabs.push({
                     scheduleID: schedule.id,
                     isSelected: i == 0 ? true:false,
-                    scheduleDateStr: moment(new Date(schedule.date_time_start)).format('dddd, d MMMM'),
+                    scheduleDateStr: moment(schedule.date_time_start).format('dddd, d MMMM'),
                     timeLineStart: moment({hour: 10, minute: 0}),
                     itinerary:itinerary
                 });
