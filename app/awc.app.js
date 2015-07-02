@@ -109,11 +109,11 @@
                         timeEntries:timeEntries
                     });
                 }
-
+                 
                 tabs.push({
                     scheduleID: schedule.id,
                     isSelected: i == 0 ? true:false,
-                    scheduleDateStr: moment(schedule.date_time_start).format('dddd, d MMMM'),
+                    scheduleDateStr: moment(schedule.date_time_start,"YYYY-MM-D hh:mm:ss").format('dddd, D MMMM'),
                     timeLineStart: moment({hour: 10, minute: 0}),
                     itinerary:itinerary
                 });
@@ -487,6 +487,7 @@
         function awaAPI(method, resource,  data) {
 
             /*
+             *  Resources: events, schedules, itineraries, entries
              *  POST, GET to http://awa-api.istackmanila.com/{resource}
              *  PUT, DELETE and GET to http://awa-api.istackmanila.com/{resource}/{id}
              *
