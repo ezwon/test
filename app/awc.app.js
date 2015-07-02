@@ -2,6 +2,7 @@
     'use strict';
     angular
         .module('AffiliateWorldAsia', ['ngRoute'])
+        .controller('MainCtrl', MainCtrl)
         .controller('ScheduleCtrl', ScheduleCtrl)
         .controller('LocationCtrl', LocationCtrl)
         .filter('timeLineStart', timeLineStart)
@@ -9,6 +10,28 @@
         .directive('navMenu', navMenu)
         .service('apiService', apiService);
 
+    function MainCtrl($rootScope,$sce) {
+
+        $rootScope.Library = {
+            english:{
+                text1:$sce.trustAsHtml("1500 of the industry's most successful marketers gather together to create the largest superaffiliate conference in the world.")
+            },
+            chinese:{
+                text1:$sce.trustAsHtml("????????1500??????????????superaffiliate???")
+            }
+        }
+
+        $rootScope.Language = "english";
+        $rootScope.Dictionary = $rootScope.Library[$rootScope.Language];
+        $rootScope.ChangeLanguage = function(lang){
+            $rootScope.Language = lang;
+        }
+
+        $rootScope.$watch("Language",function(newVal,oldVal){
+            console.log(newVal);
+            $rootScope.Dictionary = $rootScope.Library[newVal];
+        })
+    }
 
     function ScheduleCtrl($scope, $timeout, $window, apiService,$routeParams,$location ) {
         var w = angular.element($window);
