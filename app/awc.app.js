@@ -20,7 +20,6 @@
         $scope.SelectTab = function (id) {
 
             for (var i = 0; i < $scope.tabs.length; i++){
-
                 $scope.tabs[i].isSelected = false;
                 if($scope.tabs[i].scheduleID == id)
                     $scope.tabs[i].isSelected = true;
@@ -78,7 +77,7 @@
                 timeEntries = [];
 
             console.log("Event: ", event);
-            console.log("Sched: ",$routeParams.schedule);
+
             for (var i = 0; i < event.schedules.length; i++) {
                 schedule = event.schedules[i];
                 itinerary = [];

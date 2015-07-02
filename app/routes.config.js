@@ -5,12 +5,11 @@
         .config(routeConfig)
         .run(function ($rootScope, $location, $anchorScroll, $routeParams) {
             //when the route is changed scroll to the proper element.
-
-
             $rootScope.$on('$routeChangeSuccess', function (newRoute, oldRoute) {
                 $location.hash($routeParams.go);
                 $anchorScroll();
-                $location.url($location.path())
+                //console.log($location.path());
+                //$location.path($location.path(), false);
             });
         })
         .run(function ($route, $rootScope, $location) {
@@ -27,8 +26,6 @@
             };
         })
     function routeConfig($routeProvider) {
-
-
         $routeProvider.otherwise({redirectTo: '/'})
             .when('/', {
                 templateUrl: 'app/views/home.html',
