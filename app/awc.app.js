@@ -6,8 +6,8 @@
         .controller('LocationCtrl', LocationCtrl)
         .filter('timeLineStart', timeLineStart)
         .filter('timeLineLength', timeLineLength)
-        .directive('navMenu',navMenu)
-        .service('apiService',apiService);
+        .directive('navMenu', navMenu)
+        .service('apiService', apiService);
 
 
     function ScheduleCtrl($scope, $timeout, $window, apiService) {
@@ -65,14 +65,14 @@
         $scope.MockMajorSponsors = apiService.mockMajorSponsor;
         $scope.MockSponsors = apiService.mockSponsors;
 
-        apiService.get(1).then(function(response){
+        apiService.get(1).then(function (response) {
             var event = response.data.data,
                 tabs = [],
                 schedule = null,
                 itinerary = [],
                 timeEntries = [];
 
-            console.log("Event: ",event);
+            console.log("Event: ", event);
 
             for (var i = 0; i < event.schedules.length; i++) {
                 schedule = event.schedules[i];
@@ -89,7 +89,7 @@
 
                         timeEntries.push({
                             title: entry.title,
-                            showDetails:false,
+                            showDetails: false,
                             secondTitle: entry.second_title,
                             websiteUrl: entry.website,
                             imageUrl: entry.image_url,
@@ -103,19 +103,19 @@
 
                     itinerary.push({
                         title: obj.title,
-                        enabled: obj.enabled == "1" ? true:false,
+                        enabled: obj.enabled == "1" ? true : false,
                         cssClass: '',
                         colorScheme: obj.color_scheme,
-                        timeEntries:timeEntries
+                        timeEntries: timeEntries
                     });
                 }
-                 
+
                 tabs.push({
                     scheduleID: schedule.id,
-                    isSelected: i == 0 ? true:false,
-                    scheduleDateStr: moment(schedule.date_time_start,"YYYY-MM-D hh:mm:ss").format('dddd, D MMMM'),
+                    isSelected: i == 0 ? true : false,
+                    scheduleDateStr: moment(schedule.date_time_start, "YYYY-MM-D hh:mm:ss").format('dddd, D MMMM'),
                     timeLineStart: moment({hour: 10, minute: 0}),
-                    itinerary:itinerary
+                    itinerary: itinerary
                 });
 
             }
@@ -129,24 +129,23 @@
 
     }
 
-    function LocationCtrl($scope){
+    function LocationCtrl($scope) {
         //google map custom marker
 
-        var myCenter=new google.maps.LatLng(22.300708, 114.172569);
+        var myCenter = new google.maps.LatLng(22.300708, 114.172569);
 
-        function initialize()
-        {
+        function initialize() {
             var mapProp = {
-                center:myCenter,
-                zoom:17,
-                mapTypeId:google.maps.MapTypeId.ROADMAP
+                center: myCenter,
+                zoom: 17,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
             };
 
-            var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
-            var marker=new google.maps.Marker({
-                position:myCenter,
-                icon:'assets/images/marker.png'
+            var marker = new google.maps.Marker({
+                position: myCenter,
+                icon: 'assets/images/marker.png'
             });
 
             marker.setMap(map);
@@ -157,22 +156,21 @@
 
     }
 
-
-    function navMenu(){
+    function navMenu() {
         var directive = {
             restrict: "AE",
             link: link,
             replace: true,
-            templateUrl:  "app/views/template/navigation.html",
-            scope:{
-                activeMenu:"@"
+            templateUrl: "app/views/template/navigation.html",
+            scope: {
+                activeMenu: "@"
             }
         };
 
         function link(scope, element, attr) {
-            console.log("nav");
-            
+            scope.showMobileMenu = false;
         }
+
         return directive;
     }
 
@@ -188,7 +186,7 @@
         }
     }
 
-    function apiService($http){
+    function apiService($http) {
         var mockTabs = [
             {
                 scheduleID: 0, isSelected: true, scheduleDateStr: "Monday, 7 December",
@@ -202,7 +200,7 @@
                         timeEntries: [
                             {
                                 title: "David Savory",
-                                showDetails:false,
+                                showDetails: false,
                                 secondTitle: "President of iStack Manila",
                                 websiteUrl: 'http://istackholdings.com/',
                                 imageUrl: '',
@@ -214,7 +212,7 @@
                             },
                             {
                                 title: "Jayson Daquer",
-                                showDetails:false,
+                                showDetails: false,
                                 secondTitle: "Web Developer",
                                 websiteUrl: 'http://jaysondaquer.com/',
                                 imageUrl: '',
@@ -280,7 +278,7 @@
                         timeEntries: [
                             {
                                 title: "David Savory",
-                                showDetails:false,
+                                showDetails: false,
                                 secondTitle: "President of iStack Manila",
                                 websiteUrl: 'http://istackholdings.com/',
                                 imageUrl: '',
@@ -292,7 +290,7 @@
                             },
                             {
                                 title: "Jayson Daquer",
-                                showDetails:false,
+                                showDetails: false,
                                 secondTitle: "President of iStack Manila",
                                 websiteUrl: 'http://istackholdings.com/',
                                 imageUrl: '',
@@ -425,66 +423,66 @@
         ];
         var mockMajorSponsors = [
             {
-                Name:"Barack Obama",
-                Position:"President of the USA",
-                AvatarUrl:"",
-                Description:"This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris.",
-                OtherInfo:"of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id",
-                OtherInfoUrl:''
+                Name: "Barack Obama",
+                Position: "President of the USA",
+                AvatarUrl: "",
+                Description: "This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris.",
+                OtherInfo: "of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id",
+                OtherInfoUrl: ''
             },
             {
-                Name:"Barack Obama",
-                Position:"President of the USA",
-                AvatarUrl:"",
-                Description:"This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris.",
-                OtherInfo:"of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id",
-                OtherInfoUrl:''
+                Name: "Barack Obama",
+                Position: "President of the USA",
+                AvatarUrl: "",
+                Description: "This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris.",
+                OtherInfo: "of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id",
+                OtherInfoUrl: ''
             },
             {
-                Name:"Barack Obama",
-                Position:"President of the USA",
-                AvatarUrl:"",
-                Description:"This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris.",
-                OtherInfo:"of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id",
-                OtherInfoUrl:''
+                Name: "Barack Obama",
+                Position: "President of the USA",
+                AvatarUrl: "",
+                Description: "This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris.",
+                OtherInfo: "of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id",
+                OtherInfoUrl: ''
             }
         ];
         var mockSponsors = [
             {
-                Name:"Barack Obama",
-                Position:"President of the USA",
-                AvatarUrl:"",
-                Description:"This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris."
+                Name: "Barack Obama",
+                Position: "President of the USA",
+                AvatarUrl: "",
+                Description: "This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris."
 
             },
             {
-                Name:"Barack Obama",
-                Position:"President of the USA",
-                AvatarUrl:"",
-                Description:"This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris."
+                Name: "Barack Obama",
+                Position: "President of the USA",
+                AvatarUrl: "",
+                Description: "This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris."
 
             },
             {
-                Name:"Barack Obama",
-                Position:"President of the USA",
-                AvatarUrl:"",
-                Description:"This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris."
+                Name: "Barack Obama",
+                Position: "President of the USA",
+                AvatarUrl: "",
+                Description: "This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris."
 
             }
         ]
         var svc = {
-            get:get,
-            mockMajorSponsor:mockMajorSponsors,
-            mockSponsors:mockSponsors
+            get: get,
+            mockMajorSponsor: mockMajorSponsors,
+            mockSponsors: mockSponsors
         }
 
         return svc;
 
-        function get(id){
+        function get(id) {
             return awaAPI("GET", "events/" + id + "?with=schedules.itineraries.entries");
         }
 
-        function awaAPI(method, resource,  data) {
+        function awaAPI(method, resource, data) {
 
             /*
              *  Resources: events, schedules, itineraries, entries
@@ -503,7 +501,7 @@
                 responseType: 'json',
                 contentType: "application/json",
                 data: data,
-                cache:true
+                cache: true
             });
         }
     }
