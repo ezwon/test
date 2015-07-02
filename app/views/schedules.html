@@ -15,7 +15,7 @@
                 <div class="schedule-date">
                     <ul>
                         <li ng-repeat="tab in tabs">
-                            <a ng-click="SelectTab(tab);" ng-class="{'schedule-active':tab.isSelected}">
+                            <a ng-click="SelectTab(tab.scheduleID)" ng-class="{'schedule-active':tab.isSelected}">
                                 <h3>{{tab.scheduleDateStr}}</h3>
                             </a>
                         </li>
@@ -230,7 +230,7 @@
                 <div class="ticket-details">
                     <h1>buy tickets</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel sodales velit. Nullam sodales mi euismod enim congue gravida.</p>
-                    <a href="#" class="primary light"><i class="fa fa-ticket"></i>Buy Tickets</a>
+                    <a href="#/tickets" class="primary light"><i class="fa fa-ticket"></i>Buy Tickets</a>
                 </div>
             </div>
         </div>

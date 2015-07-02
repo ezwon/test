@@ -10,20 +10,24 @@
         .service('apiService', apiService);
 
 
-    function ScheduleCtrl($scope, $timeout, $window, apiService) {
+    function ScheduleCtrl($scope, $timeout, $window, apiService,$routeParams,$location ) {
         var w = angular.element($window);
         w.bind('resize', function () {
             $scope.$apply();
         });
         $(window).resize(UpdateSizeWindow);
 
-        $scope.SelectTab = function (tab) {
+        $scope.SelectTab = function (id) {
 
-            for (var i = 0; i < $scope.tabs.length; i++)
+            for (var i = 0; i < $scope.tabs.length; i++){
+
                 $scope.tabs[i].isSelected = false;
+                if($scope.tabs[i].scheduleID == id)
+                    $scope.tabs[i].isSelected = true;
+            }
 
-            tab.isSelected = true;
-            $scope.UpdateSize(tab.scheduleID);
+            $scope.UpdateSize(id);
+            $location.path('/schedules/' + id, false);
         }
         $scope.UpdateSize = function (index) {
             var windowWidth = w[0].innerWidth,
@@ -31,6 +35,7 @@
                 pixelToCenter = 0,
                 schedEntryExcessWidth = 0,
                 selectedIndex = index;
+
 
             $scope.selectedIndex = selectedIndex;
 
@@ -73,7 +78,7 @@
                 timeEntries = [];
 
             console.log("Event: ", event);
-
+            console.log("Sched: ",$routeParams.schedule);
             for (var i = 0; i < event.schedules.length; i++) {
                 schedule = event.schedules[i];
                 itinerary = [];
@@ -120,10 +125,22 @@
 
             }
 
+
+
+            if($routeParams.schedule)
+                for (var i = 0; i < tabs.length; i++){
+                    tabs[i].isSelected = false;
+                    console.log(tabs[i].scheduleID.toString() == $routeParams.schedule.toString());
+                    if(tabs[i].scheduleID == $routeParams.schedule)
+                        tabs[i].isSelected = true;
+                }
+
             $scope.tabs = tabs;
-            $scope.selectedIndex = 0;
+            $scope.selectedIndex = 1;
             $timeout(function () {
                 $scope.UpdateSize();
+                if($routeParams.schedule)
+                    $scope.SelectTab($routeParams.schedule);
             }, 100)
         });
 
