@@ -6,6 +6,7 @@
         .controller('LocationCtrl', LocationCtrl)
         .filter('timeLineStart', timeLineStart)
         .filter('timeLineLength', timeLineLength)
+        .directive('navMenu',navMenu)
         .service('apiService',apiService);
 
 
@@ -130,7 +131,7 @@
 
     function LocationCtrl($scope){
         //google map custom marker
-        console.log("aw");
+
         var myCenter=new google.maps.LatLng(22.300708, 114.172569);
 
         function initialize()
@@ -152,8 +153,27 @@
         }
 
         google.maps.event.addDomListener(window, 'load', initialize);
-        console.log("aw");
 
+
+    }
+
+
+    function navMenu(){
+        var directive = {
+            restrict: "AE",
+            link: link,
+            replace: true,
+            templateUrl:  "app/views/template/navigation.html",
+            scope:{
+                activeMenu:"@"
+            }
+        };
+
+        function link(scope, element, attr) {
+            console.log("nav");
+            
+        }
+        return directive;
     }
 
     function timeLineStart() {
