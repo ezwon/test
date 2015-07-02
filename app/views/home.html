@@ -15,6 +15,22 @@
         <li><a href="#/locations"><h4>the details</h4></a></li>
     </ul>
 </nav>
+<div class="mobile-menu">
+    <span class="navigation" ng-click="showMobileMenu = true"><i class="fa fa-navicon"></i></span>
+    <div ng-class="{'show':showMobileMenu == true}" class="menu-overlay">
+        <i ng-click="showMobileMenu = false" class="fa fa-close"></i>
+        <div class="mobile-nav-list">
+            <a href="#/"><img src="assets/images/logo.png" alt="Logo"/></a>
+            <ul>
+                <li><a href="#/events">Events</a></li>
+                <li><a href="#/schedule">Schedule & speakers</a></li>
+                <li><a href="#/tickets">buy tickets</a></li>
+                <li><a href="#/markets">buy market table</a></li>
+                <li><a href="#/locations">the details</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
 
 <section class="slogan">
     <div class="container">
