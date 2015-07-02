@@ -1585,7 +1585,7 @@ div.location-content-2 {
     top: 0;
     opacity: 1;
 }
-.menu-overlay i{
+.menu-overlay i.fa-close{
 	font-size: 2rem;
     color: #fff;
     cursor: pointer;
@@ -1643,3 +1643,17 @@ div.location-content-2 {
 		line-height: 1.5rem;
 		}
 	}
+.mobile-nav-list h3{
+	font-size: 1.2rem;
+	line-height: 1.5rem;
+	color: #fa7b65;
+	margin: 40px 0 0 0;
+	text-transform: uppercase;
+	font-weight: 500;
+	letter-spacing: 0.200em;
+}
+.mobile-nav-list i{
+	font-size: 2rem;
+	color: #fff;
+	margin: 30px 20px 0 20px;
+}
