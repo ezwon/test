@@ -1,41 +1,48 @@
 <div>
-    <a href="#/"><img src="assets/images/logo.png" class="home-link" alt="AWC Logo"/></a>
-    <nav class="default-nav">
-        <ul>
-            <li ng-class="{'active':activeMenu == 'event'}"><a href="#/events"><h5>events</h5></a></li>
-            <li ng-class="{'active':activeMenu == 'schedule'}"><a href="#/schedules"><h5>schedule & speakers</h5></a>
-            </li>
-            <li ng-class="{'active':activeMenu == 'ticket'}"><a href="#/tickets"><h5>buy tickets</h5></a></li>
-            <li ng-class="{'active':activeMenu == 'market'}"><a href="#/markets"><h5>buy market tables</h5></a></li>
-            <li ng-class="{'active':activeMenu == 'location'}"><a href="#/locations"><h5>the details</h5></a></li>
-        </ul>
-    </nav>
-    <div class="language-list">
-        <ul>
-            <li class="active"><img src="assets/images/lang-england.png" alt="england flag"/></li>
-            <li><img src="assets/images/lang-china.png" alt="china flag"/></li>
-            <li><img src="assets/images/lang-indonesia.png" alt="indonesia flag"/></li>
-            <li><img src="assets/images/lang-thailand.png" alt="thailand flag"/></li>
-        </ul>
-    </div>
-
-    <span id="trigger-overlay" class="navigation" ng-click="showMobileMenu = true"><i class="fa fa-navicon"></i></span>
-
-    <div ng-class="{'show':showMobileMenu == true}" class="menu-overlay">
-
-        <button ng-click="showMobileMenu = false">CLOSE</button>
-        <div class="overlay overlay-hugeinc">
-            <button type="button" class="overlay-close" ng-click="toggleOverlay()">Close</button>
-            <nav>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Work</a></li>
-                    <li><a href="#">Clients</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </nav>
+    <div class="desktop-menu">
+        <a href="#/"><img src="assets/images/logo.png" class="home-link" alt="AWC Logo"/></a>
+        <nav class="default-nav">
+            <ul>
+                <li ng-class="{'active':activeMenu == 'event'}"><a href="#/events"><h5>events</h5></a></li>
+                <li ng-class="{'active':activeMenu == 'schedule'}"><a href="#/schedules"><h5>schedule & speakers</h5></a>
+                </li>
+                <li ng-class="{'active':activeMenu == 'ticket'}"><a href="#/tickets"><h5>buy tickets</h5></a></li>
+                <li ng-class="{'active':activeMenu == 'market'}"><a href="#/markets"><h5>buy market tables</h5></a></li>
+                <li ng-class="{'active':activeMenu == 'location'}"><a href="#/locations"><h5>the details</h5></a></li>
+            </ul>
+        </nav>
+        <div class="language-list">
+            <ul>
+                <li class="active"><img src="assets/images/lang-england.png" alt="england flag"/></li>
+                <li><img src="assets/images/lang-china.png" alt="china flag"/></li>
+                <li><img src="assets/images/lang-indonesia.png" alt="indonesia flag"/></li>
+                <li><img src="assets/images/lang-thailand.png" alt="thailand flag"/></li>
+            </ul>
         </div>
     </div>
+    
+    <div class="mobile-menu">
+        <span class="navigation" ng-click="showMobileMenu = true"><i class="fa fa-navicon"></i></span>
+
+        <div ng-class="{'show':showMobileMenu == true}" class="menu-overlay">
+            <i ng-click="showMobileMenu = false" class="fa fa-close"></i>
+            <div class="mobile-nav-list">
+                <a href="#/"><img src="assets/images/logo.png" alt="Logo"/></a>
+                <ul>
+                    <li><a href="#/events">Events</a></li>
+                    <li><a href="#/schedule">Schedule & speakers</a></li>
+                    <li><a href="#/tickets">buy tickets</a></li>
+                    <li><a href="#/markets">buy market table</a></li>
+                    <li><a href="#/locations">the details</a></li>
+                </ul>
+                <h3>find us online</h3>
+                <a href="#"><i class="fa fa-facebook-official"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+</div> 
+    
 
 

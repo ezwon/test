@@ -38,20 +38,35 @@ h1 {
     font-weight: 200;
     letter-spacing: -0.050em;
 }
-
+	@media screen and (max-width: 768px) {
+    h1 {
+       	font-size: 2.8rem;
+       	line-height: 2.8rem; 
+	   	}
+	}
 h2 {
     font-size: 2.25rem;
     line-height: 2.25rem;
     letter-spacing: -0.025em;
     font-weight: 300;
 }
-
+	@media screen and (max-width: 768px) {
+    h2 {
+       	font-size: 1.75rem;
+       	line-height: 1.75rem; 
+	   	}
+	}
 h3 {
     font-size: 1.5rem;
     line-height: 1.5rem;
     font-weight: 400;
 }
-
+	@media screen and (max-width: 768px) {
+    h3 {
+       	font-size: 1rem;
+       	line-height: 1rem; 
+	   	}
+	}
 h4 {
     font-size: 0.875rem;
     line-height: 0.875rem;
@@ -117,6 +132,7 @@ header {
     width: 100%;
     background: #333 url("../images/home-bg.jpg") center no-repeat;
     padding: 120px 0 170px 0;
+    z-index: 10;
 }
 
 @media screen and (min-width: 1900px) {
@@ -141,10 +157,15 @@ header {
 .title h1 {
     color: #fff;
     font-size: 6.25rem;
-    line-height: 4.5rem;
+    line-height: 6.5rem;
     margin: 30px 0 5px 0;
 }
-
+	@media screen and (max-width: 768px) {
+    .title h1 {
+       	font-size: 4rem;
+       	line-height: 4.5rem; 
+	   	}
+	}
 .title h4 {
     color: #fff;
 }
@@ -653,7 +674,7 @@ a.ticket-button {
 
 @media screen and (max-width: 991px) {
     .details {
-        height: 250px;
+        height: 230px;
         padding: 0 0 20px 0;
     }
 }
@@ -1399,28 +1420,6 @@ div.location-content-2 {
 }
 
 /* home navigation */
-.menu-overlay {
-    position: fixed;
-    background-color: #e2e2e2;
-    opacity: 0;
-    display: none;
-    height: 100%;
-    width: 100%;
-    top:0;
-    left:0;
-
-    -webkit-transition: opacity linear 1s;
-    -moz-transition: opacity linear 1s;
-    -o-transition: opacity linear 1s;
-    transition: opacity linear 1s;
-}
-
-.menu-overlay.show {
-    opacity: 1;
-    z-index: 999;
-    display: block;
-}
-
 .home-nav {
     background: #293338;
     text-align: center;
@@ -1437,7 +1436,7 @@ div.location-content-2 {
 }
 
 .home-nav ul li a {
-    padding: 45px 45px;
+    padding: 45px 35px;
     display: inline-block;
 
 }
@@ -1526,127 +1525,135 @@ div.location-content-2 {
 }
 
 /* navigation overlay */
+.desktop-menu{
+	display: block;
+}
+.mobile-menu{
+	display: none;
+}
+	@media screen and (max-width: 1023px) {
+	.desktop-menu{
+		display: none;
+		}	
+    .mobile-menu {
+        display: block;
+		}
+	.home-nav{
+		display: none;
+		}
+	}
 .navigation {
     display: block;
-    position: absolute;
-    left: 10px;
-    top: 80px;
+    position: fixed;
+    left: 25px;
+    top: 25px;
     cursor: pointer;
+    z-index: 500;
+    padding: 10px 15px;
+    background:rgba(0,0,0,0.2);
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
 }
-
+.navigation:hover, .navigation:focus{
+    background:rgba(0,0,0,0.5);
+}
 .navigation i {
     font-size: 2rem;
     color: #fff;
 }
-
-.overlay {
+.menu-overlay {
     position: fixed;
-    width: 100%;
+    background-color: rgba(34, 42, 36, 0.98);
+    display: block;
     height: 100%;
-    top: 0;
-    left: 0;
-    background: rgba(153, 204, 51, 0.9);
-}
-
-.overlay .overlay-close {
-    width: 80px;
-    height: 80px;
-    position: absolute;
-    left: 20px;
-    top: 20px;
+    width: 100%;
+    top:-100%;
+    right:0;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    opacity: 0;
     overflow: hidden;
-    border: none;
-    background: url("../images/logo.png") no-repeat center center;
-    text-indent: 200%;
-    color: transparent;
-    outline: none;
+}
+.menu-overlay.show {
+    z-index: 999;
+    top: 0;
+    opacity: 1;
+}
+.menu-overlay i.fa-close{
+	font-size: 2rem;
+    color: #fff;
+    cursor: pointer;
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    padding: 10px 15px;
     z-index: 100;
 }
-
-.overlay nav {
+.menu-overlay img{
+	width: 150px;
+	margin: auto;
+}
+.mobile-nav-list{
+	position: absolute;
+	width: 100%;
+	top:50%;
+	left:50%;
+	transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
     text-align: center;
-    position: relative;
-    top: 50%;
-    height: 60%;
-    font-size: 54px;
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
 }
-
-.overlay ul {
-    list-style: none;
-    padding: 0;
-    margin: 0 auto;
-    display: inline-block;
-    height: 100%;
-    position: relative;
+.mobile-nav-list ul{
+	list-style: none;
+	padding: 0;
+	margin: 20px 0 0 0;
 }
-
-.overlay ul li {
-    display: block;
-    height: 20%;
-    height: calc(100% / 5);
-    min-height: 54px;
+.mobile-nav-list ul li {
+	display: block;
+	padding: 30px 0 0 0;
 }
-
-.overlay ul li a {
-    font-weight: 300;
-    display: block;
-    color: #fff;
-    -webkit-transition: color 0.2s;
-    transition: color 0.2s;
+	@media screen and (max-width: 768px) {
+	.mobile-nav-list ul li {
+		padding: 20px 0 0 0;
+		}
+	}
+.mobile-nav-list ul li a{
+	color: #fff;
+	font-size: 1.8rem;
+	text-transform: uppercase;
+	font-weight: 500;
+	letter-spacing: 0.100em;
+	line-height: 2.2rem;
 }
-
-.overlay ul li a:hover,
-.overlay ul li a:focus {
-    color: #e3fcb1;
+	@media screen and (max-width: 768px) {
+	.mobile-nav-list ul li a{
+		color: #fff;
+		font-size: 1.2rem;
+		text-transform: uppercase;
+		font-weight: 500;
+		letter-spacing: 0.100em;
+		line-height: 1.5rem;
+		}
+	}
+.mobile-nav-list h3{
+	font-size: 1.2rem;
+	line-height: 1.5rem;
+	color: #fa7b65;
+	margin: 40px 0 0 0;
+	text-transform: uppercase;
+	font-weight: 500;
+	letter-spacing: 0.200em;
 }
-
-.overlay-hugeinc {
-    opacity: 0;
-    visibility: hidden;
-    -webkit-transition: opacity 0.5s, visibility 0s 0.5s;
-    transition: opacity 0.5s, visibility 0s 0.5s;
-}
-
-.overlay-hugeinc.open {
-    opacity: 1;
-    visibility: visible;
-    -webkit-transition: opacity 0.5s;
-    transition: opacity 0.5s;
-}
-
-.overlay-hugeinc nav {
-    -webkit-perspective: 1200px;
-    perspective: 1200px;
-}
-
-.overlay-hugeinc nav ul {
-    opacity: 0.4;
-    -webkit-transform: translateY(-25%) rotateX(35deg);
-    transform: translateY(-25%) rotateX(35deg);
-    -webkit-transition: -webkit-transform 0.5s, opacity 0.5s;
-    transition: transform 0.5s, opacity 0.5s;
-}
-
-.overlay-hugeinc.open nav ul {
-    opacity: 1;
-    -webkit-transform: rotateX(0deg);
-    transform: rotateX(0deg);
-}
-
-.overlay-hugeinc.close nav ul {
-    -webkit-transform: translateY(25%) rotateX(-35deg);
-    transform: translateY(25%) rotateX(-35deg);
-}
-
-@media screen and (max-height: 30.5em) {
-    .overlay nav {
-        height: 70%;
-        font-size: 34px;
-    }
-
-    .overlay ul li {
-        min-height: 34px;
-    }
+.mobile-nav-list i{
+	font-size: 2rem;
+	color: #fff;
+	margin: 30px 20px 0 20px;
 }
