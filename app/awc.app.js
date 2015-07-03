@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular
-        .module('AffiliateWorldAsia', ['ngRoute'])
+        .module('AffiliateWorldAsia', ['ngRoute','pascalprecht.translate','timer'])
         .controller('MainCtrl', MainCtrl)
         .controller('ScheduleCtrl', ScheduleCtrl)
         .controller('LocationCtrl', LocationCtrl)
@@ -10,27 +10,10 @@
         .directive('navMenu', navMenu)
         .service('apiService', apiService);
 
-    function MainCtrl($rootScope,$sce) {
-
-        $rootScope.Library = {
-            english:{
-                text1:$sce.trustAsHtml("1500 of the industry's most successful marketers gather together to create the largest superaffiliate conference in the world.")
-            },
-            chinese:{
-                text1:$sce.trustAsHtml("????????1500??????????????superaffiliate???")
-            }
-        }
-
-        $rootScope.Language = "english";
-        $rootScope.Dictionary = $rootScope.Library[$rootScope.Language];
-        $rootScope.ChangeLanguage = function(lang){
-            $rootScope.Language = lang;
-        }
-
-        $rootScope.$watch("Language",function(newVal,oldVal){
-            console.log(newVal);
-            $rootScope.Dictionary = $rootScope.Library[newVal];
-        })
+    function MainCtrl($scope,$translate) {
+        $scope.changeLanguage = function (key) {
+            $translate.use(key);
+        };
     }
 
     function ScheduleCtrl($scope, $timeout, $window, apiService,$routeParams,$location ) {

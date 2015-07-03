@@ -2,7 +2,7 @@
     'use strict';
     angular
         .module('AffiliateWorldAsia')
-        .config(routeConfig)
+        .config(appConfig)
         .run(function ($rootScope, $location, $anchorScroll, $routeParams) {
             //when the route is changed scroll to the proper element.
             $rootScope.$on('$routeChangeSuccess', function (newRoute, oldRoute) {
@@ -25,7 +25,7 @@
                 return original.apply($location, [path]);
             };
         })
-    function routeConfig($routeProvider) {
+    function appConfig($routeProvider, $translateProvider) {
         $routeProvider.otherwise({redirectTo: '/'})
             .when('/', {
                 templateUrl: 'app/views/home.html',
@@ -55,6 +55,22 @@
                 templateUrl: 'app/views/location-details.html',
                 controller: 'LocationCtrl'
             });
+
+        $translateProvider.translations('en', {
+            TITLE: 'Hello',
+            FOO: 'This is a paragraph.',
+            BUTTON_LANG_EN: 'english',
+            BUTTON_LANG_DE: 'german'
+        });
+        $translateProvider.translations('de', {
+            TITLE: 'Hallo',
+            FOO: 'Dies ist ein Paragraph.',
+            BUTTON_LANG_EN: 'englisch',
+            BUTTON_LANG_DE: 'deutsch'
+        });
+        $translateProvider.preferredLanguage('en');
     }
+
+
 })();
 
