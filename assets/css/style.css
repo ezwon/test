@@ -2,7 +2,7 @@ html {
     font-family: 'proxima-nova', sans-serif;
     font-size: 16px;
     line-height: 16px;
-    color: #242433;
+    color: #fff;
     font-weight: 400;
 }
 
@@ -34,13 +34,14 @@ h1, h2, h3, h4, h5, p {
 
 h1 {
     font-size: 3.5rem;
-    line-height: 3.5rem;
+    line-height: 4rem;
+    font-weight: 200;
 }
 h2 {
-    font-size: 2.25rem;
+    font-size: 1.875rem;
     line-height: 2.25rem;
-    letter-spacing: -0.025em;
     font-weight: 300;
+    color: #fff;
 }
 h3 {
     font-size: 1.5rem;
@@ -56,29 +57,27 @@ h4 {
 }
 
 h5 {
-    font-size: 0.75rem;
-    line-height: 0.75rem;
-    letter-spacing: 0.200em;
-    font-weight: 500;
-    text-transform: uppercase;
+    font-size: 1.125rem;
+    line-height: 1.625rem;
+    font-weight: 400;
+    color: #6b6b6b;
 }
 
 p {
-    font-size: 0.875rem;
-    line-height: 1.375rem;
+    font-size: 1.125rem;
+    line-height: 1.625rem;
     font-weight: 400;
+    color:#fff;
 }
 
 p.bold {
     font-weight: 500;
 }
 
-
-/* header */
 header {
     width: 100%;
     background: #333 url("../images/header-bg.jpg") center no-repeat;
-    padding: 120px 0 10px 0;
+    padding: 120px 0 100px 0;
 }
     @media screen and (min-width: 1500px) {
         header {
@@ -86,3 +85,101 @@ header {
         }
     }
 
+.title{
+    text-align:center;
+}
+.title img{
+    display: block;
+    width: 265px;
+    margin:auto;
+}
+.title h1{
+    margin: 20px 0 0 0;
+}
+.slogan{
+    text-align: center;
+    padding: 60px 0;
+    background: #fff;
+}
+.content{
+    padding: 75px 0 175px 0;
+    background: #333 url("../images/content-bg.jpg") center no-repeat; 
+    background-size: cover;
+}
+.first-step{
+    text-align: center;
+}
+.numbering{
+    display: block;
+    height: 71px;
+    width: 71px;
+    border: 2px solid #fff;
+    background: transparent;
+    border-radius: 50%;
+    margin:auto;
+    text-align: center;
+}
+.numbering p{
+    line-height: 71px;
+    font-weight: 200;
+}
+.content h2{
+    margin:35px 0 75px 0;
+}
+.content a{
+    width: 280px;
+    height: 64px;
+    display: block;
+    margin: 0 auto 20px; 
+    color: #fff;
+    font-size: 1.125rem;
+    line-height: 64px;
+    font-weight: 300;
+}
+.first-step a{
+    text-align: left; 
+}
+a.facebook{
+    background: #537bbd;
+}
+a.twitter{
+    background: #78cdf0;
+}
+a.messenger{
+    background: #0084ff;
+}
+.social-media{
+    width: 41px;
+    height: 41px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 10px 0 15px;
+}
+.fb-icon{
+    background: url(../images/facebook.png) center no-repeat;
+    background-size: contain;
+}
+.tw-icon{
+    background: url(../images/twitter.png) center no-repeat;
+    background-size: contain;
+    margin: 0 25px 0 15px;
+}
+.me-icon{
+    background: url(../images/messenger.png) center no-repeat;
+    background-size: contain;
+}
+.btn-next{
+    width: 280px;
+    height: 43px;
+    border: none;
+    font-family: 'proxima-nova', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #fff;
+    background: #7edc3a;
+}
+.disabled{
+    color: #e5e5e5;
+    background: #fff;
+
+}
