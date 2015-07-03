@@ -1258,24 +1258,49 @@ li.sched-active div.list-width {
     margin: 0 0 5px 0;
     color: #fff;
 }
-
-.speaker-details h5 {
-    color: #fa7b65;
-    font-size: 0.85rem;
-    padding: 5px 0 30px 0;
-}
+    @media screen and (max-width: 767px) {
+    .speaker-details h2 {
+        text-align:center; 
+        margin: 20px 0 5px 0; 
+        }
+    }
 
 .speaker-details h3 {
     margin: 10px 0 5px 0;
     color: #fff;
     font-size: 1.5rem;
 }
+    @media screen and (max-width: 767px) {
+    .speaker-details h3 {
+        text-align:center;
+        margin: 20px 0 5px 0; 
+        }
+    }
+
+.speaker-details h5 {
+    color: #fa7b65;
+    font-size: 0.85rem;
+    padding: 5px 0 30px 0;
+}
+    @media screen and (max-width: 767px) {
+    .speaker-details h5 {
+        text-align:center; 
+        }
+    }
 
 .speaker-details p {
     color: #8a9499;
     display: block;
     margin: 0 0 20px 0;
 }
+    @media screen and (max-width: 991px) {
+    .speaker-details p {
+        margin: 20px 0 0 0;
+        }
+    }
+    .not-featured-speaker .speaker-details p{
+        margin: 0;
+    }
 
 li.sched-active div.speaker-details p {
     color: #8a9499;
@@ -1293,8 +1318,12 @@ li.sched-active div.speaker-details p {
     font-weight: 500;
     margin: 0 5px;
 }
-
-.speaker-details a i {
+@media screen and (max-width: 767px) {
+    .speaker-social-media{
+        text-align: center;
+        }
+    }
+.speaker-social-media a i {
     color: #49565d;
     font-size: 1.625rem;
     margin: 0 10px 0 0;
