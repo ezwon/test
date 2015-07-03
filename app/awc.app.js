@@ -7,14 +7,16 @@
         .controller('LocationCtrl', LocationCtrl)
         .filter('timeLineStart', timeLineStart)
         .filter('timeLineLength', timeLineLength)
-        .directive('navMenu', navMenu)
         .controller('navMenuCtrl', navMenuCtrl)
+        .directive('navMenu', navMenu)
         .service('apiService', apiService);
 
-    function MainCtrl($scope,$translate) {
+    function MainCtrl($scope,$rootScope,$translate) {
         $scope.changeLanguage = function (key) {
             $translate.use(key);
         };
+        $rootScope.selectedLanguage = 'english';
+
     }
 
     function ScheduleCtrl($scope, $timeout, $window, apiService,$routeParams,$location ) {
@@ -179,7 +181,7 @@
 
     }
 
-    function navMenu($translate) {
+    function navMenu() {
         var directive = {
             restrict: "AE",
             link: link,
@@ -198,9 +200,10 @@
         return directive;
     }
 
-    function navMenuCtrl($rootScope,$translate){
-        $rootScope.showMobileMenu = false;
-        $rootScope.translations = [
+    function navMenuCtrl($scope,$rootScope,$translate){
+        $scope.showMobileMenu = false;
+        $scope.openTranslations = true;
+        $scope.translationMap = [
             {
                 active:true,
                 key:'english',
@@ -218,8 +221,7 @@
                 key:'indonesia',
                 flagUrl:'assets/images/lang-indonesia.png',
                 altText:'indonesia flag'
-            }
-            ,
+            },
             {
                 active:false,
                 key:'thailand',
@@ -227,21 +229,22 @@
                 altText:'thailand flag'
             }
         ]
-        $rootScope.openTranslations = false;
-        $rootScope.changeLanguage = function (key) {
-
-            for (var i = 0; i < $rootScope.translations.length; i++) {
-                $rootScope.translations[i].active = false;
-                if (key == $rootScope.translations[i].key)
-                    $rootScope.translations[i].active = true;
+        $scope.changeLanguage = function (key) {
+            for (var i = 0; i < $scope.translationMap.length; i++) {
+                $scope.translationMap[i].active = false;
+                if (key == $scope.translationMap[i].key)
+                    $scope.translationMap[i].active = true;
             }
 
-            scope.translations.sort( function (a) {
+            $scope.translationMap.sort( function (a) {
                 return a.active == false;
             })
             $translate.use(key);
-            $rootScope.openTranslations = !$rootScope.openTranslations;
+            $scope.openTranslations = !$scope.openTranslations;
+            $rootScope.selectedLanguage = key;
         };
+
+        $scope.changeLanguage($rootScope.selectedLanguage);
     }
 
     function timeLineStart() {
