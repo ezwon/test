@@ -1408,7 +1408,13 @@ div.location-content-2 {
 }
 
 .language-list ul li {
-    display: none;
+    margin-bottom: -30px;
+    cursor: pointer;
+}
+
+.language-list.open ul li {
+    margin-bottom: 5px;
+
 }
 
 .language-list ul li.active {

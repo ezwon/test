@@ -11,12 +11,16 @@
                 <li ng-class="{'active':activeMenu == 'location'}"><a href="#/locations"><h5>the details</h5></a></li>
             </ul>
         </nav>
-        <div class="language-list">
-            <ul>
-                <li class="active"><img src="assets/images/lang-england.png" alt="england flag"/></li>
-                <li><img src="assets/images/lang-china.png" alt="china flag"/></li>
-                <li><img src="assets/images/lang-indonesia.png" alt="indonesia flag"/></li>
-                <li><img src="assets/images/lang-thailand.png" alt="thailand flag"/></li>
+        <div class="language-list" ng-class="{'open':openTranslations}">
+            <ul ng-if="!openTranslations">
+                <li title="{{language.key}}" ng-if="language.active" ng-click="changeLanguage(language.key)" ng-repeat="language in translations">
+                    <img ng-src="{{language.flagUrl}}" alt="{{language.altText}}"/>
+                </li>
+            </ul>
+            <ul ng-if="openTranslations">
+                <li title="{{language.key}}" ng-click="changeLanguage(language.key)" ng-repeat="language in translations">
+                    <img ng-src="{{language.flagUrl}}" alt="{{language.altText}}"/>
+                </li>
             </ul>
         </div>
     </div>
