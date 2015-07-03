@@ -8,6 +8,7 @@
         .filter('timeLineStart', timeLineStart)
         .filter('timeLineLength', timeLineLength)
         .directive('navMenu', navMenu)
+        .controller('navMenuCtrl', navMenuCtrl)
         .service('apiService', apiService);
 
     function MainCtrl($scope,$translate) {
@@ -182,6 +183,7 @@
         var directive = {
             restrict: "AE",
             link: link,
+            controller:'navMenuCtrl',
             replace: true,
             templateUrl: "app/views/template/navigation.html",
             scope: {
@@ -190,52 +192,56 @@
         };
 
         function link(scope, element, attr) {
-            scope.showMobileMenu = false;
-            scope.translations = [
-                {
-                    active:true,
-                    key:'english',
-                    flagUrl:'assets/images/lang-england.png',
-                    altText:'england flag'
-                },
-                {
-                    active:false,
-                    key:'chinese',
-                    flagUrl:'assets/images/lang-china.png',
-                    altText:'china flag'
-                },
-                {
-                    active:false,
-                    key:'indonesia',
-                    flagUrl:'assets/images/lang-indonesia.png',
-                    altText:'indonesia flag'
-                }
-                ,
-                {
-                    active:false,
-                    key:'thailand',
-                    flagUrl:'assets/images/lang-thailand.png',
-                    altText:'thailand flag'
-                }
-            ]
-            scope.openTranslations = false;
-            scope.changeLanguage = function (key) {
 
-                for (var i = 0; i < scope.translations.length; i++) {
-                    scope.translations[i].active = false;
-                    if (key == scope.translations[i].key)
-                        scope.translations[i].active = true;
-                }
-
-                scope.translations.sort( function (a) {
-                    return a.active == false;
-                })
-                $translate.use(key);
-                scope.openTranslations = !scope.openTranslations;
-            };
         }
 
         return directive;
+    }
+
+    function navMenuCtrl($rootScope,$translate){
+        $rootScope.showMobileMenu = false;
+        $rootScope.translations = [
+            {
+                active:true,
+                key:'english',
+                flagUrl:'assets/images/lang-england.png',
+                altText:'england flag'
+            },
+            {
+                active:false,
+                key:'chinese',
+                flagUrl:'assets/images/lang-china.png',
+                altText:'china flag'
+            },
+            {
+                active:false,
+                key:'indonesia',
+                flagUrl:'assets/images/lang-indonesia.png',
+                altText:'indonesia flag'
+            }
+            ,
+            {
+                active:false,
+                key:'thailand',
+                flagUrl:'assets/images/lang-thailand.png',
+                altText:'thailand flag'
+            }
+        ]
+        $rootScope.openTranslations = false;
+        $rootScope.changeLanguage = function (key) {
+
+            for (var i = 0; i < $rootScope.translations.length; i++) {
+                $rootScope.translations[i].active = false;
+                if (key == $rootScope.translations[i].key)
+                    $rootScope.translations[i].active = true;
+            }
+
+            scope.translations.sort( function (a) {
+                return a.active == false;
+            })
+            $translate.use(key);
+            $rootScope.openTranslations = !$rootScope.openTranslations;
+        };
     }
 
     function timeLineStart() {
