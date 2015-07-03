@@ -859,7 +859,7 @@ a.ticket-button {
 }
 
 @media screen and (min-width: 1600px) {
-    .location-header {
+    .schedule-header {
         background-size: cover;
     }
 }
