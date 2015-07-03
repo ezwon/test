@@ -1,7 +1,8 @@
 (function () {
     'use strict';
     angular
-        .module('AffiliateWorldAsia', ['ngRoute'])
+        .module('AffiliateWorldAsia', ['ngRoute','pascalprecht.translate','timer'])
+        .controller('MainCtrl', MainCtrl)
         .controller('ScheduleCtrl', ScheduleCtrl)
         .controller('LocationCtrl', LocationCtrl)
         .filter('timeLineStart', timeLineStart)
@@ -9,6 +10,11 @@
         .directive('navMenu', navMenu)
         .service('apiService', apiService);
 
+    function MainCtrl($scope,$translate) {
+        $scope.changeLanguage = function (key) {
+            $translate.use(key);
+        };
+    }
 
     function ScheduleCtrl($scope, $timeout, $window, apiService,$routeParams,$location ) {
         var w = angular.element($window);
