@@ -502,6 +502,7 @@ header {
     margin: 50px 0 0 0;
     position: relative;
     padding: 30px;
+    overflow:hidden;
 }
 
 @media screen and (max-width: 380px) {
@@ -561,16 +562,24 @@ header {
 .ticket-price ul li {
     display: block;
     margin: 0 0 15px 0;
+    width: 100%;
+    float:left;
 }
 
 .ticket-price ul li i {
     color: #fa7b65;
     vertical-align: middle;
-    padding: 0 3px 0 0;
+    padding: 0 5px 0 0;
+    float:left;
+    display: inline-block;
 }
 
 .ticket-price ul li p {
-    display: inline;
+    display: inline-block;
+    float:left;
+    margin: 0;
+    padding: 0;
+    width: 90%;
 }
 
 .ticket-price ul li p.price-inactive {
@@ -635,8 +644,10 @@ a.ticket-button {
     background: rgba(255, 255, 255, 0.07);
 }
 
-.ticket-button-wrapper {
-    padding: 0 40px;
+@media screen and (min-width: 1200px) {
+    .ticket-button-wrapper {
+        padding: 0 40px;
+    }
 }
 
 /* events */
