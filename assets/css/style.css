@@ -402,7 +402,7 @@ header {
     background: #293338 url("../images/ticket-bg.jpg") center top no-repeat;
 }
 
-@media screen and (min-width: 1900px) {
+@media screen and (min-width: 1921px) {
     .ticket-content {
         background-size: cover;
     }
@@ -567,10 +567,14 @@ header {
     color: #fa7b65;
     vertical-align: middle;
     padding: 0 3px 0 0;
+    position: absolute;
 }
 
 .ticket-price ul li p {
     display: inline;
+    position: relative;
+    left: 24px;
+    top: -2px;
 }
 
 .ticket-price ul li p.price-inactive {

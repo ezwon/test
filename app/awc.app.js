@@ -157,9 +157,10 @@
     function LocationCtrl($scope) {
         //google map custom marker
 
-        var myCenter = new google.maps.LatLng(22.300708, 114.172569);
+        var myCenter = new google.maps.LatLng(13.746730, 100.539568);
 
         function initialize() {
+
             var mapProp = {
                 center: myCenter,
                 zoom: 17,
@@ -175,8 +176,7 @@
 
             marker.setMap(map);
         }
-
-        google.maps.event.addDomListener(window, 'load', initialize);
+        initialize();
 
 
     }
