@@ -25,7 +25,7 @@
                 return original.apply($location, [path]);
             };
         })
-    function appConfig($routeProvider, $translateProvider) {
+    function appConfig($routeProvider, $translateProvider, ngDialogProvider) {
         $routeProvider.otherwise({redirectTo: '/'})
             .when('/', {
                 templateUrl: 'app/views/home.html',
@@ -69,6 +69,18 @@
             BUTTON_LANG_DE: 'deutsch'
         });
         $translateProvider.preferredLanguage('en');
+
+        ngDialogProvider.setDefaults({
+            className: 'ngdialog-theme-default',
+            plain: false,
+            showClose: true,
+            closeByDocument: true,
+            closeByEscape: true,
+            appendTo: false,
+            preCloseCallback: function () {
+                console.log('default pre-close callback');
+            }
+        });
     }
 
 

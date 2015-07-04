@@ -8,6 +8,7 @@
                     <h1>{{'TITLE_SPEAKERS' | translate}} <span>&</span> {{'TITLE_SCHEDULES' | translate}}</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel sodales velit. Nullam
                         sodales mi euismod enim congue gravida.</p>
+                    <!--<a href="" ng-click="openDefault()">Default theme</a>-->
                 </div>
             </div>
             <div class="col-lg-12">
@@ -97,24 +98,23 @@
                     <div class="col-lg-12">
                         <div class="schedule-details">
                             <h1>{{tab.scheduleDateStr}}</h1>
-
-                            <ul ng-if="item.timeEntries.length > 0" ng-repeat="item in tab.itinerary">
-                                <!--<li>-->
-                                    <!--<h1 style="color:{{item.colorScheme}}">{{item.title}}</h1>-->
-                                <!--</li>-->
-                                <li ng-repeat="entry in item.timeEntries"
+                            <ul>
+                                <li ng-repeat="entry in tab.timeLineEntries"
                                     ng-class="{'sched-active':entry.showDetails}">
                                     <div class="row list-width">
                                         <div class="col-sm-3">
-                                            <i class="fa fa-clock-o sched-icon"></i>
+                                            <i class="fa fa-clock-o"></i>
                                             <p>{{entry.timeStr}}</p>
                                         </div>
                                         <div class="col-sm-3">
                                             <h4>{{entry.title}}</h4>
                                         </div>
                                         <div class="col-sm-6">
-                                            <i class="fa fa-comments-o sched-icon"></i>
-
+                                            <i class="fa  sched-icon"
+                                               ng-class="{'fa-comments-o':entry.cssClass == 'speech',
+                                               'fa-briefcase':entry.cssClass == 'market',
+                                               'fa-glass':entry.cssClass == 'traffic'}"
+                                               style="color:{{entry.colorScheme}};"></i>
                                             <p>{{entry.shortDescription}}</p>
                                             <a href="javascript:void(0);">
                                                 <i ng-click="entry.showDetails = !entry.showDetails" class="fa fa-angle-down sched-arrow"></i>
