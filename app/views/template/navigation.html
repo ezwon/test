@@ -4,8 +4,7 @@
         <nav class="default-nav">
             <ul>
                 <li ng-class="{'active':activeMenu == 'event'}"><a href="#/events"><h5>events</h5></a></li>
-                <li ng-class="{'active':activeMenu == 'schedule'}"><a href="#/schedules"><h5>schedule & speakers</h5></a>
-                </li>
+                <li ng-class="{'active':activeMenu == 'schedule'}"><a href="#/schedules"><h5>schedule & speakers</h5></a></li>
                 <li ng-class="{'active':activeMenu == 'ticket'}"><a href="#/tickets"><h5>buy tickets</h5></a></li>
                 <li ng-class="{'active':activeMenu == 'market'}"><a href="#/markets"><h5>buy market tables</h5></a></li>
                 <li ng-class="{'active':activeMenu == 'location'}"><a href="#/locations"><h5>the details</h5></a></li>
@@ -13,12 +12,17 @@
         </nav>
         <div class="language-list" ng-class="{'open':openTranslations}">
             <ul ng-if="!openTranslations">
-                <li title="{{language.key}}" ng-if="language.active" ng-click="changeLanguage(language.key)" ng-repeat="language in translations">
+                <li title="{{language.key}}"
+                    ng-if="language.active"
+                    ng-click="changeLanguage(language.key)"
+                    ng-repeat="language in translationMap">
                     <img ng-src="{{language.flagUrl}}" alt="{{language.altText}}"/>
                 </li>
             </ul>
             <ul ng-if="openTranslations">
-                <li title="{{language.key}}" ng-click="changeLanguage(language.key)" ng-repeat="language in translations">
+                <li title="{{language.key}}"
+                    ng-click="changeLanguage(language.key)"
+                    ng-repeat="language in translationMap">
                     <img ng-src="{{language.flagUrl}}" alt="{{language.altText}}"/>
                 </li>
             </ul>

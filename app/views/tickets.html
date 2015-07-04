@@ -12,8 +12,8 @@
                     <div class="col-lg-8 col-md-9 col-sm-10 center-block">
                         <div class="ticket-toggle">
                             <h4 class="ticket-active toggle-left">i am an affiliate</h4>
-                            <a href="market.html"><h4 class="toggle-right">i am a company</h4></a>
-                            <a href="market.html"><span class="ticket-toggle-left"></span></a>
+                            <a href="#/markets"><h4 class="toggle-right">i am a company</h4></a>
+                            <a href="#/markets"><span class="ticket-toggle-left"></span></a>
                         </div>
                     </div>
                 </div>
@@ -22,7 +22,7 @@
                 <div id="buy" class="ticket-timer">
                     <h2><span>50% OFF</span> super early bird sale now on. Tickets prices will increase in:</h2>
 
-                    <timer start-time="1357020000000">
+                    <timer  interval="1000" countdown="110041">
                     <ul>
                         <li>
                             <span>{{days}}</span><h5>days</h5>
@@ -33,9 +33,9 @@
                         <li>
                             <span>{{minutes}}</span><h5>minutes</h5>
                         </li>
-                        <!--<li>-->
-                            <!--<span>{{seconds}}</span><h5>seconds</h5>-->
-                        <!--</li>-->
+                        <li>
+                            <span>{{seconds}}</span><h5>seconds</h5>
+                        </li>
                     </ul>
                     </timer>
                 </div>
@@ -89,7 +89,7 @@
                     <div class="col-sm-6 col-xs-12">
                         <div class="ticket-price">
                             <h2>Gold - <span>$449</span></h2>
-                            <h5>normally $699 - limited tickets</h5>
+                            <h5>normally $899 - limited tickets</h5>
                             <p>Conference pass giving access to:</p>
                             <ul>
                                 <li>

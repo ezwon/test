@@ -1,19 +1,26 @@
 (function () {
     'use strict';
     angular
-        .module('AffiliateWorldAsia', ['ngRoute','pascalprecht.translate','timer'])
+        .module('AffiliateWorldAsia', ['ngRoute','ngAnimate','pascalprecht.translate','timer','ngDialog'])
         .controller('MainCtrl', MainCtrl)
         .controller('ScheduleCtrl', ScheduleCtrl)
         .controller('LocationCtrl', LocationCtrl)
         .filter('timeLineStart', timeLineStart)
         .filter('timeLineLength', timeLineLength)
-        .directive('navMenu', navMenu)
         .controller('navMenuCtrl', navMenuCtrl)
+        .directive('navMenu', navMenu)
         .service('apiService', apiService);
 
-    function MainCtrl($scope,$translate) {
+    function MainCtrl($scope,$rootScope,$translate, ngDialog) {
         $scope.changeLanguage = function (key) {
             $translate.use(key);
+        };
+        $rootScope.selectedLanguage = 'english';
+        $rootScope.openDefault = function () {
+            ngDialog.open({
+                template: 'dialogID',
+                className: 'ngdialog-theme-default'
+            });
         };
     }
 
@@ -76,14 +83,316 @@
         $scope.MockMajorSponsors = apiService.mockMajorSponsor;
         $scope.MockSponsors = apiService.mockSponsors;
 
-        apiService.get(1).then(function (response) {
-            var event = response.data.data,
+
+
+        apiService.get().then(function (response) {
+            var mockTabs = [
+                {
+                    scheduleID: 1, isSelected: true, scheduleDateStr: "Monday, 7 December",
+                    timeLineStart: moment({hour: 10, minute: 0}),
+                    itinerary: [
+                        {
+                            title: "speeches & panels",
+                            enabled: true,
+                            cssClass: "speech",
+                            colorScheme: "#fa7b65",
+                            timeEntries: [
+                                {
+                                    title: "STM",
+                                    showDetails: false,
+                                    secondTitle: "",
+                                    websiteUrl: '',
+                                    imageUrl: '',
+                                    shortDescription: "Opening address",
+                                    longDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel sodales velit. Nullam sodales mi euismod enim congue gravida.",
+                                    timeStr: "10:00am - 10:00am",
+                                    timeStart: moment({hour: 10, minute: 0}),
+                                    duration: 60 //in minutes
+                                },
+                                {
+                                    title: "Tim Tetra",
+                                    showDetails: false,
+                                    secondTitle: "",
+                                    websiteUrl: '',
+                                    imageUrl: '',
+                                    shortDescription: "Why good design matters and why you should care",
+                                    longDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel sodales velit. Nullam sodales mi euismod enim congue gravida.",
+                                    timeStr: "11:10am - 11:25am",
+                                    timeStart: moment({hour: 11, minute: 10}),
+                                    duration: 15 //in minutes
+                                },
+                                {
+                                    title: "KEYNOTE",
+                                    showDetails: false,
+                                    secondTitle: "",
+                                    websiteUrl: '',
+                                    imageUrl: '',
+                                    shortDescription: "Why good design matters and why you should care",
+                                    longDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel sodales velit. Nullam sodales mi euismod enim congue gravida.",
+                                    timeStr: "11:30am - 12:00nn",
+                                    timeStart: moment({hour: 11, minute: 30}),
+                                    duration: 30 //in minutes
+                                },
+                                {
+                                    title: "MOBVISTA",
+                                    showDetails: false,
+                                    secondTitle: "",
+                                    websiteUrl: '',
+                                    imageUrl: '',
+                                    shortDescription: "Why good design matters and why you should care",
+                                    longDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel sodales velit. Nullam sodales mi euismod enim congue gravida.",
+                                    timeStr: "12:30pm - 2:00pn",
+                                    timeStart: moment({hour: 12, minute: 30}),
+                                    duration: 90 //in minutes
+                                }
+
+                            ]
+                        },
+                        {
+                            title: "market",
+                            enabled: true,
+                            cssClass: "market",
+                            colorScheme: "#6dcff6",
+                            timeEntries: [
+                                {
+                                    title: "MARKET OPENS",
+                                    secondTitle: "",
+                                    websiteUrl: '',
+                                    imageUrl: '',
+                                    shortDescription: "Meet, greet and talk some ****",
+                                    longDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel sodales velit. Nullam sodales mi euismod enim congue gravida.",
+                                    timeStr: "11:00am - 7:00pm",
+                                    timeStart: moment({hour: 11, minute: 0}),
+                                    duration: 480 //in minutes
+                                }
+                            ]
+                        },
+                        {
+                            title: "traffic source meetups",
+                            enabled: true,
+                            cssClass: "traffic",
+                            colorScheme: "#B2D034",
+                            timeEntries: [
+                                {
+                                    title: "Dating Network Drinks",
+                                    secondTitle: "",
+                                    websiteUrl: '',
+                                    imageUrl: '',
+                                    shortDescription: "Meet, greet and talk some ****",
+                                    longDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel sodales velit. Nullam sodales mi euismod enim congue gravida.",
+                                    timeStr: "6:00pm - 9:00pm",
+                                    timeStart: moment({hour: 18, minute: 0}),
+                                    duration: 180 //in minutes
+                                }
+                            ]
+                        },
+                        {
+                            title: "training workshops",
+                            enabled: false,
+                            cssClass: "training",
+                            colorScheme: "",
+                            timeEntries: []
+                        },
+                        {
+                            title: "networking",
+                            enabled: false,
+                            cssClass: "networking",
+                            colorScheme: "",
+                            timeEntries: []
+                        }
+                    ]
+                },
+                {
+                    scheduleID: 2, isSelected: false, scheduleDateStr: "Tuesday, 8 December",
+                    timeLineStart: moment({hour: 10, minute: 0}),
+                    itinerary: [
+                        {
+                            title: "speeches & panels",
+                            enabled: true,
+                            cssClass: "speech",
+                            colorScheme: "#fa7b65",
+                            timeEntries: [
+                                {
+                                    title: "David Savory",
+                                    showDetails: false,
+                                    secondTitle: "President of iStack Manila",
+                                    websiteUrl: 'http://istackholdings.com/',
+                                    imageUrl: '',
+                                    shortDescription: "How to pay designers in your sleep",
+                                    longDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel sodales velit. Nullam sodales mi euismod enim congue gravida.",
+                                    timeStr: "10:00am - 12:00nn",
+                                    timeStart: moment({hour: 16, minute: 0}),
+                                    duration: 40 //in minutes
+                                },
+                                {
+                                    title: "Jayson Daquer",
+                                    showDetails: false,
+                                    secondTitle: "President of iStack Manila",
+                                    websiteUrl: 'http://istackholdings.com/',
+                                    imageUrl: '',
+                                    shortDescription: "How to pay designers in your sleep",
+                                    longDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel sodales velit. Nullam sodales mi euismod enim congue gravida.",
+                                    timeStr: "1:00pm - 2:30pm",
+                                    timeStart: moment({hour: 11, minute: 30}),
+                                    duration: 90 //in minutes
+                                }
+                            ]
+                        },
+                        {
+                            title: "market",
+                            enabled: true,
+                            cssClass: "market",
+                            colorScheme: "#6dcff6",
+                            timeEntries: [
+                                {
+                                    title: "David Savory",
+                                    secondTitle: "President of iStack Manila",
+                                    websiteUrl: 'http://istackholdings.com/',
+                                    imageUrl: '',
+                                    shortDescription: "How to pay designers in your sleep",
+                                    longDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel sodales velit. Nullam sodales mi euismod enim congue gravida.",
+                                    timeStr: "10:00am - 12:00nn",
+                                    timeStart: moment({hour: 11, minute: 0}),
+                                    duration: 120 //in minutes
+                                }
+                            ]
+                        },
+                        {
+                            title: "traffic source meetups",
+                            enabled: true,
+                            cssClass: "traffic",
+                            colorScheme: "#B2D034",
+                            timeEntries: []
+                        },
+                        {
+                            title: "training workshops",
+                            enabled: false,
+                            cssClass: "training",
+                            colorScheme: "",
+                            timeEntries: []
+                        },
+                        {
+                            title: "networking",
+                            enabled: false,
+                            cssClass: "networking",
+                            colorScheme: "",
+                            timeEntries: []
+                        }
+                    ]
+                },
+                {
+                    scheduleID: 3, isSelected: false, scheduleDateStr: "Wednesday, 9 December",
+                    timeLineStart: moment({hour: 10, minute: 0}),
+                    itinerary: [
+                        {
+                            title: "speeches & panels",
+                            enabled: true,
+                            cssClass: "speech",
+                            colorScheme: "#fa7b65",
+                            timeEntries: [
+                                {
+                                    title: "David Savory",
+                                    secondTitle: "President of iStack Manila",
+                                    websiteUrl: 'http://istackholdings.com/',
+                                    imageUrl: '',
+                                    shortDescription: "How to pay designers in your sleep",
+                                    longDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel sodales velit. Nullam sodales mi euismod enim congue gravida.",
+                                    timeStr: "10:00am - 12:00nn",
+                                    timeStart: moment({hour: 11, minute: 0}),
+                                    duration: 120 //in minutes
+                                },
+                                {
+                                    title: "Jayson Daquer",
+                                    secondTitle: "President of iStack Manila",
+                                    websiteUrl: 'http://istackholdings.com/',
+                                    imageUrl: '',
+                                    shortDescription: "How to pay designers in your sleep",
+                                    longDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel sodales velit. Nullam sodales mi euismod enim congue gravida.",
+                                    timeStr: "1:00pm - 2:30pm",
+                                    timeStart: moment({hour: 13, minute: 30}),
+                                    duration: 90 //in minutes
+                                }
+                            ]
+                        },
+                        {
+                            title: "market",
+                            enabled: true,
+                            cssClass: "market",
+                            colorScheme: "#6dcff6",
+                            timeEntries: [
+                                {
+                                    title: "David Savory",
+                                    secondTitle: "President of iStack Manila",
+                                    websiteUrl: 'http://istackholdings.com/',
+                                    imageUrl: '',
+                                    shortDescription: "How to pay designers in your sleep",
+                                    longDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel sodales velit. Nullam sodales mi euismod enim congue gravida.",
+                                    timeStr: "10:00am - 12:00nn",
+                                    timeStart: moment({hour: 11, minute: 0}),
+                                    duration: 120 //in minutes
+                                }
+                            ]
+                        },
+                        {
+                            title: "traffic source meetups",
+                            enabled: true,
+                            cssClass: "traffic",
+                            colorScheme: "#B2D034",
+                            timeEntries: []
+                        },
+                        {
+                            title: "training workshops",
+                            enabled: false,
+                            cssClass: "training",
+                            colorScheme: "",
+                            timeEntries: []
+                        },
+                        {
+                            title: "networking",
+                            enabled: false,
+                            cssClass: "networking",
+                            colorScheme: "",
+                            timeEntries: []
+                        }
+                    ]
+                }
+            ];
+            var event = response.data.event,
                 tabs = [],
+                entriesTimeLine = [],
                 schedule = null,
                 itinerary = [],
                 timeEntries = [];
 
-            console.log("Event: ", event);
+
+            for (var i = 0; i < mockTabs.length; i++) {
+                var schedule = mockTabs[i];
+                schedule.timeLineEntries = [];
+                for (var j = 0; j < schedule.itinerary.length; j++) {
+                    var itinerary = schedule.itinerary[j];
+                    for (var k = 0; k < itinerary.timeEntries.length; k++) {
+                        var entry = itinerary.timeEntries[k];
+                        entry.colorScheme = itinerary.colorScheme;
+                        entry.cssClass = itinerary.cssClass;
+                        schedule.timeLineEntries.push(entry);
+                    };
+                }
+
+                schedule.timeLineEntries.sort( function (a,b) {
+                    return a.timeStart > b.timeStart;
+                })
+
+            }
+
+            $scope.tabs = mockTabs;
+            $scope.selectedIndex = 1;
+            $timeout(function () {
+                $scope.UpdateSize();
+                if($routeParams.schedule)
+                    $scope.SelectTab($routeParams.schedule);
+            }, 100)
+
+            return;
 
             for (var i = 0; i < event.schedules.length; i++) {
                 schedule = event.schedules[i];
@@ -141,7 +450,7 @@
                         tabs[i].isSelected = true;
                 }
 
-            $scope.tabs = tabs;
+            $scope.tabs = mockTabs;
             $scope.selectedIndex = 1;
             $timeout(function () {
                 $scope.UpdateSize();
@@ -155,9 +464,10 @@
     function LocationCtrl($scope) {
         //google map custom marker
 
-        var myCenter = new google.maps.LatLng(22.300708, 114.172569);
+        var myCenter = new google.maps.LatLng(13.746730, 100.539568);
 
         function initialize() {
+
             var mapProp = {
                 center: myCenter,
                 zoom: 17,
@@ -173,13 +483,12 @@
 
             marker.setMap(map);
         }
-
-        google.maps.event.addDomListener(window, 'load', initialize);
+        initialize();
 
 
     }
 
-    function navMenu($translate) {
+    function navMenu() {
         var directive = {
             restrict: "AE",
             link: link,
@@ -198,9 +507,10 @@
         return directive;
     }
 
-    function navMenuCtrl($rootScope,$translate){
-        $rootScope.showMobileMenu = false;
-        $rootScope.translations = [
+    function navMenuCtrl($scope,$rootScope,$translate){
+        $scope.showMobileMenu = false;
+        $scope.openTranslations = true;
+        $scope.translationMap = [
             {
                 active:true,
                 key:'english',
@@ -218,8 +528,7 @@
                 key:'indonesia',
                 flagUrl:'assets/images/lang-indonesia.png',
                 altText:'indonesia flag'
-            }
-            ,
+            },
             {
                 active:false,
                 key:'thailand',
@@ -227,21 +536,22 @@
                 altText:'thailand flag'
             }
         ]
-        $rootScope.openTranslations = false;
-        $rootScope.changeLanguage = function (key) {
-
-            for (var i = 0; i < $rootScope.translations.length; i++) {
-                $rootScope.translations[i].active = false;
-                if (key == $rootScope.translations[i].key)
-                    $rootScope.translations[i].active = true;
+        $scope.changeLanguage = function (key) {
+            for (var i = 0; i < $scope.translationMap.length; i++) {
+                $scope.translationMap[i].active = false;
+                if (key == $scope.translationMap[i].key)
+                    $scope.translationMap[i].active = true;
             }
 
-            scope.translations.sort( function (a) {
+            $scope.translationMap.sort( function (a) {
                 return a.active == false;
             })
             $translate.use(key);
-            $rootScope.openTranslations = !$rootScope.openTranslations;
+            $scope.openTranslations = !$scope.openTranslations;
+            $rootScope.selectedLanguage = key;
         };
+
+        $scope.changeLanguage($rootScope.selectedLanguage);
     }
 
     function timeLineStart() {
@@ -548,8 +858,8 @@
 
         return svc;
 
-        function get(id) {
-            return awaAPI("GET", "events/" + id + "?with=schedules.itineraries.entries");
+        function get() {
+            return awaAPI("GET", "events", "?with=schedules.itineraries.entries");
         }
 
         function awaAPI(method, resource, data) {
@@ -558,7 +868,7 @@
              *  Resources: events, schedules, itineraries, entries
              *  POST, GET to http://awa-api.istackmanila.com/{resource}
              *  PUT, DELETE and GET to http://awa-api.istackmanila.com/{resource}/{id}
-             *
+             *  http://awa-api.istackmanila.com/v2/events
              *  http://awa-api.istackmanila.com/events/1?with=schedules ----with schedules
              *  http://awa-api.istackmanila.com/events/1?with=schedules.itineraries --with itineraries under schedules
              *  http://awa-api.istackmanila.com/events/1?with=schedules.itineraries.entries with entries under itineraries under schedules
@@ -567,7 +877,7 @@
             $http.defaults.cache = true;
             return $http({
                 method: method,
-                url: 'http://awa-api.istackmanila.com/' + resource,
+                url: 'http://awa-api.istackmanila.com/v2/' + resource,
                 responseType: 'json',
                 contentType: "application/json",
                 data: data,
