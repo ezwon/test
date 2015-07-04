@@ -377,6 +377,11 @@
                         schedule.timeLineEntries.push(entry);
                     };
                 }
+
+                schedule.timeLineEntries.sort( function (a,b) {
+                    return a.timeStart > b.timeStart;
+                })
+
             }
 
             $scope.tabs = mockTabs;
