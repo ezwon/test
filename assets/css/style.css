@@ -1079,6 +1079,7 @@ a.ticket-button {
     background: #ffffff !important;
     border-right: 40px solid #e1e1e3;
     position: relative;
+    cursor: pointer;
 }
 
 .timeline-link:hover .timeline-hover, .timeline-link:focus .timeline-hover, .timeline-link:active .timeline-hover {
@@ -1185,6 +1186,7 @@ a.ticket-button {
     position: relative;
     padding: 40px 0 80px 0;
     overflow: hidden;
+    min-height: 850px;
 }
 
 .schedule-day-list-wrapper {
@@ -1758,3 +1760,4 @@ div.location-content-2 {
     color: #fff;
     margin: 30px 20px 0 20px;
 }
+

@@ -24,7 +24,7 @@
         };
     }
 
-    function ScheduleCtrl($scope, $timeout, $window, apiService,$routeParams,$location ) {
+    function ScheduleCtrl($scope, $timeout, $window, apiService,$routeParams,$location ,$anchorScroll) {
         var w = angular.element($window);
         w.bind('resize', function () {
             $scope.$apply();
@@ -75,6 +75,25 @@
             //console.log("pixelToCenter: ", pixelToCenter);
 
         }
+        $scope.ScrollToTimeEntry = function(id){
+            $location.hash('time-entry-' + id);
+            $anchorScroll();
+
+            for (var i = 0; i < $scope.tabs.length; i++) {
+                var schedule = $scope.tabs[i];
+                for (var j = 0; j < schedule.timeLineEntries.length; j++) {
+                    var entry = schedule.timeLineEntries[j];
+                    if(id == entry.id){
+                        entry.showDetails = true;
+                        console.log(entry);
+                    }
+
+                }
+
+            }
+
+
+        }
 
         function UpdateSizeWindow() {
             $scope.UpdateSize($scope.selectedIndex);
@@ -98,6 +117,7 @@
                             colorScheme: "#fa7b65",
                             timeEntries: [
                                 {
+                                    id:1,
                                     title: "STM",
                                     showDetails: false,
                                     secondTitle: "",
@@ -110,6 +130,7 @@
                                     duration: 60 //in minutes
                                 },
                                 {
+                                    id:2,
                                     title: "Tim Tetra",
                                     showDetails: false,
                                     secondTitle: "",
@@ -122,6 +143,7 @@
                                     duration: 15 //in minutes
                                 },
                                 {
+                                    id:3,
                                     title: "KEYNOTE",
                                     showDetails: false,
                                     secondTitle: "",
@@ -134,6 +156,7 @@
                                     duration: 30 //in minutes
                                 },
                                 {
+                                    id:4,
                                     title: "MOBVISTA",
                                     showDetails: false,
                                     secondTitle: "",
@@ -155,6 +178,7 @@
                             colorScheme: "#6dcff6",
                             timeEntries: [
                                 {
+                                    id:5,
                                     title: "MARKET OPENS",
                                     secondTitle: "",
                                     websiteUrl: '',
@@ -174,6 +198,7 @@
                             colorScheme: "#B2D034",
                             timeEntries: [
                                 {
+                                    id:6,
                                     title: "Dating Network Drinks",
                                     secondTitle: "",
                                     websiteUrl: '',
@@ -364,7 +389,6 @@
                 itinerary = [],
                 timeEntries = [];
 
-
             for (var i = 0; i < mockTabs.length; i++) {
                 var schedule = mockTabs[i];
                 schedule.timeLineEntries = [];
@@ -439,7 +463,6 @@
                 });
 
             }
-
 
 
             if($routeParams.schedule)

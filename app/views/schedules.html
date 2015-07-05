@@ -46,23 +46,24 @@
                     <li ng-repeat="item in tab.itinerary">
                         <div class="timeline-duration">
                             <div ng-repeat="entry in item.timeEntries"
+                                 ng-init="ShowPopUp = false"
+                                 ng-mouseenter="ShowPopUp = true"
+                                 ng-mouseleave="ShowPopUp = false"
                                  style="background-color: {{item.colorScheme}}; left: {{entry.timeStart | timeLineStart:tab.timeLineStart}}px; width:{{entry.duration | timeLineLength}}px;"
                                  class="timeline-link">
-                                <div class="timeline-hover">
-                                    <a href="#">
-                                        <div class="timeline-hover-content">
-                                            <span class="timeline-image"></span>
+                                <div class="timeline-hover" ng-click="ScrollToTimeEntry(entry.id);" ng-show="ShowPopUp">
+                                    <div class="timeline-hover-content">
+                                        <span class="timeline-image"></span>
 
-                                            <div class="timeline-detail">
-                                                <h3>{{entry.title}}</h3>
-                                                <i class="fa fa-clock-o"></i>
-                                                <h5>{{entry.timeStr}}</h5>
+                                        <div class="timeline-detail">
+                                            <h3>{{entry.title}}</h3>
+                                            <i class="fa fa-clock-o"></i>
+                                            <h5>{{entry.timeStr}}</h5>
 
-                                                <p>{{entry.shortDescription}}</p>
-                                            </div>
+                                            <p>{{entry.shortDescription}}</p>
                                         </div>
-                                        <span class="arrow-down"></span>
-                                    </a>
+                                    </div>
+                                    <span class="arrow-down"></span>
                                 </div>
                             </div>
                         </div>
@@ -98,8 +99,9 @@
                         <div class="schedule-details">
                             <h1>{{tab.scheduleDateStr}}</h1>
                             <ul>
-                                <li ng-repeat="entry in tab.timeLineEntries"
+                                <li id="time-entry-{{entry.id}}" ng-repeat="entry in tab.timeLineEntries"
                                     ng-class="{'sched-active':entry.showDetails}">
+
                                     <div class="row list-width">
                                         <div class="col-sm-3">
                                             <i class="fa fa-clock-o sched-icon"></i>
