@@ -826,50 +826,42 @@
         ];
         var mockMajorSponsors = [
             {
-                Name: "Barack Obama",
-                Position: "President of the USA",
+                Name: "Tim Tetra",
+                Position: "CMO/Co-founder of Tetra Communications",
                 AvatarUrl: "",
-                Description: "This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris.",
-                OtherInfo: "of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id",
+                Description: "Tim Tetra is a serial entrepreneur whose ads reached over 337 million people in 173 countries worldwide in 2014.  Tim has integrated lessons learned from founding six successful businesses to create inimitable edges that separate his company from the rest of the affiliate marketing pack.",
+                OtherInfo: "In his spare time, Tim is a huge advocate of the all-or-nothing mindset.  It is not uncommon for him to pick up a new hobby, spend 80 hours a week immersed in it with the best mentors out there, and then mastering it in record time.",
                 OtherInfoUrl: ''
             },
             {
-                Name: "Barack Obama",
-                Position: "President of the USA",
+                Name: "Charles Ngo",
+                Position: "Writer and Internet Marketer",
                 AvatarUrl: "",
-                Description: "This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris.",
-                OtherInfo: "of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id",
-                OtherInfoUrl: ''
-            },
-            {
-                Name: "Barack Obama",
-                Position: "President of the USA",
-                AvatarUrl: "",
-                Description: "This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris.",
-                OtherInfo: "of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id",
+                Description: "Charles Ngo is one of the most well-known and respected internet marketers in the world generating several millions dollars in profit within his first year of starting.",
+                OtherInfo: "He has gone on to become one of the leading authorities in affiliate marketing information. He and his team specialise in traffic sources such as Facebook, mobile, and display buys.",
                 OtherInfoUrl: ''
             }
         ];
         var mockSponsors = [
             {
-                Name: "Barack Obama",
-                Position: "President of the USA",
+                Name: "Lorenzo Green",
+                Position: "Co-director Stack That Money Forums",
                 AvatarUrl: "",
-                Description: "This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris."
+                Description: "Lorenzo Green co-directs Stack That Money forums, the number one rated affiliate forum and is a veteran in the industry with more than nine years experience. He is known for his marketing creativity, and constantly being at the forefront of the next big thing in the affiliate space. This combination has yielded him consistent seven figure/year profits with his affiliate operations.  He has also founded a number of other successful business including a successful affiliate network and Greenmantle Estate (link = http://www.greenmantle.co.nz/), one of the most prestigious luxury lodges in his home country, New Zealand.",
 
             },
             {
-                Name: "Barack Obama",
-                Position: "President of the USA",
+                Name: "Hugh Hancock",
+                Position: "Founder of Strange Company",
                 AvatarUrl: "",
-                Description: "This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris."
+                Description: "TBC."
 
             },
             {
-                Name: "Barack Obama",
-                Position: "President of the USA",
+                Name: "Besmir B",
+                Position: "Co-director Stack That Money Forums",
                 AvatarUrl: "",
-                Description: "This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris."
+                Description: "Coming from a technical background, Besmir found affiliate marketing by pure coincidence. Besmir has been in the industry long enough to see many trends come and go. He understands that it's not about that special niche or traffic source but it's all about persistence, hard work and loving what you do. Lately he has been focusing on mobile marketing and investing on building new and successful companies including Stack That Money, the number one rated forum in the affiliate industry, which he is co-director of."
 
             }
         ]
