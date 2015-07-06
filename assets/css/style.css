@@ -1098,6 +1098,15 @@ a.market-map{
 .schedule-date ul li a h3 {
     line-height: 2rem;
     cursor: pointer;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+.schedule-date ul li a h3:hover{
+    color: #ccc;
 }
 
 .schedule-date ul li a.schedule-active {
