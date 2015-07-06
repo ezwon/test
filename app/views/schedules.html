@@ -36,6 +36,8 @@
                 <li>7pm</li>
                 <li>8pm</li>
                 <li>9pm</li>
+                <li>10pm</li>
+                <li>11pm</li>
             </ul>
         </div>
         <div class="schedule-time-container">
@@ -81,6 +83,8 @@
                     <li></li>
                     <li></li>
                     <li></li>
+                    <li></li>
+                    <li></li>
                 </ul>
             </div>
         </div>
@@ -97,7 +101,7 @@
                             <h1>{{tab.scheduleDateStr}}</h1>
                             <ul>
                                 <li ng-repeat="entry in tab.timeLineEntries"
-                                    ng-class="{'sched-active':entry.showDetails}">
+                                    ng-class="{'sched-active':entry.showDetails}" ng-click="entry.showDetails = !entry.showDetails" >
                                     <div class="row list-width">
                                         <div class="col-sm-3">
                                             <i class="fa fa-clock-o sched-icon"></i>
@@ -113,9 +117,7 @@
                                                'fa-glass':entry.cssClass == 'traffic'}"
                                                style="color:{{entry.colorScheme}};"></i>
                                             <p>{{entry.shortDescription}}</p>
-                                            <a href="javascript:void(0);">
-                                                <i ng-click="entry.showDetails = !entry.showDetails" class="fa fa-angle-down sched-arrow"></i>
-                                            </a>
+                                            <i class="fa fa-angle-down sched-arrow"></i>
                                         </div>
                                     </div>
                                     <div ng-if="entry.showDetails" class="sched-slider">

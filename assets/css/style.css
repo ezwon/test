@@ -459,13 +459,18 @@ header {
     padding: 160px 0 60px 0;
     background: #293338 url("../images/ticket-bg.jpg") center top fixed no-repeat;
 }
-
-@media screen and (min-width: 1921px) {
-    .ticket-content {
-        background-size: cover;
-        background-size: scroll;
+    @media screen and (min-width: 1921px) {
+        .ticket-content {
+            background-size: cover;
+            background-attachment: scroll;
+        }
     }
-}
+    @media screen and (max-width: 991px) {
+        .ticket-content {
+            background-size: auto;
+            background-attachment: scroll;
+        }
+    }
 
 .ticket-toggle {
     width: 100%;
@@ -492,9 +497,22 @@ header {
         line-height: 0.875rem;
         }
     }
+
 .ticket-toggle h4.ticket-active {
     color: #fff;
     z-index: 1;
+}
+
+.ticket-toggle a h4{
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+.ticket-toggle a h4:hover, .ticket-toggle a h4:focus{
+    color: #ccc;
 }
 
 .toggle-left {
@@ -1092,7 +1110,7 @@ a.market-map{
 }
 
 .schedule-time-list {
-    width: 1070px;
+    width: 1122px;
     margin: auto;
 }
     @media screen and (max-width: 991px) {
@@ -1109,7 +1127,7 @@ a.market-map{
 
 .schedule-time-list ul li {
     display: inline-block;
-    width: 8.33%;
+    width: 80px;
     color: #6a7378;
     text-transform: uppercase;
     text-align: center;
@@ -1126,7 +1144,7 @@ a.market-map{
 }
 
 .schedule-grid {
-    width: 990px;
+    width: 1042px;
     margin: auto;
     z-index: 100;
     position: absolute;
@@ -1140,7 +1158,7 @@ a.market-map{
 
 .schedule-grid ul {
     list-style: none;
-    margin: 0 0 0 3px;
+    margin: 0 0 0 0;
     padding: 0;
     font-size: 0;
     border-left: 1px solid #384146;
@@ -1149,7 +1167,7 @@ a.market-map{
 
 .schedule-grid ul li {
     display: inline-block;
-    width: 9.09%;
+    width: 80px;
     height: 250px;
     border-left: 1px solid #30393e;
     border-right: 1px solid #384146;
@@ -1162,7 +1180,7 @@ a.market-map{
 }
 
 .schedule-timeline {
-    width: 990px;
+    width: 1040px;
     z-index: 200;
     position: absolute;
     top: 40px;
@@ -1179,17 +1197,12 @@ a.market-map{
     margin: 0;
     padding: 0;
     font-size: 0;
-    margin: 0 0 0 5px;
+    margin: 0;
 }
 
 .schedule-timeline ul li {
     display: block;
-    width: 984px;
-}
-
-.schedule-timeline ul li {
-    display: block;
-    width: 984px;
+    width: 1040px;
     margin: 0 0 10px 0;
 }
 
@@ -1218,7 +1231,6 @@ a.market-map{
     position: absolute;
     background: transparent !important;
     top: -165px;
-    /*left: -50%;*/
     z-index: 1;
     cursor: default;
     border-bottom: 40px solid transparent;
@@ -1284,7 +1296,7 @@ a.market-map{
     border-top: 10px solid #fff;
     position: absolute;
     bottom: -10px;
-    left: 80px;
+    left: 10px;
 }
 
 /* timeline customize css */
@@ -1388,6 +1400,12 @@ a.market-map{
 
 .schedule-details ul li {
     display: block;
+    cursor: pointer;
+}
+
+.schedule-details ul li:hover {
+    background: #f2f2f2;
+    border: #f2f2f2;
 }
 
 div.list-width-last {
@@ -1425,7 +1443,7 @@ i.sched-arrow {
 }
 
 li.sched-active {
-    background: #fa7b65;
+    background: #fa7b65 !important;
 }
 
 li.sched-active p, li.sched-active h4, li.sched-active i {
