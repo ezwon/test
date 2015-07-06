@@ -11,6 +11,12 @@ body {
     margin: 0;
 }
 
+html, body {
+text-rendering: optimizeLegibility;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+
 a {
     text-decoration: none;
     border: none;
@@ -38,22 +44,16 @@ h1 {
     font-weight: 200;
     letter-spacing: -0.050em;
 }
-    @media screen and (max-width: 768px) {
-    h1 {
-        font-size: 2.8rem;
-        line-height: 2.8rem; 
-        }
-    }
 h2 {
     font-size: 2.25rem;
     line-height: 2.25rem;
     letter-spacing: -0.025em;
     font-weight: 300;
 }
-    @media screen and (max-width: 768px) {
-    h2 {
-        font-size: 1.75rem;
-        line-height: 1.75rem; 
+    @media screen and (max-width: 991px) {
+    h2{
+        font-size: 2.625rem;
+        line-height: 3.125rem;
         }
     }
 h3 {
@@ -61,10 +61,11 @@ h3 {
     line-height: 1.5rem;
     font-weight: 400;
 }
-    @media screen and (max-width: 768px) {
-    h3 {
-        font-size: 1rem;
-        line-height: 1rem; 
+    @media screen and (max-width: 991px) {
+    h3{
+        font-size: 2.625rem;
+        line-height: 3.125rem;
+        font-weight: 300;
         }
     }
 h4 {
@@ -74,7 +75,12 @@ h4 {
     font-weight: 500;
     text-transform: uppercase;
 }
-
+    @media screen and (max-width: 991px) {
+    h4{
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+        }
+    }
 h5 {
     font-size: 0.8rem;
     line-height: 0.75rem;
@@ -88,6 +94,12 @@ p {
     line-height: 1.375rem;
     font-weight: 400;
 }
+    @media screen and (max-width: 991px) {
+    p{
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+        }
+    }
 
 p.bold {
     font-weight: 500;
@@ -108,7 +120,12 @@ a.primary {
     -ms-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
 }
-
+    @media screen and (max-width: 991px) {
+    a.primary{
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+        }
+    }
 a.primary:hover, a.primary:focus, a.primary:active {
     background: #fa7b65;
     color: #fff;
@@ -130,19 +147,24 @@ a.primary i {
 .slogan-button .primary{
     margin:10px 5px;
 }
+.clear{
+    display: block;
+    clear:both;
+}
 
 /* header */
 header {
     width: 100%;
-    background: #333 url("../images/home-bg.jpg") center bottom no-repeat;
+    background: #333 url("../images/home-bg.jpg") center bottom fixed no-repeat;
     background-size: cover;
     padding: 275px 0 245px;
     z-index: 10;
 }
 
-@media screen and (min-width: 1900px) {
+@media screen and (min-width: 1600px) {
     header {
         background-size: cover;
+        background-attachment: scroll;
     }
 }
 
@@ -162,15 +184,10 @@ header {
 .title h1 {
     color: #fff;
     font-size: 6.25rem;
-    line-height: 6.5rem;
+    line-height: 6.25rem;
     margin: 5px 0 10px;
 }
-    @media screen and (max-width: 768px) {
-    .title h1 {
-        font-size: 4rem;
-        line-height: 5.5rem; 
-        }
-    }
+
 .title h4 {
     color: #fff;
     margin-top:-15px;
@@ -198,9 +215,11 @@ header {
     width: 60%
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 991px) {
     .title p {
         width: 100%;
+        font-size: 1.25rem;
+        line-height: 1.75rem;
     }
 }
 
@@ -300,7 +319,7 @@ header {
 /* ticket homepage*/
 .ticket {
     padding: 90px 0;
-    background: #fff;
+    background: #fafafa;
 }
 
 .ticket-details {
@@ -312,6 +331,7 @@ header {
 }
 
 .ticket p {
+    color: #898a8c;
     margin: 20px 0 0 0;
 }
 
@@ -417,6 +437,9 @@ header {
     color: #293338;
     text-decoration: underline;
 }
+    .copyright p a:hover, .copyright p a:focus{
+        color: #fa7b65;
+    }
 
 .stm-footer {
     margin: 25px auto 0;
@@ -434,12 +457,13 @@ header {
 /* ticket content */
 .ticket-content {
     padding: 160px 0 60px 0;
-    background: #293338 url("../images/ticket-bg.jpg") center top no-repeat;
+    background: #293338 url("../images/ticket-bg.jpg") center top fixed no-repeat;
 }
 
 @media screen and (min-width: 1921px) {
     .ticket-content {
         background-size: cover;
+        background-size: scroll;
     }
 }
 
@@ -452,13 +476,22 @@ header {
     margin: 90px auto 0;
     position: relative;
 }
-
+    @media screen and (max-width: 991px) {
+    .ticket-toggle {
+        max-width:100%;
+        }
+    }
 .ticket-toggle h4 {
     color: #4a5255;
     letter-spacing: 0.050rem;
     font-weight: 500;
 }
-
+    @media screen and (max-width: 991px) {
+    .ticket-toggle h4{
+        font-size: 0.875rem;
+        line-height: 0.875rem;
+        }
+    }
 .ticket-toggle h4.ticket-active {
     color: #fff;
     z-index: 1;
@@ -467,19 +500,64 @@ header {
 .toggle-left {
     position: absolute;
     left: 60px;
-    top: 21px;
+    top: 23px;
 }
 
 .toggle-right {
     position: absolute;
     right: 60px;
-    top: 21px;
+    top: 23px;
+}
+    @media screen and (max-width: 767px) {
+    .ticket-mobile{
+        padding: 0;
+        margin:0;
+        }
+    }
+
+.toggle-browser{
+    display: block;
+}
+    @media screen and (max-width: 767px) {
+        .toggle-browser{
+            display: none;
+        }
+    }
+.toggle-mobile{
+    display: none;
+    background: #343d42;
+    margin: 100px 0 50px 0;
+    padding: 30px 0;
+}
+    @media screen and (max-width: 767px) {
+        .toggle-mobile{
+            display: block;
+        }
+    }
+.toggle-mobile ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.toggle-mobile ul li{
+    list-style: none;
+    text-align: center;
+}
+.toggle-mobile h2{
+    color: #535b5e;
+}
+.toggle-mobile ul li h2.active{
+    color: #fff;
 }
 
 .ticket-timer {
     margin: 60px 0 0 0;
 }
-
+    @media screen and (max-width: 991px) {
+    .ticket-timer {
+        display: none;
+        }
+    }
 .ticket-timer h2 {
     color: #fff;
     line-height: 2.75rem;
@@ -537,13 +615,12 @@ header {
     background: #fff;
     margin: 50px 0 0 0;
     position: relative;
-    padding: 30px;
-    overflow:hidden;
+    padding: 50px;
 }
 
 @media screen and (max-width: 380px) {
     .ticket-price {
-        padding: 10px;
+        padding: 20px;
     }
 }
 
@@ -594,28 +671,41 @@ header {
     margin: 20px 0 0 0;
     padding: 0;
 }
-
+    @media screen and (max-width: 991px) {
+        .ticket-price ul{
+            margin: 40px 0 0 0;
+        }
+    }
 .ticket-price ul li {
     display: block;
     margin: 0 0 15px 0;
     width: 100%;
     float:left;
 }
-
+    @media screen and (max-width: 991px) {
+        .ticket-price ul li{
+            margin: 0 0 20px 0;
+        }
+    }
 .ticket-price ul li i {
     color: #fa7b65;
     vertical-align: middle;
-    padding: 0 5px 0 0;
+    padding: 0 10px 0 0;
     float:left;
     display: inline-block;
 }
+    @media screen and (max-width: 991px) {
+        .ticket-price ul li i{
+            font-size: 1.25rem;
+        }
+    }
 
 .ticket-price ul li p {
     display: inline-block;
     float:left;
     margin: 0;
     padding: 0;
-    width: 90%;
+    width: 85%;
 }
 
 .ticket-price ul li p.price-inactive {
@@ -673,18 +763,31 @@ header {
 }
 
 a.ticket-button {
-    display: block;
+    display: inline-block;
     color: #fff;
     margin: 40px auto 0;
     text-align: center;
     background: rgba(255, 255, 255, 0.03);
 }
-
+.ticket-button-wrapper {
+    padding: 0 40px;
+    text-align: center;
+}
 @media screen and (min-width: 1200px) {
     .ticket-button-wrapper {
         padding: 0 40px;
     }
 }
+a.market-map{
+    width: 350px;
+    margin: 30px auto 0;
+    display: block;
+}
+    @media screen and (max-width: 991px) {
+    a.market-map{
+        width: 450px;
+        }
+    }
 
 /* events */
 .event-content {
@@ -702,7 +805,12 @@ a.ticket-button {
     background: #fff;
     overflow: hidden;
 }
-
+    @media screen and (max-width: 991px) {
+    .main-content {
+        background: #2a3338;
+        padding: 0 0 50px 0;
+        }
+    }
 .content-left {
     position: relative;
     height: 500px;
@@ -721,8 +829,10 @@ a.ticket-button {
 
 @media screen and (max-width: 991px) {
     .details {
-        height: 230px;
-        padding: 0 0 20px 0;
+        background: #fff;
+        height:100%;
+        padding: 85px 0;
+        margin: 0 30px 20px 30px;
     }
 }
 
@@ -733,7 +843,7 @@ a.ticket-button {
 
 @media screen and (max-width: 991px) {
     .event-bg {
-        margin: 30px;
+        margin: 30px 30px 0 30px;
     }
 }
 
@@ -779,10 +889,11 @@ a.ticket-button {
     -ms-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
 }
-
-@media screen and (max-width: 991px) {
+    
+    @media screen and (max-width: 991px) {
     .event-details {
-        width: 80%;
+        width: 100%;
+        max-width: 100%;
         text-align: center;
         position: static;
         top: 0;
@@ -792,20 +903,43 @@ a.ticket-button {
         -moz-transform: translate(0, 0);
         -o-transform: translate(0, 0);
         -ms-transform: translate(0, 0);
-        margin: 0 auto 20px;
+        margin:auto;
+        padding: 0 30px;
     }
 }
+.event-details a.event-btn-mobile{
+    display: none;
+    margin: 30px 0 10px 0;
+}
+    @media screen and (max-width: 991px) {
+    .event-details a.event-btn-mobile{
+        display: inline-block;
+        }
+    }
 
 .event-details h5 {
     color: #fa7b65;
     margin: 10px 0 0 0;
 }
+    @media screen and (max-width: 991px) {
+    .event-details h5{
+        font-size: 1.325rem;
+        line-height: 1.825rem;
+        letter-spacing: 0.100em;
+        }
+    }
 
 .event-details h4 {
     letter-spacing: 0.050em;
     margin: 5px 0 0 0;
     line-height: 1.3rem;
 }
+    @media screen and (max-width: 991px) {
+    .event-details h4{
+        margin: 20px 0;
+        line-height: 1.75rem;
+        }
+    }
 
 .event-details p {
     margin: 20px 0 0 0;
@@ -827,6 +961,7 @@ a.ticket-button {
 @media screen and (max-width: 991px) {
     .event-button {
         height: 250px;
+        display: none;
     }
 }
 
@@ -844,13 +979,10 @@ a.ticket-button {
     -moz-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
+    width: 280px;
+    text-align: center;
 }
 
-@media screen and (max-width: 568px) {
-    .event-button a {
-        width: 270px;
-    }
-}
 
 .event-sponsor {
     z-index: 10;
@@ -913,17 +1045,33 @@ a.ticket-button {
 .schedule-date {
     text-align: center;
 }
+    @media screen and (max-width: 991px) {
+    .schedule-date{
+        margin:60px 0 0 0;
+        }
+    }
 
 .schedule-date ul {
     list-style: none;
     margin: 90px 0 0 0;
     padding: 0;
 }
-
+    @media screen and (max-width: 991px) {
+    .schedule-date ul{
+        padding:30px 0;
+        background: #343d42;
+        }
+    }
 .schedule-date ul li {
     display: inline-block;
     padding: 0 20px;
 }
+    @media screen and (max-width: 991px) {
+    .schedule-date ul li {
+        display: block;
+        margin: 0 0 20px 0;
+        }
+    }
 
 .schedule-date ul li a {
     color: #4a5255;
@@ -947,7 +1095,11 @@ a.ticket-button {
     width: 1070px;
     margin: auto;
 }
-
+    @media screen and (max-width: 991px) {
+    .schedule-time {
+        display: none;
+        }
+    }
 .schedule-time-list ul {
     list-style: none;
     margin: 0;
@@ -1181,6 +1333,14 @@ a.ticket-button {
 }
 
 /* schedule content*/
+.schedule-content-mobile{
+    display: none;
+}
+    @media screen and (max-width: 991px) {
+    .schedule-content-mobile {
+        display: block;
+        }
+    }
 .schedule-content {
     background: #fafafa url("../images/schedule-bg.jpg") repeat-x;
     position: relative;
@@ -1188,7 +1348,11 @@ a.ticket-button {
     overflow: hidden;
     min-height: 850px;
 }
-
+    @media screen and (max-width: 991px) {
+    .schedule-content {
+        display: none;
+        }
+    }
 .schedule-day-list-wrapper {
     width: 40000px;
     position: relative;
@@ -1496,6 +1660,9 @@ div.location-content-2 {
 }
 
 /* language */
+.home-menu{
+    position: relative;
+}
 .language-list {
     position: absolute;
     top: 38px;
@@ -1633,6 +1800,10 @@ div.location-content-2 {
 }
 
 /* navigation overlay */
+.home-menu{
+    display: block;
+    position: relative;
+}
 .desktop-menu{
     display: block;
 }
