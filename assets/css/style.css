@@ -1401,6 +1401,11 @@ a.market-map{
 .schedule-details ul li {
     display: block;
     cursor: pointer;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
 }
 
 .schedule-details ul li:hover {
