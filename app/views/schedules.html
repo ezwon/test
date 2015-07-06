@@ -36,6 +36,8 @@
                 <li>7pm</li>
                 <li>8pm</li>
                 <li>9pm</li>
+                <li>10pm</li>
+                <li>11pm</li>
             </ul>
         </div>
         <div class="schedule-time-container">
@@ -80,6 +82,8 @@
                     <li></li>
                     <li></li>
                     <li></li>
+                    <li></li>
+                    <li></li>
                 </ul>
             </div>
         </div>
@@ -99,8 +103,8 @@
                             <ul>
                                 <li id="time-entry-{{schedule.scheduleID}}-{{entry.itinerarId}}-{{entry.id}}"
                                     ng-repeat="entry in schedule.timeLineEntries"
+                                    ng-class="{'sched-active':entry.showDetails}" ng-click="entry.showDetails = !entry.showDetails" >
                                     style="background-color: {{entry.showDetails ? entry.colorScheme:'#fff'}}"
-                                    ng-class="{'sched-active':entry.showDetails}">
 
                                     <div class="row list-width"  style="border-bottom-color: {{entry.showDetails ? entry.colorScheme:'#fff'}}">
                                         <div class="col-sm-3">
@@ -118,9 +122,7 @@
                                                'fa-glass':entry.itinerary == 'traffic source meetups'}"
                                                style="color:{{entry.showDetails ? '#fff':entry.colorScheme}};"></i>
                                             <p>{{entry.shortDescription}}</p>
-                                            <a href="javascript:void(0);">
-                                                <i ng-click="entry.showDetails = !entry.showDetails" class="fa fa-angle-down sched-arrow"></i>
-                                            </a>
+                                            <i class="fa fa-angle-down sched-arrow"></i>
                                         </div>
                                     </div>
                                     <div ng-if="entry.showDetails" class="sched-slider">
