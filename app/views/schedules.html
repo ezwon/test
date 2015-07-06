@@ -46,12 +46,11 @@
                     <li ng-repeat="item in schedule.itinerary">
                         <div class="timeline-duration">
                             <div ng-repeat="entry in item.timeEntries"
-                                 ng-init="ShowPopUp = true"
-                                 ng-mouseenter="ShowPopUp = true"
-
                                  style="background-color: {{item.colorScheme}}; left: {{entry.timeStart | timeLineStart:schedule.timeLineStart}}px; width:{{entry.duration | timeLineLength}}px;"
                                  class="timeline-link">
-                                <div class="timeline-hover" ng-click="ScrollToTimeEntry(schedule.scheduleID, item.id, entry.id, entry);" ng-show="ShowPopUp">
+                                <div class="timeline-hover"
+                                     style="left:{{entry.timeStart | timeCenterPopUp:(entry.duration | timeLineLength)}}px;"
+                                     ng-click="ScrollToTimeEntry(schedule.scheduleID, item.id, entry.id, entry);">
                                     <div class="timeline-hover-content">
                                         <span class="timeline-image" style="background-image: url('{{entry.imageUrl}}')"></span>
                                         <div class="timeline-detail">
@@ -61,7 +60,7 @@
                                             <p>{{entry.shortDescription}}</p>
                                         </div>
                                     </div>
-                                    <span class="arrow-down"></span>
+                                    <span class="arrow-down" style="left:200px;"></span>
                                 </div>
                             </div>
                         </div>

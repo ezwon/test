@@ -7,6 +7,7 @@
         .controller('LocationCtrl', LocationCtrl)
         .filter('timeLineStart', timeLineStart)
         .filter('timeLineLength', timeLineLength)
+        .filter('timeCenterPopUp', timeCenterPopUp)
         .controller('navMenuCtrl', navMenuCtrl)
         .directive('navMenu', navMenu)
         .directive('langMenu', langMenu)
@@ -572,6 +573,19 @@
     function timeLineLength() {
         return function (input) {
             return input * 1.33;
+        }
+    }
+
+    function timeCenterPopUp() {
+        return function (input, width) {
+            if(width < 400){
+                width = (400 - width) / 2;
+                return width * -1;
+            }
+            else{
+                width = (width - 400) / 2;
+                return width
+            }
         }
     }
 
