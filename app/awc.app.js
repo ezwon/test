@@ -93,14 +93,12 @@
 
         }
 
-        function UpdateSizeWindow() {
-            $scope.UpdateSize($scope.selectedIndex);
-        }
-
         $scope.MockMajorSponsors = apiService.mockMajorSponsor;
         $scope.MockSponsors = apiService.mockSponsors;
 
-
+        function UpdateSizeWindow() {
+            $scope.UpdateSize($scope.selectedIndex);
+        }
         apiService.get().then(function (response) {
 
             var mockTabs = [

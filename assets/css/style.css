@@ -1937,3 +1937,6 @@ div.location-content-2 {
     margin: 30px 20px 0 20px;
 }
 
+.clickable-area{
+    cursor: pointer;
+}
