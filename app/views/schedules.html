@@ -13,9 +13,9 @@
             <div class="col-lg-12">
                 <div class="schedule-date">
                     <ul>
-                        <li ng-repeat="tab in tabs">
-                            <a ng-click="SelectTab(tab.scheduleID)" ng-class="{'schedule-active':tab.isSelected}">
-                                <h3>{{tab.scheduleDateStr}}</h3>
+                        <li ng-repeat="schedule in schedules">
+                            <a ng-click="SelectSchedule(schedule.scheduleID)" ng-class="{'schedule-active':schedule.isSelected}">
+                                <h3>{{schedule.scheduleDateStr}}</h3>
                             </a>
                         </li>
                     </ul>
@@ -41,25 +41,23 @@
             </ul>
         </div>
         <div class="schedule-time-container">
-            <div ng-if="tab.isSelected" ng-repeat="tab in tabs" class="schedule-timeline">
+            <div ng-if="schedule.isSelected" ng-repeat="schedule in schedules" class="schedule-timeline">
                 <ul>
-                    <li ng-repeat="item in tab.itinerary">
+                    <li ng-repeat="item in schedule.itinerary">
                         <div class="timeline-duration">
                             <div ng-repeat="entry in item.timeEntries"
                                  ng-init="ShowPopUp = false"
                                  ng-mouseenter="ShowPopUp = true"
                                  ng-mouseleave="ShowPopUp = false"
-                                 style="background-color: {{item.colorScheme}}; left: {{entry.timeStart | timeLineStart:tab.timeLineStart}}px; width:{{entry.duration | timeLineLength}}px;"
+                                 style="background-color: {{item.colorScheme}}; left: {{entry.timeStart | timeLineStart:schedule.timeLineStart}}px; width:{{entry.duration | timeLineLength}}px;"
                                  class="timeline-link">
-                                <div class="timeline-hover" ng-click="ScrollToTimeEntry(entry.id);" ng-show="ShowPopUp">
+                                <div class="timeline-hover" ng-click="ScrollToTimeEntry(schedule.scheduleID, item.id, entry.id);" ng-show="ShowPopUp">
                                     <div class="timeline-hover-content">
-                                        <span class="timeline-image"></span>
-
+                                        <span class="timeline-image" style="background-image: url('{{entry.imageUrl}}')"></span>
                                         <div class="timeline-detail">
                                             <h3>{{entry.title}}</h3>
                                             <i class="fa fa-clock-o"></i>
                                             <h5>{{entry.timeStr}}</h5>
-
                                             <p>{{entry.shortDescription}}</p>
                                         </div>
                                     </div>
@@ -91,31 +89,34 @@
 </section>
 
 <section class="schedule-content">
-    <div class="schedule-day-list-wrapper" style="width:{{tab.length * 1500}}px;">
-        <div class="schedule-day" ng-repeat="tab in tabs">
+    <div class="schedule-day-list-wrapper" style="width:{{schedules.length * 1500}}px;">
+        <div class="schedule-day" ng-repeat="schedule in schedules">
             <div class="container-fluid">
                 <div class="row no-gutters">
                     <div class="col-lg-12">
                         <div class="schedule-details">
-                            <h1>{{tab.scheduleDateStr}}</h1>
+                            <h1>{{schedule.scheduleDateStr}}</h1>
                             <ul>
-                                <li id="time-entry-{{entry.id}}" ng-repeat="entry in tab.timeLineEntries"
+                                <li id="time-entry-{{schedule.scheduleID}}-{{entry.itinerarId}}-{{entry.id}}"
+                                    ng-repeat="entry in schedule.timeLineEntries"
+                                    style="background-color: {{entry.showDetails ? entry.colorScheme:'#fff'}}"
                                     ng-class="{'sched-active':entry.showDetails}">
 
-                                    <div class="row list-width">
+                                    <div class="row list-width"  style="border-bottom-color: {{entry.showDetails ? entry.colorScheme:'#fff'}}">
                                         <div class="col-sm-3">
                                             <i class="fa fa-clock-o sched-icon"></i>
                                             <p>{{entry.timeStr}}</p>
                                         </div>
                                         <div class="col-sm-3">
-                                            <h4>{{entry.title}}</h4>
+
+                                            <h4><i ng-if="entry.isKeynote" class="fa fa-star keynote"></i>{{entry.title}}</h4>
                                         </div>
                                         <div class="col-sm-6">
-                                            <i class="fa  sched-icon"
-                                               ng-class="{'fa-comments-o':entry.cssClass == 'speech',
-                                               'fa-briefcase':entry.cssClass == 'market',
-                                               'fa-glass':entry.cssClass == 'traffic'}"
-                                               style="color:{{entry.colorScheme}};"></i>
+                                            <i class="fa sched-icon"
+                                               ng-class="{'fa-comments-o':entry.itinerary == 'speeches & panels',
+                                               'fa-briefcase':entry.itinerary == 'market',
+                                               'fa-glass':entry.itinerary == 'traffic source meetups'}"
+                                               style="color:{{entry.showDetails ? '#fff':entry.colorScheme}};"></i>
                                             <p>{{entry.shortDescription}}</p>
                                             <a href="javascript:void(0);">
                                                 <i ng-click="entry.showDetails = !entry.showDetails" class="fa fa-angle-down sched-arrow"></i>
@@ -125,23 +126,22 @@
                                     <div ng-if="entry.showDetails" class="sched-slider">
                                         <div class="row list-width-2">
                                             <div class="col-lg-2">
-                                                <span class="test-image"></span>
+                                                <span class="test-image" style="background-image: url('{{entry.imageUrl}}')"></span>
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="speaker-details">
                                                     <h2>{{entry.title}}</h2>
-                                                    <h5>{{entry.secondTitle}}</h5>
-                                                    <a href="#"><i class="fa fa-link"></i></a>
-                                                    <a href="#"><i class="fa fa-facebook-official"></i></a>
-                                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                                    <a href="#"><i class="fa fa-instagram"></i></a>
+                                                    <h5 style="color:{{entry.colorScheme}};">{{entry.secondTitle}}</h5>
+                                                    <a href="{{entry.websiteUrl}}" target="_blank"><i class="fa fa-link"></i></a>
+                                                    <a href="{{entry.facebookUrl}}" target="_blank"><i class="fa fa-facebook-official"></i></a>
+                                                    <a href="{{entry.twitterUrl}}" target="_blank"><i class="fa fa-twitter"></i></a>
+                                                    <!--<a href="#"><i class="fa fa-instagram"></i></a>-->
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="speaker-details details-2">
                                                     <p>{{entry.longDescription}}</p>
-                                                    <a href="#"><i
-                                                            class="fa fa-cloud-download"></i>add event to calendar</a>
+                                                    <!--<a href="#"><i class="fa fa-cloud-download"></i>add event to calendar</a>-->
                                                 </div>
                                             </div>
                                         </div>

@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular
-        .module('AffiliateWorldAsia', ['ngRoute','ngAnimate','pascalprecht.translate','timer','ngDialog'])
+        .module('AffiliateWorldAsia', ['ngRoute', 'ngAnimate', 'pascalprecht.translate', 'timer', 'ngDialog'])
         .controller('MainCtrl', MainCtrl)
         .controller('ScheduleCtrl', ScheduleCtrl)
         .controller('LocationCtrl', LocationCtrl)
@@ -11,7 +11,7 @@
         .directive('navMenu', navMenu)
         .service('apiService', apiService);
 
-    function MainCtrl($scope,$rootScope,$translate, ngDialog) {
+    function MainCtrl($scope, $rootScope, $translate, ngDialog) {
         $scope.changeLanguage = function (key) {
             $translate.use(key);
         };
@@ -24,19 +24,19 @@
         };
     }
 
-    function ScheduleCtrl($scope, $timeout, $window, apiService,$routeParams,$location ,$anchorScroll) {
+    function ScheduleCtrl($scope, $timeout, $window, apiService, $routeParams, $location, $anchorScroll) {
         var w = angular.element($window);
         w.bind('resize', function () {
             $scope.$apply();
         });
         $(window).resize(UpdateSizeWindow);
 
-        $scope.SelectTab = function (id) {
+        $scope.SelectSchedule = function (id) {
 
-            for (var i = 0; i < $scope.tabs.length; i++){
-                $scope.tabs[i].isSelected = false;
-                if($scope.tabs[i].scheduleID == id)
-                    $scope.tabs[i].isSelected = true;
+            for (var i = 0; i < $scope.schedules.length; i++) {
+                $scope.schedules[i].isSelected = false;
+                if ($scope.schedules[i].scheduleID == id)
+                    $scope.schedules[i].isSelected = true;
             }
 
             $scope.UpdateSize(id);
@@ -75,23 +75,20 @@
             //console.log("pixelToCenter: ", pixelToCenter);
 
         }
-        $scope.ScrollToTimeEntry = function(id){
-            $location.hash('time-entry-' + id);
+        $scope.ScrollToTimeEntry = function (schedId, itineraryId, entryId) {
+            $location.hash('time-entry-' + schedId + '-' + itineraryId + '-' + entryId);
             $anchorScroll();
 
-            for (var i = 0; i < $scope.tabs.length; i++) {
-                var schedule = $scope.tabs[i];
+            for (var i = 0; i < $scope.schedules.length; i++) {
+                var schedule = $scope.schedules[i];
+                if(schedule.scheduleID == schedId)
                 for (var j = 0; j < schedule.timeLineEntries.length; j++) {
                     var entry = schedule.timeLineEntries[j];
-                    if(id == entry.id){
-                        entry.showDetails = true;
-                        console.log(entry);
+                    if (entryId == entry.id && itineraryId == entry.itinerarId) {
+                        $timeout(function(){entry.showDetails = true;},100);
                     }
-
                 }
-
             }
-
 
         }
 
@@ -103,8 +100,8 @@
         $scope.MockSponsors = apiService.mockSponsors;
 
 
-
         apiService.get().then(function (response) {
+
             var mockTabs = [
                 {
                     scheduleID: 1, isSelected: true, scheduleDateStr: "Monday, 7 December",
@@ -215,7 +212,7 @@
                             title: "training workshops",
                             enabled: false,
                             cssClass: "training",
-                            colorScheme: "",
+                            colorScheme: "#1C222E",
                             timeEntries: []
                         },
                         {
@@ -382,103 +379,86 @@
                     ]
                 }
             ];
-            var event = response.data.event,
+            var event = response.data.data,
                 tabs = [],
-                entriesTimeLine = [],
+                itineraryList = [],
                 schedule = null,
-                itinerary = [],
                 timeEntries = [];
 
-            for (var i = 0; i < mockTabs.length; i++) {
-                var schedule = mockTabs[i];
-                schedule.timeLineEntries = [];
-                for (var j = 0; j < schedule.itinerary.length; j++) {
-                    var itinerary = schedule.itinerary[j];
-                    for (var k = 0; k < itinerary.timeEntries.length; k++) {
-                        var entry = itinerary.timeEntries[k];
-                        entry.colorScheme = itinerary.colorScheme;
-                        entry.cssClass = itinerary.cssClass;
-                        schedule.timeLineEntries.push(entry);
-                    };
-                }
 
-                schedule.timeLineEntries.sort( function (a,b) {
-                    return a.timeStart > b.timeStart;
-                })
-
-            }
-
-            $scope.tabs = mockTabs;
-            $scope.selectedIndex = 1;
-            $timeout(function () {
-                $scope.UpdateSize();
-                if($routeParams.schedule)
-                    $scope.SelectTab($routeParams.schedule);
-            }, 100)
-
-            return;
-
+            console.log("Service Response: ", event)
             for (var i = 0; i < event.schedules.length; i++) {
                 schedule = event.schedules[i];
-                itinerary = [];
-                timeEntries = [];
+                schedule.timeLineEntries = [];
+                itineraryList = [];
 
                 for (var j = 0; j < schedule.itineraries.length; j++) {
-                    var obj = schedule.itineraries[j];
+                    var itinerary = schedule.itineraries[j];
 
                     timeEntries = [];
-                    for (var k = 0; k < obj.entries.length; k++) {
-                        var entry = obj.entries[k];
-
-
-                        timeEntries.push({
+                    for (var k = 0; k < itinerary.entries.length; k++) {
+                        var entry = itinerary.entries[k];
+                        var timeEntry = {
+                            id:k+1,
+                            itinerarId:j+1,
+                            itinerary: itinerary.title,
+                            colorScheme:itinerary.color_scheme,
+                            isKeynote:entry.is_keynote == '1' ? true:false,
                             title: entry.title,
                             showDetails: false,
                             secondTitle: entry.second_title,
                             websiteUrl: entry.website,
+                            facebookUrl:entry.fb_link,
+                            twitterUrl:entry.twitter_link,
+                            instagramUrl:entry.instagram_link,
                             imageUrl: entry.image_url,
                             shortDescription: entry.short_description,
                             longDescription: entry.long_description,
-                            timeStr: entry.time_starts + " - " + entry.time_ends,
-                            timeStart: moment({hour: 11, minute: 0}), //moment(new Date(schedule.date_time_start)),
-                            duration: 60 //in minutes
-                        })
+                            timeStr: moment(entry.time_starts, "hh:mm").format('hh:mma') + " - " + moment(entry.time_ends, "hh:mm").format('hh:mma'),
+                            timeStart: moment(entry.time_starts, "hh:mm"),
+                            duration: moment(entry.time_ends, "hh:mm").diff(moment(entry.time_starts, "hh:mm"), 'minutes')
+                        };
+
+                        timeEntries.push(timeEntry);
+                        schedule.timeLineEntries.push(timeEntry);
                     }
 
-                    itinerary.push({
-                        title: obj.title,
-                        enabled: obj.enabled == "1" ? true : false,
+                    itineraryList.push({
+                        id: j+1,
+                        title: itinerary.title,
+                        enabled: itinerary.enabled == "1" ? true : false,
                         cssClass: '',
-                        colorScheme: obj.color_scheme,
+                        colorScheme: itinerary.color_scheme,
                         timeEntries: timeEntries
                     });
                 }
 
                 tabs.push({
-                    scheduleID: schedule.id,
+                    scheduleID: i + 1,
+                    timeLineEntries: schedule.timeLineEntries,
                     isSelected: i == 0 ? true : false,
-                    scheduleDateStr: moment(schedule.date_time_start, "YYYY-MM-D hh:mm:ss").format('dddd, D MMMM'),
+                    scheduleDateStr: moment(schedule.date_time_start, "MM/DD/YYYY hh:mm").format('dddd, D MMMM'),
                     timeLineStart: moment({hour: 10, minute: 0}),
-                    itinerary: itinerary
+                    itinerary: itineraryList
                 });
 
             }
 
 
-            if($routeParams.schedule)
-                for (var i = 0; i < tabs.length; i++){
+            if ($routeParams.schedule)
+                for (var i = 0; i < tabs.length; i++) {
                     tabs[i].isSelected = false;
-                    console.log(tabs[i].scheduleID.toString() == $routeParams.schedule.toString());
-                    if(tabs[i].scheduleID == $routeParams.schedule)
+                    if (tabs[i].scheduleID == $routeParams.schedule)
                         tabs[i].isSelected = true;
                 }
 
-            $scope.tabs = mockTabs;
+            console.log("Parsed Schedules: ",tabs);
+            $scope.schedules = tabs;
             $scope.selectedIndex = 1;
             $timeout(function () {
                 $scope.UpdateSize();
-                if($routeParams.schedule)
-                    $scope.SelectTab($routeParams.schedule);
+                if ($routeParams.schedule)
+                    $scope.SelectSchedule($routeParams.schedule);
             }, 100)
         });
 
@@ -506,6 +486,7 @@
 
             marker.setMap(map);
         }
+
         initialize();
 
 
@@ -515,7 +496,7 @@
         var directive = {
             restrict: "AE",
             link: link,
-            controller:'navMenuCtrl',
+            controller: 'navMenuCtrl',
             replace: true,
             templateUrl: "app/views/template/navigation.html",
             scope: {
@@ -530,33 +511,33 @@
         return directive;
     }
 
-    function navMenuCtrl($scope,$rootScope,$translate){
+    function navMenuCtrl($scope, $rootScope, $translate) {
         $scope.showMobileMenu = false;
         $scope.openTranslations = true;
         $scope.translationMap = [
             {
-                active:true,
-                key:'english',
-                flagUrl:'assets/images/lang-england.png',
-                altText:'england flag'
+                active: true,
+                key: 'english',
+                flagUrl: 'assets/images/lang-england.png',
+                altText: 'england flag'
             },
             {
-                active:false,
-                key:'chinese',
-                flagUrl:'assets/images/lang-china.png',
-                altText:'china flag'
+                active: false,
+                key: 'chinese',
+                flagUrl: 'assets/images/lang-china.png',
+                altText: 'china flag'
             },
             {
-                active:false,
-                key:'indonesia',
-                flagUrl:'assets/images/lang-indonesia.png',
-                altText:'indonesia flag'
+                active: false,
+                key: 'indonesia',
+                flagUrl: 'assets/images/lang-indonesia.png',
+                altText: 'indonesia flag'
             },
             {
-                active:false,
-                key:'thailand',
-                flagUrl:'assets/images/lang-thailand.png',
-                altText:'thailand flag'
+                active: false,
+                key: 'thailand',
+                flagUrl: 'assets/images/lang-thailand.png',
+                altText: 'thailand flag'
             }
         ]
         $scope.changeLanguage = function (key) {
@@ -566,7 +547,7 @@
                     $scope.translationMap[i].active = true;
             }
 
-            $scope.translationMap.sort( function (a) {
+            $scope.translationMap.sort(function (a) {
                 return a.active == false;
             })
             $translate.use(key);
@@ -882,7 +863,7 @@
         return svc;
 
         function get() {
-            return awaAPI("GET", "events", "?with=schedules.itineraries.entries");
+            return awaAPI("GET", "events/latest?with=schedules.itineraries.entries");
         }
 
         function awaAPI(method, resource, data) {
@@ -900,7 +881,7 @@
             $http.defaults.cache = true;
             return $http({
                 method: method,
-                url: 'http://awa-api.istackmanila.com/v2/' + resource,
+                url: 'http://awa-api.istackmanila.com/' + resource,
                 responseType: 'json',
                 contentType: "application/json",
                 data: data,

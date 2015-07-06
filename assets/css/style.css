@@ -1254,6 +1254,11 @@ div.list-width-last {
     margin: 4px 0 0 0;
 }
 
+.schedule-details i.keynote{
+    position: relative;
+    margin-right: 8px;
+}
+
 i.sched-icon {
     margin: 0 10px 0 0;
 }
