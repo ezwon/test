@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular
-        .module('AffiliateWorldAsia', ['ngRoute', 'ngAnimate', 'pascalprecht.translate', 'timer', 'ngDialog'])
+        .module('AffiliateWorldAsia', ['ngRoute', 'ngAnimate', 'pascalprecht.translate', 'timer', 'ngDialog','duScroll'])
         .controller('MainCtrl', MainCtrl)
         .controller('ScheduleCtrl', ScheduleCtrl)
         .controller('LocationCtrl', LocationCtrl)
@@ -25,7 +25,7 @@
         };
     }
 
-    function ScheduleCtrl($scope, $timeout, $window, apiService, $routeParams, $location, $anchorScroll) {
+    function ScheduleCtrl($scope, $timeout, $window, apiService, $routeParams, $location, $document, $anchorScroll) {
         var w = angular.element($window);
         w.bind('resize', function () {
             $scope.$apply();
@@ -33,7 +33,6 @@
         $(window).resize(UpdateSizeWindow);
 
         $scope.SelectSchedule = function (id) {
-
             for (var i = 0; i < $scope.schedules.length; i++) {
                 $scope.schedules[i].isSelected = false;
                 if ($scope.schedules[i].scheduleID == id)
@@ -49,7 +48,6 @@
                 pixelToCenter = 0,
                 schedEntryExcessWidth = 0,
                 selectedIndex = index;
-
 
             $scope.selectedIndex = selectedIndex;
 
@@ -76,21 +74,11 @@
             //console.log("pixelToCenter: ", pixelToCenter);
 
         }
-        $scope.ScrollToTimeEntry = function (schedId, itineraryId, entryId) {
-            $location.hash('time-entry-' + schedId + '-' + itineraryId + '-' + entryId);
-            $anchorScroll();
 
-            for (var i = 0; i < $scope.schedules.length; i++) {
-                var schedule = $scope.schedules[i];
-                if(schedule.scheduleID == schedId)
-                for (var j = 0; j < schedule.timeLineEntries.length; j++) {
-                    var entry = schedule.timeLineEntries[j];
-                    if (entryId == entry.id && itineraryId == entry.itinerarId) {
-                        $timeout(function(){entry.showDetails = true;},100);
-                    }
-                }
-            }
 
+        $scope.ScrollToTimeEntry = function (schedId, itineraryId, entryId, entry) {
+            $document.scrollToElementAnimated(angular.element(document.getElementById('time-entry-' + schedId + '-' + itineraryId + '-' + entryId)));
+            entry.showDetails = true;
         }
 
         $scope.MockMajorSponsors = apiService.mockMajorSponsor;
@@ -399,7 +387,7 @@
                         var entry = itinerary.entries[k];
                         var timeEntry = {
                             id:k+1,
-                            itinerarId:j+1,
+                            itineraryId:j+1,
                             itinerary: itinerary.title,
                             colorScheme:itinerary.color_scheme,
                             isKeynote:entry.is_keynote == '1' ? true:false,
@@ -577,13 +565,13 @@
 
     function timeLineStart() {
         return function (input, timeLineStart) {
-            return input.diff(timeLineStart, 'minutes') * 1.5;
+            return input.diff(timeLineStart, 'minutes') * 1.33;
         }
     }
 
     function timeLineLength() {
         return function (input) {
-            return input * 1.5;
+            return input * 1.33;
         }
     }
 
