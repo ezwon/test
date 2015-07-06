@@ -10,18 +10,16 @@
                         sodales mi euismod enim congue gravida.</p>
                 </div>
             </div>
-            <div class="col-lg-12">
-                <div class="schedule-date">
-                    <ul>
-                        <li ng-repeat="tab in tabs">
-                            <a ng-click="SelectTab(tab.scheduleID)" ng-class="{'schedule-active':tab.isSelected}">
-                                <h3>{{tab.scheduleDateStr}}</h3>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
         </div>
+    </div>
+    <div class="schedule-date">
+        <ul>
+            <li ng-repeat="tab in tabs">
+                <a ng-click="SelectTab(tab.scheduleID)" ng-class="{'schedule-active':tab.isSelected}">
+                <h3>{{tab.scheduleDateStr}}</h3>
+                </a>
+            </li>
+        </ul>
     </div>
     <section class="schedule-time">
         <div class="schedule-time-list">
@@ -149,6 +147,16 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="schedule-content-mobile">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
             </div>
         </div>
     </div>

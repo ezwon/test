@@ -2,12 +2,12 @@
     <nav-menu active-menu="market"></nav-menu>
     <div class="container">
         <div class="row">
-            <div class="col-lg-10 col-md-10 center-block">
+            <div class="col-lg-10 col-md-10 center-block ticket-mobile">
                 <div class="title">
                     <h1>choose <span>your</span> tickets</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel sodales velit. Nullam sodales mi euismod enim congue gravida. </p>
                 </div>
-                <div class="row">
+                <div class="row toggle-browser">
                     <div class="col-lg-8 col-md-9 col-sm-10 center-block">
                         <div class="ticket-toggle">
                             <a href="#/tickets"><h4 class="toggle-left">i am an affiliate</h4></a>
@@ -16,13 +16,17 @@
                         </div>
                     </div>
                 </div>
+                <div class="row toggle-mobile">
+                    <ul>
+                        <li><a href="#/tickets"><h2>I am an affiliate</h2></a></li>
+                        <li><h2 class="active">I am a company</h2></li>
+                    </ul>
+                </div>
             </div>
-            <div class="col-lg-4 col-md-5 col-sm-7 col-xs-10 center-block">
-                <a href="#" class="primary light ticket-button" style="margin:70px 0 30px 0"><i class="fa fa-leanpub"></i>view the full market map</a>
-            </div>
-            <div class="col-md-8 col-sm-10 col-xs-8 center-block">
+            <a href="#" class="primary light ticket-button market-map" ><i class="fa fa-leanpub"></i>view the full market map</a>
+            <div class="col-md-10 col-sm-10 col-xs-11 center-block">
                 <div class="row">
-                    <div class="col-sm-6 col-xs-12">
+                    <div class="col-md-6 col-sm-12">
                         <div class="ticket-price">
                             <h2>Company pass - <span>$6999</span></h2>
                             <p>Conference pass giving access to:</p>
@@ -52,12 +56,13 @@
                                     <p class="price-inactive">Exclusive access to all speech slides</p>
                                 </li>
                             </ul>
+                            <div class="clear"></div>
                         </div>
                         <div class="ticket-button-wrapper">
                             <a href="#" class="primary light ticket-button"><i class="fa fa-ticket"></i>Buy company pass</a>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-xs-12">
+                    <div class="col-md-6 col-sm-12">
                         <div class="ticket-price">
                             <h2>Market table - <span>$5499</span></h2>
                             <p>Conference pass giving access to:</p>
@@ -87,6 +92,7 @@
                                     <p>Exclusive access to all speech slides</p>
                                 </li>
                             </ul>
+                            <div class="clear"></div>
                         </div>
                         <div class="ticket-button-wrapper">
                             <a href="#" class="primary light ticket-button"><i class="fa fa-ticket"></i>Buy market Table</a>

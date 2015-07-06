@@ -1,0 +1,22 @@
+<div>
+    <div class="home-menu">
+        <div class="language-list" ng-class="{'open':openTranslations}">
+            <ul ng-if="!openTranslations">
+                <li title="{{language.key}}"
+                    ng-if="language.active"
+                    ng-click="changeLanguage(language.key)"
+                    ng-repeat="language in translationMap">
+                    <img ng-src="{{language.flagUrl}}" alt="{{language.altText}}"/>
+                </li>
+            </ul>
+            <ul ng-if="openTranslations">
+                <li title="{{language.key}}"
+                    ng-click="changeLanguage(language.key)"
+                    ng-repeat="language in translationMap">
+                    <img ng-src="{{language.flagUrl}}" alt="{{language.altText}}"/>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+    

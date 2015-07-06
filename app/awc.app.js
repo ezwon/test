@@ -9,6 +9,7 @@
         .filter('timeLineLength', timeLineLength)
         .controller('navMenuCtrl', navMenuCtrl)
         .directive('navMenu', navMenu)
+        .directive('langMenu', langMenu)
         .service('apiService', apiService);
 
     function MainCtrl($scope,$rootScope,$translate, ngDialog) {
@@ -495,6 +496,24 @@
             controller:'navMenuCtrl',
             replace: true,
             templateUrl: "app/views/template/navigation.html",
+            scope: {
+                activeMenu: "@"
+            }
+        };
+
+        function link(scope, element, attr) {
+
+        }
+
+        return directive;
+    }
+
+    function langMenu() {
+        var directive = {
+            restrict: "AE",
+            link: link,
+            replace: true,
+            templateUrl: "app/views/template/home-lang.html",
             scope: {
                 activeMenu: "@"
             }
