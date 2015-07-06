@@ -184,10 +184,10 @@
                     <!-- featured speaker list -->
                     <li ng-repeat="item in MockMajorSponsors">
                         <div class="row">
-                            <div class="col-md-2 col-sm-3">
+                            <div class="col-md-2 col-sm-12">
                                 <span class="test-image"></span>
                             </div>
-                            <div class="col-md-4 col-sm-9">
+                            <div class="col-md-4 col-sm-12">
                                 <div class="speaker-details">
                                     <h2>{{item.Name}}</h2>
                                     <h5>{{item.Position}}</h5>
@@ -211,17 +211,27 @@
 
                     <!-- not featured speaker list -->
                     <li ng-repeat="item in MockSponsors" class="not-featured-speaker">
+                        <div class="speaker-social-media-nav">
+                            <i class="fa fa-close social-media-close"></i>
+                            <div class="social-media-nav-holder">
+                                <a href="#"><i class="fa fa-link"></i></a>
+                                <a href="#"><i class="fa fa-facebook-official"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        <i class="fa fa-info-circle social-media-nav"></i>
                         <div class="row">
-                            <div class="col-sm-2">
+                            <div class="col-md-2 col-xs-3">
                                 <span class="test-image-2"></span>
                             </div>
-                            <div class="col-sm-4 ">
+                            <div class="col-md-4 col-xs-9 ">
                                 <div class="speaker-details">
-                                    <h3>{{item.Name}}</h3>
-                                    <h5>{{item.Position}}</h5>
+                                    <h3 style="margin: 0;">{{item.Name}}</h3>
+                                    <h5 style="text-align:left; ">{{item.Position}}</h5>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-md-6 col-xs-12">
                                 <div class="speaker-details">
                                     <p>{{item.Description}} </p>
                                 </div>
