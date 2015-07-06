@@ -1705,12 +1705,20 @@ div.location-content-2 {
 .home-nav ul li a {
     padding: 45px 45px;
     display: inline-block;
-
 }
 
 .home-nav ul li a h4 {
     color: #fff;
     letter-spacing: 0.085em;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+.home-nav ul li a h4:hover, .home-nav ul li a h4:focus {
+    color: #fa7b65;
 }
 
 /* default navigation */
@@ -1748,6 +1756,14 @@ div.location-content-2 {
     letter-spacing: 0.125em;
     opacity: .20;
     font-size: 0.75rem;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+.default-nav ul li a:hover h5{
+    opacity: .75;
 }
 
 .default-nav ul li.active a h5 {
@@ -1793,6 +1809,11 @@ div.location-content-2 {
 }
 
 /* navigation overlay */
+.home-lang{
+    position: absolute;
+    top:35px;
+    right:35px;
+}
 .home-menu{
     display: block;
     position: relative;
