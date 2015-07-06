@@ -312,13 +312,13 @@ header {
 .sponsor .platinum-sponsors img {
     width: 150px;
     display: block;
-    margin: 20px auto;
+    margin: 30px auto 20px;
 }
 
 .sponsor .gold-sponsors img {
     width: 100px;
     display: block;
-    margin: 20px auto;
+    margin: 30px auto 0px;
 }
 
 /* ticket homepage*/
@@ -408,14 +408,43 @@ header {
 }
 
 .sponsor-footer .sponsor1{
-    margin-bottom: 15px;
+    min-height: 50px;
 }
 
-.sponsor-footer img {
-    width: 80px;
-    display: block;
-    margin: auto;
+.sponsor-footer .row div{
+    min-height: 20px;
     opacity: 0.3;
+    margin: 15px 0px;
+}
+
+.sponsor-footer .diamond1{
+    background: url("../images/sponsors/diamond/mobvista-white.png") center center no-repeat;
+    background-size: contain;
+}
+
+.sponsor-footer .plat1{
+    background: url("../images/sponsors/platinum/clickdealer-white.png") center center no-repeat;
+    background-size: contain;
+}
+
+.sponsor-footer .plat2{
+    background: url("../images/sponsors/platinum/go2mobi-white.png") center center no-repeat;
+    background-size: contain;
+}
+
+.sponsor-footer .plat3{
+    background: url("../images/sponsors/platinum/iballers-white.png") center center no-repeat;
+    background-size: contain;
+}
+
+.sponsor-footer .gold1{
+    background: url("../images/sponsors/gold/avazu-white.png") center center no-repeat;
+    background-size: contain;
+}
+
+.sponsor-footer .gold2{
+    background: url("../images/sponsors/gold/mpire-white.png") center center no-repeat;
+    background-size: contain;
 }
 
 .sponsor-footer h5 {
