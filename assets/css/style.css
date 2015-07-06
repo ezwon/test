@@ -447,7 +447,7 @@ header {
     }
 
 .stm-footer {
-    margin: 25px auto 0;
+    margin: 25px auto 10px;
     padding: 25px 0;
     background: #d61f26;
     width: 70px;
