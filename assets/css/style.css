@@ -1404,10 +1404,10 @@ a.market-map{
     position: relative;
     display: inline-block;
     left: 0;
-    -webkit-transition: left linear 100ms;
-    -moz-transition: left linear 100ms;
-    -o-transition: left linear 100ms;
-    transition: left linear 100ms;
+    -webkit-transition: left linear 300ms;
+    -moz-transition: left linear 300ms;
+    -o-transition: left linear 300ms;
+    transition: left linear 300ms;
 }
 
 .schedule-day {
@@ -1488,6 +1488,13 @@ i.sched-arrow {
     float: right;
 }
 
+li.sched-active {
+    background: #fa7b65 !important;
+}
+
+li.sched-active {
+    background: #fa7b65 !important;
+}
 li.sched-active {
     background: #fa7b65 !important;
 }

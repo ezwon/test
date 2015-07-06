@@ -48,12 +48,11 @@
                     <li ng-repeat="item in schedule.itinerary">
                         <div class="timeline-duration">
                             <div ng-repeat="entry in item.timeEntries"
-                                 ng-init="ShowPopUp = false"
-                                 ng-mouseenter="ShowPopUp = true"
-                                 ng-mouseleave="ShowPopUp = false"
                                  style="background-color: {{item.colorScheme}}; left: {{entry.timeStart | timeLineStart:schedule.timeLineStart}}px; width:{{entry.duration | timeLineLength}}px;"
                                  class="timeline-link">
-                                <div class="timeline-hover" ng-click="ScrollToTimeEntry(schedule.scheduleID, item.id, entry.id);" ng-show="ShowPopUp">
+                                <div class="timeline-hover"
+                                     style="left:{{entry.timeStart | timeCenterPopUp:(entry.duration | timeLineLength)}}px;"
+                                     ng-click="ScrollToTimeEntry(schedule.scheduleID, item.id, entry.id, entry);">
                                     <div class="timeline-hover-content">
                                         <span class="timeline-image" style="background-image: url('{{entry.imageUrl}}')"></span>
                                         <div class="timeline-detail">
@@ -63,7 +62,7 @@
                                             <p>{{entry.shortDescription}}</p>
                                         </div>
                                     </div>
-                                    <span class="arrow-down"></span>
+                                    <span class="arrow-down" style="left:200px;"></span>
                                 </div>
                             </div>
                         </div>
@@ -103,12 +102,14 @@
                         <div class="schedule-details">
                             <h1>{{schedule.scheduleDateStr}}</h1>
                             <ul>
-                                <li id="time-entry-{{schedule.scheduleID}}-{{entry.itinerarId}}-{{entry.id}}"
+                                <li id="time-entry-{{schedule.scheduleID}}-{{entry.itineraryId}}-{{entry.id}}"
                                     ng-repeat="entry in schedule.timeLineEntries"
-                                    ng-class="{'sched-active':entry.showDetails}" ng-click="entry.showDetails = !entry.showDetails" >
-                                    style="background-color: {{entry.showDetails ? entry.colorScheme:'#fff'}}"
+                                    ng-class="{'sched-active':entry.showDetails}"
+                                    ng-click="entry.showDetails = !entry.showDetails"
+                                    style="background-color: {{entry.showDetails ? entry.colorScheme + '!important;':''}}">
 
-                                    <div class="row list-width"  style="border-bottom-color: {{entry.showDetails ? entry.colorScheme:'#fff'}}">
+                                    <div class="row list-width"
+                                         style="border-bottom-color: {{entry.showDetails ? entry.colorScheme:'#fff'}}">
                                         <div class="col-sm-3">
                                             <i class="fa fa-clock-o sched-icon"></i>
                                             <p>{{entry.timeStr}}</p>
