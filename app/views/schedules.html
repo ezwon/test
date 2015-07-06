@@ -14,9 +14,9 @@
     </div>
     <div class="schedule-date">
         <ul>
-                        <li ng-repeat="schedule in schedules">
-                            <a ng-click="SelectSchedule(schedule.scheduleID)" ng-class="{'schedule-active':schedule.isSelected}">
-                                <h3>{{schedule.scheduleDateStr}}</h3>
+            <li ng-repeat="schedule in schedules">
+                <a ng-click="SelectSchedule(schedule.scheduleID)" ng-class="{'schedule-active':schedule.isSelected}">
+                <h3>{{schedule.scheduleDateStr}}</h3>
                 </a>
             </li>
         </ul>
@@ -42,6 +42,8 @@
         </div>
         <div class="schedule-time-container">
             <div ng-if="schedule.isSelected" ng-repeat="schedule in schedules" class="schedule-timeline">
+                <span class="timeline-left timeline-arrow"><i class="fa fa-angle-left"></i></span>
+                <span class="timeline-right timeline-arrow"><i class="fa fa-angle-right"></i></span>
                 <ul>
                     <li ng-repeat="item in schedule.itinerary">
                         <div class="timeline-duration">

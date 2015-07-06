@@ -1151,6 +1151,26 @@ a.market-map{
     background: #343d42;
     margin: 10px 0 0 0;
 }
+.timeline-arrow{
+    z-index: 100;
+    cursor: pointer;
+}
+.timeline-arrow i{
+    font-size: 3.5rem;
+    color: #293338;
+}
+.timeline-left{
+    display: block;
+    position: absolute;
+    left: -80px;
+    top: 37%;
+}
+.timeline-right{
+    display: block;
+    position: absolute;
+    right: -80px;
+    top: 37%;
+}
 
 .schedule-grid {
     width: 1042px;
