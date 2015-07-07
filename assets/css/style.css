@@ -2186,6 +2186,11 @@ div.location-content-5 {
 .home-nav ul li a {
     padding: 45px 45px;
     display: inline-block;
+}
+
+.home-nav ul li a h4 {
+    color: #fff;
+    letter-spacing: 0.085em;
     -webkit-transition: all .3s ease-in-out;
     -moz-transition: all .3s ease-in-out;
     -o-transition: all .3s ease-in-out;
@@ -2193,13 +2198,8 @@ div.location-content-5 {
     transition: all .3s ease-in-out;
 }
 
-.home-nav ul li a h4 {
-    color: #fff;
-    letter-spacing: 0.085em;
-}
-
-.home-nav ul li a:hover, .home-nav ul li a:focus {
-    background: #fa7b65;
+.home-nav ul li a:hover h4, .home-nav ul li a:focus h4{
+    color: #fa7b65;
 }
 
 /* default navigation */
