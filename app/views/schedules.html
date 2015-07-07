@@ -6,8 +6,7 @@
             <div class="col-lg-10 col-md-10 center-block">
                 <div class="title">
                     <h1>{{'TITLE_SPEAKERS' | translate}} <span>&</span> {{'TITLE_SCHEDULES' | translate}}</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel sodales velit. Nullam
-                        sodales mi euismod enim congue gravida.</p>
+                    <p>Our speaking line up is made of the most knowledgeable and revered figures of the industry who will be sharing their insights and discussing the secrets of where the next big campaigns will be.</p>
                 </div>
             </div>
         </div>
@@ -177,7 +176,7 @@
             <div class="col-lg-8 col-md-10 center-block">
                 <div class="speaker-header">
                     <h1>speaker profiles</h1>
-                    <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis</p>
+                    <p>Our speaking line up is made of the most knowledgeable and revered figures of the industry who will be sharing their insights and discussing the secrets of where the next big campaigns will be.</p>
                 </div>
             </div>
             <div class="col-lg-12">
@@ -186,7 +185,8 @@
                     <li ng-repeat="item in MockMajorSponsors">
                         <div class="row">
                             <div class="col-md-2 col-sm-12">
-                                <span class="test-image"></span>
+                                <span class="test-image" style="background: url('{{item.AvatarUrl}}') center center no-repeat;background-size:contain">
+                                </span>
                             </div>
                             <div class="col-md-4 col-sm-12">
                                 <div class="speaker-details">
@@ -196,14 +196,13 @@
                                         <a href="#"><i class="fa fa-link"></i></a>
                                         <a href="#"><i class="fa fa-facebook-official"></i></a>
                                         <a href="#"><i class="fa fa-twitter"></i></a>
-                                        <a href="#"><i class="fa fa-instagram"></i></a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-12">
                                 <div class="speaker-details">
                                     <p>{{item.Description}}</p>
-                                    <p>{{item.OtherInfo}} <a href="{{item.OtherInfoUrl}}">Read more</a></p>
+                                    <p>{{item.OtherInfo}}</p>
                                 </div>
                             </div>
                         </div>
@@ -218,13 +217,12 @@
                                 <a href="#"><i class="fa fa-link"></i></a>
                                 <a href="#"><i class="fa fa-facebook-official"></i></a>
                                 <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
                             </div>
                         </div>
                         <i class="fa fa-info-circle social-media-nav"></i>
                         <div class="row">
                             <div class="col-md-2 col-xs-3">
-                                <span class="test-image-2"></span>
+                                <span class="test-image-2" style="background: url('{{item.AvatarUrl}}') center center no-repeat;background-size:contain"></span>
                             </div>
                             <div class="col-md-4 col-xs-9 ">
                                 <div class="speaker-details">
@@ -234,7 +232,8 @@
                             </div>
                             <div class="col-md-6 col-xs-12">
                                 <div class="speaker-details">
-                                    <p>{{item.Description}} </p>
+                                    <p>{{item.Description}}</p>
+                                    <p>{{item.OtherInfo}}</p>
                                 </div>
                             </div>
                         </div>
@@ -256,7 +255,7 @@
             <div class="col-md-6 center-block">
                 <div class="ticket-details">
                     <h1>buy tickets</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel sodales velit. Nullam sodales mi euismod enim congue gravida.</p>
+                    <p>Early bird prices available for a limited time.</p>
                     <a href="#/tickets" class="primary light"><i class="fa fa-ticket"></i>Buy Tickets</a>
                 </div>
             </div>

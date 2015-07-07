@@ -137,7 +137,7 @@ a.primary i {
 }
 
 .light {
-    background: rgba(36, 36, 51, 0.05);
+    background: rgba(36, 36, 51, 0.09);
 }
 
 .dark {
@@ -155,17 +155,10 @@ a.primary i {
 /* header */
 header {
     width: 100%;
-    background: #333 url("../images/home-bg.jpg") center bottom fixed no-repeat;
+    background: #333 url("../images/home-bg.jpg") center bottom scroll no-repeat;
     background-size: cover;
     padding: 120px 0 200px;
     z-index: 10;
-}
-
-@media screen and (min-width: 1600px) {
-    header {
-        background-size: cover;
-        background-attachment: scroll;
-    }
 }
 
 .title {
@@ -286,6 +279,10 @@ header {
 .slogan-button {
     margin: 40px 0 0 0;
     text-align: center;
+}
+
+.slogan-button a{
+    width: 300px;
 }
 
 /* sponsor homepage*/
@@ -678,6 +675,22 @@ header {
     padding: 50px;
 }
 
+.company-ticket{
+    min-height: 605px;
+}
+
+@media screen and (max-width: 1200px) {
+.company-ticket{
+    min-height: 707px;
+}
+}
+
+@media screen and (max-width: 991px) {
+.company-ticket{
+    min-height: 0px;
+}
+}
+
 @media screen and (max-width: 380px) {
     .ticket-price {
         padding: 20px;
@@ -687,6 +700,8 @@ header {
 .ticket-price h2 {
     line-height: 2.75rem;
     color: #666666;
+    font-weight: 300;
+    margin: 0 0 5px 0;
 }
 
 .ticket-price h2 span {
@@ -710,16 +725,28 @@ header {
     height: 94px;
 }
 
-.ticket-price h2 {
-    font-weight: 300;
-    margin: 0 0 5px 0;
+.company-ticket h2{
+    font-size: 2rem;
+}
+
+@media screen and (max-width: 991px) {
+.company-ticket h2{
+    font-size: 2.5rem;
+}
 }
 
 .ticket-price h5 {
+    color: #CDCDCD;
+    line-height: 1rem;
+    letter-spacing: 1px;
+}
+
+.company-ticket h5 {
     color: #AAA;
     line-height: 1rem;
     letter-spacing: 1px;
 }
+
 
 @media screen and (max-width: 991px) {
         .ticket-price h5{
@@ -735,6 +762,12 @@ header {
 .ticket-price p {
     color: #666666;
     margin: 20px 0 0 0;
+}
+
+.ticket-price .ticket-footer{
+    font-style: italic;
+    color: #999;
+    font-size: 0.9rem;
 }
 
 .ticket-price ul {
@@ -838,11 +871,11 @@ a.ticket-button {
     color: #fff;
     margin: 40px auto 0;
     text-align: center;
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.08);
 }
 
 a.market-buy-button{
-    margin:20px auto 0;
+    margin:40px auto 0;
 }
 
 .ticket-button-wrapper {
@@ -856,7 +889,7 @@ a.market-buy-button{
 }
 a.market-map{
     width: 350px;
-    margin: 30px auto 0;
+    margin: 45px auto 0;
     display: block;
 }
     @media screen and (max-width: 991px) {
@@ -1017,6 +1050,21 @@ a.market-map{
         }
     }
 
+.event-details-subnote{
+    display: block;
+    color:#666;
+    font-size:0.65rem;
+    margin-top: -5px;
+}
+
+@media screen and (max-width: 991px) {
+.event-details-subnote{
+    display: block;
+    color:#666;
+    font-size:0.75rem;
+}
+}
+
 .event-details p {
     margin: 20px 0 0 0;
 }
@@ -1165,8 +1213,9 @@ a.market-map{
 /* schedule widget*/
 .schedule-header {
     padding: 160px 0 0 0;
-    background: #293338 url("../images/speaker-bg.jpg") center top no-repeat;
+    background: #293338 url("../images/speaker-bg.jpg") center top fixed no-repeat;
     overflow: hidden;
+    background-size: contain;
 }
 
 @media screen and (min-width: 1600px) {
@@ -1207,7 +1256,7 @@ a.market-map{
     }
 
 .schedule-date ul li a {
-    color: #4a5255;
+    color: #777;
 }
 
 .schedule-date ul li a h3 {
@@ -1403,6 +1452,7 @@ a.market-map{
     line-height: 145px;
     margin: 30px;
     float: left;
+    background-size: contain;
 }
 
 .timeline-detail {
@@ -1583,6 +1633,7 @@ div.list-width-last {
     letter-spacing: 0.050em;
     font-weight: 500;
     margin: 4px 0 0 0;
+    line-height: 18px;
 }
 
 .schedule-details i.keynote{
@@ -1630,6 +1681,7 @@ li.sched-active div.list-width {
     display: block;
     border-radius: 150px;
     background: #ccc;
+    background-size: contain;
 }
 
 .test-image-2 {
@@ -1692,6 +1744,20 @@ li.sched-active div.list-width {
         margin: 20px 0 0 0;
         }
     }
+
+.speaker-details a i{
+    padding-right: 20px;
+}
+
+.speaker-details a i:hover{
+    color:#fa7b65;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
 @media screen and (max-width: 991px) {
 .not-featured-speaker .speaker-details p{
     margin: 0;
@@ -1818,6 +1884,13 @@ li.sched-active div.speaker-details p {
     margin-bottom: 20px;
 }
 
+@media screen and (max-width: 991px) {
+.location-content h1 {
+    font-size: 3.2rem;
+    padding: 0px 40px;
+}
+}
+
 .location-left {
     margin: 60px 0 0 0;
 }
@@ -1828,6 +1901,13 @@ li.sched-active div.speaker-details p {
 
 .location-content h3 {
     margin: 0 0 10px 0;
+}
+
+@media screen and (max-width: 991px) {
+.location-content h3 {
+   font-size: 1.75rem;
+    font-weight: 400;
+}
 }
 
 .location-content p {
@@ -1891,23 +1971,38 @@ li.sched-active div.speaker-details p {
 
 div.location-content-2 {
     background: #fafafa;
+    padding: 80px 0 80px;
 }
 
 div.location-content-3 {
-    background: #fafafa;
+    background: #FFF;
+    padding: 80px 0 80px;
 }
 
 div.location-content-4 {
     background: #fafafa;
+    padding: 80px 0 80px;
 }
 
 div.location-content-5 {
-    background: #fafafa;
+    background: #FFF;
+    padding: 80px 0 80px;
 }
 
+.terms{}
+
+.terms-list li{
+    list-style: lower-roman;
+    padding: 10px 0px;
+    line-height:18px;
+}
 
 .location-content p span {
     font-weight: 500;
+}
+
+.medical span{
+    color: #fa7b65;
 }
 
 .location-content p a {
