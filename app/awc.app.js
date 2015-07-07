@@ -63,8 +63,12 @@
         }
 
 
-        $scope.ScrollToTimeEntry = function (schedId, itineraryId, entryId, entry) {
-            $document.scrollToElementAnimated(angular.element(document.getElementById('time-entry-' + schedId + '-' + itineraryId + '-' + entryId)));
+        $scope.ScrollToTimeEntry = function (entry) {
+            console.log("ScrollToTimeEntry",'time-entry-' + entry.timeStart.format('YYYYMMDDhhmmss') + '-' + entry.id);
+
+            if(entry.longDescription == '#') return;
+
+            $document.scrollToElementAnimated(angular.element(document.getElementById('time-entry-' + entry.timeStart.format('YYYYMMDDhhmmss') + '-' + entry.id)));
             entry.showDetails = true;
         }
 
@@ -129,6 +133,7 @@
                         }) == -1) {
                         uniqueItineraries.push({
                             title: itinerary.title,
+                            colorScheme:itinerary.color_scheme,
                             timeEntries: []
                         })
                     }

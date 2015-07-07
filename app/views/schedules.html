@@ -50,12 +50,12 @@
                       ng-click="SelectSchedule(schedule.scheduleID + 1)"
                       class="timeline-right timeline-arrow"><i class="fa fa-angle-right"></i></span>
                 <ul>
-                    <li ng-repeat="item in schedule.uniqueItinerary "
-                            ng-if="item.title != 'custom'">
+                    <li ng-repeat="item in schedule.uniqueItinerary ">
                         <div class="timeline-duration">
                             <div ng-repeat="entry in item.timeEntries"
-                                 ng-click="ScrollToTimeEntry(schedule.scheduleID, item.id, entry.id, entry);"
-                                 style="background-color: {{item.colorScheme}}; left: {{entry.timeStart | timeLineStart:schedule.timeLineStart}}px; width:{{entry.duration | timeLineLength}}px;"
+                                 ng-if="entry.longDescription != 'CUSTOM'"
+                                 ng-click="ScrollToTimeEntry(entry);"
+                                 style="background-color: {{entry.colorScheme}}; left: {{entry.timeStart | timeLineStart:schedule.timeLineStart}}px; width:{{entry.duration | timeLineLength}}px;"
                                  class="timeline-link">
                                 <div class="timeline-hover"
                                      style="left:{{entry.timeStart | timeCenterPopUp:(entry.duration | timeLineLength)}}px;"
@@ -113,7 +113,7 @@
                         <div class="schedule-details">
                             <h1>{{schedule.scheduleDateStr}}</h1>
                             <ul>
-                                <li id="time-entry-{{schedule.scheduleID}}-{{entry.itineraryId}}-{{entry.id}}"
+                                <li id="time-entry-{{entry.timeStart.format('YYYYMMDDhhmmss')}}-{{entry.id}}"
                                     ng-repeat="entry in schedule.timeLineEntries"
                                     ng-class="{'sched-active':entry.showDetails}"
                                     style="background-color: {{entry.showDetails ? entry.colorScheme + '!important;':''}}">
@@ -122,8 +122,7 @@
                                          style="border-bottom-color: {{entry.showDetails ? entry.colorScheme:'#f4f4f4'}}">
                                         <div class="col-sm-3">
                                             <i class="fa fa-clock-o sched-icon"></i>
-
-                                            <p>{{entry.timeStr}} {{entry.orderId}}</p>
+                                            <p>{{entry.timeStr}}</p>
                                         </div>
                                         <div class="col-sm-3">
 
@@ -164,7 +163,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="speaker-details details-2">
-                                                    <p>{{entry.longDescription}}</p>
+                                                    <p>{{entry.longDescription == 'CUSTOM' ? '':entry.longDescription }}</p>
                                                     <a target="_blank" href="https://www.google.com/calendar/render?action=TEMPLATE&dates={{entry.timeStart.format('YYYYMMDD[T]hhmmss')}}/{{entry.timeEnds.format('YYYYMMDD[T]hhmmss')}}&text={{entry.title.replace(' ','+')}}&details={{entry.shortDescription.replace(' ','+')}}">
                                                         <i class="fa fa-cloud-download"></i>add event to calendar </a>
                                                 </div>
@@ -197,7 +196,7 @@
                     <h1>{{entry.title}}</h1>
                     <h4 style="color:{{entry.colorScheme}};">{{entry.secondTitle}}</h4>
 
-                    <p>{{entry.longDescription}}</p>
+                    <p>{{entry.longDescription == 'CUSTOM' ? '':entry.longDescription }}</p>
 
                     <div class="time">
                         <i class="fa fa-clock-o"></i>
