@@ -44,6 +44,12 @@ h1 {
     font-weight: 200;
     letter-spacing: -0.050em;
 }
+    @media screen and (max-width: 991px) {
+    h1{
+        font-size: 4.5rem;
+        line-height: 5rem;
+        }
+    }
 h2 {
     font-size: 2.25rem;
     line-height: 2.25rem;
@@ -1240,7 +1246,7 @@ a.market-map{
 }
     @media screen and (max-width: 991px) {
     .schedule-date ul{
-        padding:30px 0;
+        padding:60px 0;
         background: #343d42;
         }
     }
@@ -1539,14 +1545,6 @@ a.market-map{
 }
 
 /* schedule content*/
-.schedule-content-mobile{
-    display: none;
-}
-    @media screen and (max-width: 991px) {
-    .schedule-content-mobile {
-        display: block;
-        }
-    }
 .schedule-content {
     background: #fafafa url("../images/schedule-bg.jpg") repeat-x;
     position: relative;
@@ -1671,7 +1669,7 @@ li.sched-active div.list-width {
 .sched-slider {
     background: #293338;
     padding: 50px 0;
-    border-bottom: 1px solid #f2f2f2;
+    /*border-bottom: 1px solid #f2f2f2;*/
 }
 
 .test-image {
@@ -1747,6 +1745,7 @@ li.sched-active div.list-width {
 
 .speaker-details a i{
     padding-right: 20px;
+    font-size: 1.5rem;
 }
 
 .speaker-details a i:hover{
@@ -1855,6 +1854,57 @@ li.sched-active div.speaker-details p {
 .speaker-details p a {
     display: inline-block;
     color: #fa7b65;
+}
+
+
+/* speaker content mobile */
+.schedule-content-mobile{
+    display: none;
+    background: #343d42;
+    padding: 0 0 50px 0;
+}
+    @media screen and (max-width: 991px) {
+    .schedule-content-mobile {
+        display: block;
+        }
+    }
+.schedule-details-mobile{
+    background: #fff;
+    padding: 35px;
+    margin: 30px;
+}
+.schedule-mobile-title{
+    width: 100%;
+    overflow: hidden;
+}
+.schedule-mobile-title h4{
+    letter-spacing: 0.050em;
+    color: #ff7d5b;
+    float: left;
+    font-weight: 400;
+}
+.schedule-mobile-title a{
+    display: block;
+}
+.schedule-mobile-title a i{
+    float:right;
+    font-size: 2rem;
+    color: #e1e1e1;
+} 
+.schedule-mobile-info {
+    text-align: center;
+}
+.schedule-mobile-info h1{
+    margin: 20px 0 0 0;
+}
+.schedule-mobile-info h4{
+    letter-spacing: 0.100em;
+    color: #242433;
+    margin: 30px 0 0 0;
+}
+.schedule-mobile-info p{
+    color: #666666;
+    margin: 10px 0 0 0;
 }
 
 /* location */

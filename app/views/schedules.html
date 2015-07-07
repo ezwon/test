@@ -108,7 +108,7 @@
                                     style="background-color: {{entry.showDetails ? entry.colorScheme + '!important;':''}}">
 
                                     <div class="row list-width"
-                                         style="border-bottom-color: {{entry.showDetails ? entry.colorScheme:'#fff'}}">
+                                         style="border-bottom-color: {{entry.showDetails ? entry.colorScheme:'#f4f4f4'}}">
                                         <div class="col-sm-3">
                                             <i class="fa fa-clock-o sched-icon"></i>
                                             <p>{{entry.timeStr}}</p>
@@ -129,10 +129,10 @@
                                     </div>
                                     <div ng-if="entry.showDetails" class="sched-slider">
                                         <div class="row list-width-2">
-                                            <div class="col-lg-2">
+                                            <div class="col-md-2">
                                                 <span class="test-image" style="background-image: url('{{entry.imageUrl}}')"></span>
                                             </div>
-                                            <div class="col-lg-4">
+                                            <div class="col-md-4">
                                                 <div class="speaker-details">
                                                     <h2>{{entry.title}}</h2>
                                                     <h5 style="color:{{entry.colorScheme}};">{{entry.secondTitle}}</h5>
@@ -142,7 +142,7 @@
                                                     <!--<a href="#"><i class="fa fa-instagram"></i></a>-->
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6">
+                                            <div class="col-md-6">
                                                 <div class="speaker-details details-2">
                                                     <p>{{entry.longDescription}}</p>
                                                     <!--<a href="#"><i class="fa fa-cloud-download"></i>add event to calendar</a>-->
@@ -163,8 +163,16 @@
 <section class="schedule-content-mobile">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                
+            <div class="schedule-details-mobile">
+                <div class="schedule-mobile-title">
+                    <h4>speech</h4>
+                    <a href="#"><i class="fa fa-calendar"></i></a>
+                </div>
+                <div class="schedule-mobile-info">
+                    <h1>stm.</h1>
+                    <h4>opening address</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam id metus vel arcu dignissim facilisis eu et purus. Aenean vitae facilisis lorem. Ut non metus augue. Pellentesque suscipit dictum pharetra. </p>
+                </div> 
             </div>
         </div>
     </div>
