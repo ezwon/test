@@ -1,4 +1,3 @@
-
 <section class="schedule-header">
     <nav-menu active-menu="schedule"></nav-menu>
     <div class="container">
@@ -6,7 +5,10 @@
             <div class="col-lg-10 col-md-10 center-block">
                 <div class="title">
                     <h1>{{'TITLE_SPEAKERS' | translate}} <span>&</span> {{'TITLE_SCHEDULES' | translate}}</h1>
-                    <p>Our speaking line up is made of the most knowledgeable and revered figures of the industry who will be sharing their insights and discussing the secrets of where the next big campaigns will be.</p>
+
+                    <p>Our speaking line up is made of the most knowledgeable and revered figures of the industry who
+                        will be sharing their insights and discussing the secrets of where the next big campaigns will
+                        be.</p>
                 </div>
             </div>
         </div>
@@ -15,7 +17,7 @@
         <ul>
             <li ng-repeat="schedule in schedules">
                 <a ng-click="SelectSchedule(schedule.scheduleID)" ng-class="{'schedule-active':schedule.isSelected}">
-                <h3>{{schedule.scheduleDateStr}}</h3>
+                    <h3>{{schedule.scheduleDateStr}}</h3>
                 </a>
             </li>
         </ul>
@@ -44,9 +46,9 @@
                 <span ng-if="schedule.scheduleID > 1"
                       ng-click="SelectSchedule(schedule.scheduleID - 1)"
                       class="timeline-left timeline-arrow"><i class="fa fa-angle-left"></i></span>
-                <span  ng-if="schedule.scheduleID < schedules.length"
-                       ng-click="SelectSchedule(schedule.scheduleID + 1)"
-                       class="timeline-right timeline-arrow"><i class="fa fa-angle-right"></i></span>
+                <span ng-if="schedule.scheduleID < schedules.length"
+                      ng-click="SelectSchedule(schedule.scheduleID + 1)"
+                      class="timeline-right timeline-arrow"><i class="fa fa-angle-right"></i></span>
                 <ul>
                     <li ng-repeat="item in schedule.itinerary">
                         <div class="timeline-duration">
@@ -57,11 +59,14 @@
                                      style="left:{{entry.timeStart | timeCenterPopUp:(entry.duration | timeLineLength)}}px;"
                                      ng-click="ScrollToTimeEntry(schedule.scheduleID, item.id, entry.id, entry);">
                                     <div class="timeline-hover-content">
-                                        <span class="timeline-image" style="background-image: url('{{entry.imageUrl}}')"></span>
+                                        <span class="timeline-image"
+                                              style="background-image: url('{{entry.imageUrl}}')"></span>
+
                                         <div class="timeline-detail">
                                             <h3>{{entry.title}}</h3>
                                             <i class="fa fa-clock-o"></i>
                                             <h5>{{entry.timeStr}}</h5>
+
                                             <p>{{entry.shortDescription}}</p>
                                         </div>
                                     </div>
@@ -69,7 +74,8 @@
                                 </div>
                             </div>
                         </div>
-                        <h5 ng-class="{'timeline-disabled':!item.enabled}" style="color:{{item.colorScheme}}">{{item.title}}</h5>
+                        <h5 ng-class="{'timeline-disabled':!item.enabled}" style="color:{{item.colorScheme}}">
+                            {{item.title}}</h5>
                     </li>
                 </ul>
             </div>
@@ -115,11 +121,13 @@
                                          style="border-bottom-color: {{entry.showDetails ? entry.colorScheme:'#f4f4f4'}}">
                                         <div class="col-sm-3">
                                             <i class="fa fa-clock-o sched-icon"></i>
+
                                             <p>{{entry.timeStr}}</p>
                                         </div>
                                         <div class="col-sm-3">
 
-                                            <h4><i ng-if="entry.isKeynote" class="fa fa-star keynote"></i>{{entry.title}}</h4>
+                                            <h4><i ng-if="entry.isKeynote" class="fa fa-star keynote"></i>{{entry.title}}
+                                            </h4>
                                         </div>
                                         <div class="col-sm-6">
                                             <i class="fa sched-icon"
@@ -127,6 +135,7 @@
                                                'fa-briefcase':entry.itinerary == 'market',
                                                'fa-glass':entry.itinerary == 'traffic source meetups'}"
                                                style="color:{{entry.showDetails ? '#fff':entry.colorScheme}};"></i>
+
                                             <p>{{entry.shortDescription}}</p>
                                             <i class="fa fa-angle-down sched-arrow"></i>
                                         </div>
@@ -134,15 +143,19 @@
                                     <div ng-if="entry.showDetails" class="sched-slider">
                                         <div class="row list-width-2">
                                             <div class="col-md-2">
-                                                <span class="test-image" style="background-image: url('{{entry.imageUrl}}')"></span>
+                                                <span class="test-image"
+                                                      style="background-image: url('{{entry.imageUrl}}')"></span>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="speaker-details">
                                                     <h2>{{entry.title}}</h2>
                                                     <h5 style="color:{{entry.colorScheme}};">{{entry.secondTitle}}</h5>
-                                                    <a href="{{entry.websiteUrl}}" target="_blank"><i class="fa fa-link"></i></a>
-                                                    <a href="{{entry.facebookUrl}}" target="_blank"><i class="fa fa-facebook-official"></i></a>
-                                                    <a href="{{entry.twitterUrl}}" target="_blank"><i class="fa fa-twitter"></i></a>
+                                                    <a href="{{entry.websiteUrl}}" target="_blank"><i
+                                                            class="fa fa-link"></i></a>
+                                                    <a href="{{entry.facebookUrl}}" target="_blank"><i
+                                                            class="fa fa-facebook-official"></i></a>
+                                                    <a href="{{entry.twitterUrl}}" target="_blank"><i
+                                                            class="fa fa-twitter"></i></a>
                                                     <!--<a href="#"><i class="fa fa-instagram"></i></a>-->
                                                 </div>
                                             </div>
@@ -165,50 +178,43 @@
 </section>
 
 <section class="schedule-content-mobile">
-    <div class="container">
+    <div class="container"
+         ng-if="schedule.isSelected"
+         ng-repeat="schedule in schedules">
         <div class="row">
-            <div class="schedule-details-mobile">
+            <div class="schedule-details-mobile"
+                 ng-repeat="entry in schedule.timeLineEntries">
                 <div class="schedule-mobile-title">
-                    <h4>speech</h4>
+                    <h4 style="color:{{entry.colorScheme}};">{{entry.itinerary}}</h4>
                     <a href="#"><i class="fa fa-calendar"></i></a>
                 </div>
                 <div class="schedule-mobile-info">
-                    <h1>stm.</h1>
-                    <h4>opening address</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam id metus vel arcu dignissim facilisis eu et purus. Aenean vitae facilisis lorem. Ut non metus augue. Pellentesque suscipit dictum pharetra. </p>
+                    <h1>{{entry.title}}</h1>
+                    <h4>{{entry.secondTitle}}</h4>
+
+                    <p>{{entry.longDescription}}</p>
+
                     <div class="time">
                         <i class="fa fa-clock-o"></i>
-                        <h4>9AM - 10am</h4>
+                        <h4>{{entry.timeStr}}</h4>
                     </div>
-                </div> 
+                </div>
             </div>
 
-            <div class="schedule-details-mobile">
-                <div class="schedule-mobile-title">
-                    <h4>speech</h4>
-                    <a href="#"><i class="fa fa-calendar"></i></a>
-                </div>
-                <div class="schedule-mobile-info">
-                    <h1>stm.</h1>
-                    <h4>opening address</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam id metus vel arcu dignissim facilisis eu et purus. Aenean vitae facilisis lorem. Ut non metus augue. Pellentesque suscipit dictum pharetra. </p>
-                    <div class="time">
-                        <i class="fa fa-clock-o"></i>
-                        <h4>9AM - 10am</h4>
-                    </div>
-                </div> 
-            </div>
         </div>
     </div>
 </section>
 
-<section class="speaker-profiles" >
+<section class="speaker-profiles">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-10 center-block">
                 <div class="speaker-header">
                     <h1>speaker profiles</h1>
-                    <p>Our speaking line up is made of the most knowledgeable and revered figures of the industry who will be sharing their insights and discussing the secrets of where the next big campaigns will be.</p>
+
+                    <p>Our speaking line up is made of the most knowledgeable and revered figures of the industry who
+                        will be sharing their insights and discussing the secrets of where the next big campaigns will
+                        be.</p>
                 </div>
             </div>
             <div class="col-lg-12">
@@ -217,13 +223,15 @@
                     <li ng-repeat="item in MockMajorSponsors">
                         <div class="row">
                             <div class="col-md-2 col-sm-12">
-                                <span class="test-image" style="background: url('{{item.AvatarUrl}}') center center no-repeat;background-size:contain">
+                                <span class="test-image"
+                                      style="background: url('{{item.AvatarUrl}}') center center no-repeat;background-size:contain">
                                 </span>
                             </div>
                             <div class="col-md-4 col-sm-12">
                                 <div class="speaker-details">
                                     <h2>{{item.Name}}</h2>
                                     <h5>{{item.Position}}</h5>
+
                                     <div class="speaker-social-media">
                                         <a href="#"><i class="fa fa-link"></i></a>
                                         <a href="#"><i class="fa fa-facebook-official"></i></a>
@@ -234,6 +242,7 @@
                             <div class="col-md-6 col-sm-12">
                                 <div class="speaker-details">
                                     <p>{{item.Description}}</p>
+
                                     <p>{{item.OtherInfo}}</p>
                                 </div>
                             </div>
@@ -245,6 +254,7 @@
                     <li ng-repeat="item in MockSponsors" class="not-featured-speaker">
                         <div class="speaker-social-media-nav">
                             <i class="fa fa-close social-media-close"></i>
+
                             <div class="social-media-nav-holder">
                                 <a href="#"><i class="fa fa-link"></i></a>
                                 <a href="#"><i class="fa fa-facebook-official"></i></a>
@@ -252,9 +262,11 @@
                             </div>
                         </div>
                         <i class="fa fa-info-circle social-media-nav"></i>
+
                         <div class="row">
                             <div class="col-md-2 col-xs-3">
-                                <span class="test-image-2" style="background: url('{{item.AvatarUrl}}') center center no-repeat;background-size:contain"></span>
+                                <span class="test-image-2"
+                                      style="background: url('{{item.AvatarUrl}}') center center no-repeat;background-size:contain"></span>
                             </div>
                             <div class="col-md-4 col-xs-9 ">
                                 <div class="speaker-details">
@@ -265,6 +277,7 @@
                             <div class="col-md-6 col-xs-12">
                                 <div class="speaker-details">
                                     <p>{{item.Description}}</p>
+
                                     <p>{{item.OtherInfo}}</p>
                                 </div>
                             </div>
@@ -278,7 +291,7 @@
 
 
     </div>
-    </div>
+
 </section>
 
 <section class="ticket">
@@ -287,6 +300,7 @@
             <div class="col-md-6 center-block">
                 <div class="ticket-details">
                     <h1>buy tickets</h1>
+
                     <p>Early bird prices available for a limited time.</p>
                     <a href="#/tickets" class="primary light"><i class="fa fa-ticket"></i>Buy Tickets</a>
                 </div>
