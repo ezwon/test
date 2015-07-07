@@ -1763,7 +1763,6 @@ li.sched-active .sched-slider{
     margin: auto;
     display: block;
     background: none no-repeat;
-    /*background: #ccc;*/ /* causes dotted like border*/
     background-size: contain;
 }
 
@@ -1772,8 +1771,8 @@ li.sched-active .sched-slider{
     height: 80px;
     margin: auto;
     display: block;
-    border-radius: 150px;
-    background: #ccc;
+    background: none no-repeat;
+    background-size: contain;
 }
 
 .speaker-details {
@@ -2144,12 +2143,16 @@ div.location-content-5 {
     padding: 80px 0 80px;
 }
 
-.terms{}
-
 .terms-list li{
     list-style: lower-roman;
     padding: 10px 0px;
     line-height:18px;
+}
+.terms-list p{
+    margin: 0 0 20px 0;
+}
+.terms-list ul li p {
+    margin: 0;
 }
 
 .location-content p span {
