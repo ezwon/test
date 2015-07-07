@@ -129,6 +129,11 @@
                     });
                 }
 
+                schedule.timeLineEntries.sort( function (a,b) {
+                    //console.log(a.timeStart.getMilliseconds() + " " + b.timeStart.getMilliseconds());
+                    return a.timeStart > b.timeStart;
+                })
+
                 tabs.push({
                     scheduleID: i + 1,
                     timeLineEntries: schedule.timeLineEntries,
@@ -137,6 +142,8 @@
                     timeLineStart: moment({hour: 10, minute: 0}),
                     itinerary: itineraryList
                 });
+
+
 
             }
 
@@ -147,6 +154,8 @@
                     if (tabs[i].scheduleID == $routeParams.schedule)
                         tabs[i].isSelected = true;
                 }
+
+
 
             console.log("Parsed Schedules: ",tabs);
             $scope.schedules = tabs;
@@ -286,12 +295,12 @@
 
     function timeCenterPopUp() {
         return function (input, width) {
-            if(width < 400){
-                width = (400 - width) / 2;
+            if(width < 410){
+                width = (410 - width) / 2;
                 return width * -1;
             }
             else{
-                width = (width - 400) / 2;
+                width = (width - 410) / 2;
                 return width
             }
         }

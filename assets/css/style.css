@@ -1433,21 +1433,28 @@ a.market-map{
     left: 0;
 }
 
+.timeline-duration div.timeline-link:hover {
+    background-color: #fff !important;
+}
+
 .timeline-hover {
     position: absolute;
     background: transparent !important;
     top: -165px;
     z-index: 999;
     cursor: default;
-    border-bottom: 40px solid transparent;
+    /*border-bottom: 40px solid transparent;*/
     display: none;
+    padding-bottom: 15px;
 }
+
+
 
 .timeline-hover-content {
     width: 410px;
     height: 145px;
     background: #ffffff !important;
-    border-right: 40px solid #e1e1e3;
+    /*border-right: 40px solid #e1e1e3;*/
     position: relative;
     cursor: pointer;
 }
@@ -1461,7 +1468,7 @@ a.market-map{
     height: 85px;
     width: 85px;
     border-radius: 85px;
-    background: #ccc;
+    /*background: #ccc;*/
     line-height: 145px;
     margin: 30px;
     float: left;
@@ -1613,6 +1620,8 @@ a.market-map{
     cursor: pointer;
 }
 
+
+
 div.list-width-last {
     border-bottom: none;
 }
@@ -1620,8 +1629,10 @@ div.list-width-last {
 .list-width {
     max-width: 1020px;
     margin: auto;
-    border-bottom: 1px solid #f2f2f2;
+    /*border-bottom: 1px solid #f2f2f2;*/
     padding: 30px 0;
+
+
 }
 
 .list-width-2 {
@@ -1640,6 +1651,15 @@ div.list-width-last {
     line-height: 18px;
 }
 
+.schedule-details hr {
+    position: relative;
+    margin: 0 auto;
+    width: 95%;
+    border: 1px solid #f2f2f2;
+    border-top: none;
+    top: 0;
+}
+
 .schedule-details i.keynote{
     position: relative;
     margin-right: 8px;
@@ -1656,26 +1676,42 @@ i.sched-arrow {
 li.sched-active {
     background: #fa7b65 !important;
 }
-
-li.sched-active {
-    background: #fa7b65 !important;
-}
-li.sched-active {
-    background: #fa7b65 !important;
-}
+ 
 
 li.sched-active p, li.sched-active h4, li.sched-active i {
     color: #fff;
 }
 
 li.sched-active div.list-width {
-    border-bottom: 1px solid #fa7b65;
+    /*border-bottom: 1px solid #fa7b65;*/
 }
 
+li.sched-active hr{
+    width:100%;
+     }
+
+li.sched-active .sched-slider{
+    height: 230px;
+    padding: 50px 0;
+    display: inline-block;
+}
 .sched-slider {
     background: #293338;
-    padding: 50px 0;
+    padding: 0;
     cursor: default;
+
+    height: 0;
+    position: relative;
+
+    width: 100%;
+    overflow: hidden;
+    top:3px;
+
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
     /*border-bottom: 1px solid #f2f2f2;*/
 }
 
@@ -1685,7 +1721,7 @@ li.sched-active div.list-width {
     margin: auto;
     display: block;
     border-radius: 150px;
-    background: #ccc;
+    /*background: #ccc;*/ /* causes dotted like border*/
     background-size: contain;
 }
 

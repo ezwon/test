@@ -42,7 +42,7 @@
             </ul>
         </div>
         <div class="schedule-time-container">
-            <div ng-if="schedule.isSelected" ng-repeat="schedule in schedules" class="schedule-timeline">
+            <div ng-if="schedule.isSelected " ng-repeat="schedule in schedules" class="schedule-timeline">
                 <span ng-if="schedule.scheduleID > 1"
                       ng-click="SelectSchedule(schedule.scheduleID - 1)"
                       class="timeline-left timeline-arrow"><i class="fa fa-angle-left"></i></span>
@@ -50,7 +50,8 @@
                       ng-click="SelectSchedule(schedule.scheduleID + 1)"
                       class="timeline-right timeline-arrow"><i class="fa fa-angle-right"></i></span>
                 <ul>
-                    <li ng-repeat="item in schedule.itinerary">
+                    <li ng-repeat="item in schedule.itinerary "
+                            ng-if="item.title != 'custom'">
                         <div class="timeline-duration">
                             <div ng-repeat="entry in item.timeEntries"
                                  style="background-color: {{item.colorScheme}}; left: {{entry.timeStart | timeLineStart:schedule.timeLineStart}}px; width:{{entry.duration | timeLineLength}}px;"
@@ -70,7 +71,7 @@
                                             <p>{{entry.shortDescription}}</p>
                                         </div>
                                     </div>
-                                    <span class="arrow-down" style="left:200px;"></span>
+                                    <span class="arrow-down" style="left:195px;"></span>
                                 </div>
                             </div>
                         </div>
@@ -114,10 +115,9 @@
                                 <li id="time-entry-{{schedule.scheduleID}}-{{entry.itineraryId}}-{{entry.id}}"
                                     ng-repeat="entry in schedule.timeLineEntries"
                                     ng-class="{'sched-active':entry.showDetails}"
-                                    ng-click="entry.showDetails = !entry.showDetails"
                                     style="background-color: {{entry.showDetails ? entry.colorScheme + '!important;':''}}">
-
                                     <div class="row list-width"
+                                         ng-click="entry.showDetails = !entry.showDetails"
                                          style="border-bottom-color: {{entry.showDetails ? entry.colorScheme:'#f4f4f4'}}">
                                         <div class="col-sm-3">
                                             <i class="fa fa-clock-o sched-icon"></i>
@@ -140,7 +140,7 @@
                                             <i class="fa fa-angle-down sched-arrow"></i>
                                         </div>
                                     </div>
-                                    <div ng-if="entry.showDetails" class="sched-slider">
+                                    <div class="sched-slider">
                                         <div class="row list-width-2">
                                             <div class="col-md-2">
                                                 <span class="test-image"
@@ -162,11 +162,12 @@
                                             <div class="col-md-6">
                                                 <div class="speaker-details details-2">
                                                     <p>{{entry.longDescription}}</p>
-                                                    <!--<a href="#"><i class="fa fa-cloud-download"></i>add event to calendar</a>-->
+                                                    <a target="_blank" href="http://www.google.com/calendar/event?action=TEMPLATE&dates=20140611T170000Z%2F20140611T174500Z&text=Real+Boy+Tech&details=Details%20go%20here"><i class="fa fa-cloud-download"></i>add event to calendar</a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <hr style="position: relative;">
                                 </li>
                             </ul>
                         </div>
