@@ -1765,13 +1765,18 @@ li.sched-active div.list-width {
 }
 
 .speaker-social-media-nav{
-    display: none;
+    opacity: 0;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
 }
     @media screen and (max-width: 991px) {
     .speaker-social-media-nav{
         position: absolute;
-        display: none;
-        height:300px;
+        opacity: 0;
+        height:100%;
         width:100%;
         background: rgba(0, 0, 0, 0.7);
         z-index: 100;
@@ -1818,6 +1823,7 @@ li.sched-active div.list-width {
     top:20px;
     right:20px;
     z-index: 120;
+    cursor: pointer;
 }
 
 li.sched-active div.speaker-details p {
@@ -2385,4 +2391,8 @@ div.location-content-5 {
 
 .clickable-area{
     cursor: pointer;
+}
+
+.opacity-show{
+    opacity: 1 !important;
 }

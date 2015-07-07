@@ -190,7 +190,7 @@
                 </div>
                 <div class="schedule-mobile-info">
                     <h1>{{entry.title}}</h1>
-                    <h4>{{entry.secondTitle}}</h4>
+                    <h4 style="color:{{entry.colorScheme}};">{{entry.secondTitle}}</h4>
 
                     <p>{{entry.longDescription}}</p>
 
@@ -251,9 +251,10 @@
 
 
                     <!-- not featured speaker list -->
-                    <li ng-repeat="item in MockSponsors" class="not-featured-speaker">
-                        <div class="speaker-social-media-nav">
-                            <i class="fa fa-close social-media-close"></i>
+                    <li ng-repeat="item in MockSponsors" class="not-featured-speaker"
+                            ng-init="showSocialIcons = false">
+                        <div class="speaker-social-media-nav" ng-class="{'opacity-show':showSocialIcons}">
+                            <i class="fa fa-close social-media-close" ng-click="showSocialIcons = false" ></i>
 
                             <div class="social-media-nav-holder">
                                 <a href="#"><i class="fa fa-link"></i></a>
@@ -261,7 +262,9 @@
                                 <a href="#"><i class="fa fa-twitter"></i></a>
                             </div>
                         </div>
-                        <i class="fa fa-info-circle social-media-nav"></i>
+                        <i class="fa fa-info-circle social-media-nav"
+                           ng-click="showSocialIcons = true"
+                           ng-show="showSocialIcons == false"></i>
 
                         <div class="row">
                             <div class="col-md-2 col-xs-3">
