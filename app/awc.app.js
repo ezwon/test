@@ -63,12 +63,20 @@
         }
 
 
+
+        $scope.ShowTooltip = function(entry){
+            entry.showTooltip = true;
+        }
+
+        $scope.HideTooltip = function(entry){
+            entry.showTooltip = false;
+        }
         $scope.ScrollToTimeEntry = function (entry) {
             console.log("ScrollToTimeEntry",'time-entry-' + entry.timeStart.format('YYYYMMDDhhmmss') + '-' + entry.id);
 
-            if(entry.longDescription == '#') return;
-
             $document.scrollToElementAnimated(angular.element(document.getElementById('time-entry-' + entry.timeStart.format('YYYYMMDDhhmmss') + '-' + entry.id)));
+
+            if(entry.longDescription == '#') return;
             entry.showDetails = true;
         }
 
@@ -120,6 +128,8 @@
                             orderId: entry.id,
                             timeStart: moment(eventDate.format("MM/DD/YYYY") + " " + entry.time_starts, "MM/DD/YYYY hh:mm"),
                             timeEnds: moment(eventDate.format("MM/DD/YYYY") + " " + entry.time_ends, "MM/DD/YYYY hh:mm"),
+                            timeStartCalendar: moment(eventDate.format("MM/DD/YYYY") + " " + entry.time_starts + " +0700", "MM/DD/YYYY hh:mm Z"),
+                            timeEndsCalendar: moment(eventDate.format("MM/DD/YYYY") + " " + entry.time_ends + " +0700", "MM/DD/YYYY hh:mm Z"),
                             duration: moment(entry.time_ends, "hh:mm").diff(moment(entry.time_starts, "hh:mm"), 'minutes')
                         };
 

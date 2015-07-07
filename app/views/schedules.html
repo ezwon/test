@@ -53,21 +53,25 @@
                     <li ng-repeat="item in schedule.uniqueItinerary ">
                         <div class="timeline-duration">
                             <div ng-repeat="entry in item.timeEntries"
-                                 ng-if="entry.longDescription != 'CUSTOM'"
+                                 ng-if="entry.instagramUrl != '#'"
                                  ng-click="ScrollToTimeEntry(entry);"
                                  style="background-color: {{entry.colorScheme}}; left: {{entry.timeStart | timeLineStart:schedule.timeLineStart}}px; width:{{entry.duration | timeLineLength}}px;"
+                                 ng-init="entry.showTooltip = false"
+                                 ng-mouseenter="ShowTooltip(entry)"
+                                 ng-mouseleave="HideTooltip(entry)"
                                  class="timeline-link">
                                 <div class="timeline-hover"
+                                     ng-class="{'show':entry.showTooltip}"
                                      style="left:{{entry.timeStart | timeCenterPopUp:(entry.duration | timeLineLength)}}px;"
-                                     ng-click="ScrollToTimeEntry(schedule.scheduleID, item.id, entry.id, entry);">
+                                     ng-click="ScrollToTimeEntry(entry);">
                                     <div class="timeline-hover-content">
                                         <span class="timeline-image"
                                               style="background-image: url('{{entry.imageUrl}}')"></span>
 
                                         <div class="timeline-detail">
                                             <h3>{{entry.title}}</h3>
-                                            <i class="fa fa-clock-o"></i>
-                                            <h5>{{entry.timeStr}}</h5>
+                                            <i style="color:{{entry.colorScheme}};" class="fa fa-clock-o"></i>
+                                            <h5 style="color:{{entry.colorScheme}};">{{entry.timeStr}}</h5>
 
                                             <p>{{entry.shortDescription}}</p>
                                         </div>
@@ -131,12 +135,14 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <i class="fa sched-icon"
-                                               ng-class="{'fa-comments-o':entry.itinerary == 'speeches & panels',
-                                               'fa-briefcase':entry.itinerary == 'market',
-                                               'fa-gears':entry.itinerary == 'training workshop',
-                                               'fa-bed':entry.itinerary == 'the afterparty',
-                                               'fa-glass':entry.itinerary == 'traffic source meetups'}"
-                                               style="color:{{entry.showDetails ? '#fff':entry.colorScheme}};"></i>
+                                               ng-class="{'fa-comments-o':entry.longDescription != 'CUSTOM' && entry.itinerary == 'speeches & panels' && entry.title != 'Last Minute Registrations' ,
+                                               'fa-pencil-square-o':entry.title == 'Last Minute Registrations',
+                                               'fa-headphones':entry.longDescription == 'CUSTOM' && entry.title == 'Break',
+                                               'fa-briefcase':entry.longDescription != 'CUSTOM' && entry.itinerary == 'market',
+                                               'fa-gears':entry.longDescription != 'CUSTOM' && entry.itinerary == 'training workshop',
+                                               'fa-bed':entry.longDescription != 'CUSTOM' && entry.itinerary == 'the afterparty',
+                                               'fa-glass':entry.longDescription != 'CUSTOM' && entry.itinerary == 'traffic source meetups'}"
+                                               style="color:{{entry.showDetails ? '#fff':entry.title == 'Last Minute Registrations' || entry.title == 'Break' ? '#333':entry.colorScheme}};"></i>
 
                                             <p>{{entry.shortDescription}}</p>
                                             <i class="fa fa-angle-down sched-arrow" ng-if="entry.longDescription != '#'"></i>
@@ -164,7 +170,7 @@
                                             <div class="col-md-6">
                                                 <div class="speaker-details details-2">
                                                     <p>{{entry.longDescription == 'CUSTOM' ? '':entry.longDescription }}</p>
-                                                    <a target="_blank" href="https://www.google.com/calendar/render?action=TEMPLATE&dates={{entry.timeStart.format('YYYYMMDD[T]hhmmss')}}/{{entry.timeEnds.format('YYYYMMDD[T]hhmmss')}}&text={{entry.title.replace(' ','+')}}&details={{entry.shortDescription.replace(' ','+')}}">
+                                                    <a target="_blank" href="https://www.google.com/calendar/render?action=TEMPLATE&dates={{entry.timeStartCalendar.format('YYYYMMDD[T]hhmmss')}}/{{entry.timeEndsCalendar.format('YYYYMMDD[T]hhmmss')}}&text={{entry.title.replace(' ','+')}}&details={{entry.shortDescription.replace(' ','+')}}">
                                                         <i class="fa fa-cloud-download"></i>add event to calendar </a>
                                                 </div>
                                             </div>
@@ -235,11 +241,10 @@
                                 <div class="speaker-details">
                                     <h2>{{item.Name}}</h2>
                                     <h5>{{item.Position}}</h5>
-
                                     <div class="speaker-social-media">
-                                        <a href="#"><i class="fa fa-link"></i></a>
-                                        <a href="#"><i class="fa fa-facebook-official"></i></a>
-                                        <a href="#"><i class="fa fa-twitter"></i></a>
+                                        <a ng-if="item.SocialLinks.website != ''" href="{{item.SocialLinks.website}}"><i class="fa fa-link"></i></a>
+                                        <a ng-if="item.SocialLinks.facebook != ''" href="{{item.SocialLinks.facebook}}"><i class="fa fa-facebook-official"></i></a>
+                                        <a ng-if="item.SocialLinks.twitter != ''" href="{{item.SocialLinks.twitter}}"><i class="fa fa-twitter"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -261,9 +266,9 @@
                             <i class="fa fa-close social-media-close" ng-click="showSocialIcons = false" ></i>
 
                             <div class="social-media-nav-holder">
-                                <a href="#"><i class="fa fa-link"></i></a>
-                                <a href="#"><i class="fa fa-facebook-official"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a ng-if="item.SocialLinks.website != ''" href="{{item.SocialLinks.website}}"><i class="fa fa-link"></i></a>
+                                <a ng-if="item.SocialLinks.facebook != ''" href="{{item.SocialLinks.facebook}}"><i class="fa fa-facebook-official"></i></a>
+                                <a ng-if="item.SocialLinks.twitter != ''" href="{{item.SocialLinks.twitter}}"><i class="fa fa-twitter"></i></a>
                             </div>
                         </div>
                         <i class="fa fa-info-circle social-media-nav"
@@ -279,6 +284,11 @@
                                 <div class="speaker-details">
                                     <h3 style="margin: 0;">{{item.Name}}</h3>
                                     <h5 style="text-align:left; ">{{item.Position}}</h5>
+                                    <div class="speaker-social-media minor-speaker">
+                                        <a ng-if="item.SocialLinks.website != ''" href="{{item.SocialLinks.website}}"><i class="fa fa-link"></i></a>
+                                        <a ng-if="item.SocialLinks.facebook != ''" href="{{item.SocialLinks.facebook}}"><i class="fa fa-facebook-official"></i></a>
+                                        <a ng-if="item.SocialLinks.twitter != ''" href="{{item.SocialLinks.twitter}}"><i class="fa fa-twitter"></i></a>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6 col-xs-12">
