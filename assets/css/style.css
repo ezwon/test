@@ -1333,13 +1333,13 @@ a.market-map{
     display: block;
     position: absolute;
     left: -80px;
-    top: 37%;
+    top: 60px;
 }
 .timeline-right{
     display: block;
     position: absolute;
     right: -80px;
-    top: 37%;
+    top: 60px;
 }
 
 .schedule-grid {
@@ -1430,7 +1430,7 @@ a.market-map{
     position: absolute;
     background: transparent !important;
     top: -165px;
-    z-index: 1;
+    z-index: 999;
     cursor: default;
     border-bottom: 40px solid transparent;
     display: none;

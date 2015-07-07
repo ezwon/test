@@ -2,7 +2,6 @@
     'use strict';
     angular
         .module('AffiliateWorldAsia', ['ngRoute', 'ngAnimate', 'pascalprecht.translate', 'timer', 'ngDialog','duScroll'])
-        .controller('MainCtrl', MainCtrl)
         .controller('ScheduleCtrl', ScheduleCtrl)
         .controller('LocationCtrl', LocationCtrl)
         .filter('timeLineStart', timeLineStart)
@@ -12,19 +11,6 @@
         .directive('navMenu', navMenu)
         .directive('langMenu', langMenu)
         .service('apiService', apiService);
-
-    function MainCtrl($scope, $rootScope, $translate, ngDialog) {
-        $scope.changeLanguage = function (key) {
-            $translate.use(key);
-        };
-        $rootScope.selectedLanguage = 'english';
-        $rootScope.openDefault = function () {
-            ngDialog.open({
-                template: 'dialogID',
-                className: 'ngdialog-theme-default'
-            });
-        };
-    }
 
     function ScheduleCtrl($scope, $timeout, $window, apiService, $routeParams, $location, $document, $anchorScroll) {
         var w = angular.element($window);

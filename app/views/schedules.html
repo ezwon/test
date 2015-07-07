@@ -41,8 +41,12 @@
         </div>
         <div class="schedule-time-container">
             <div ng-if="schedule.isSelected" ng-repeat="schedule in schedules" class="schedule-timeline">
-                <span class="timeline-left timeline-arrow"><i class="fa fa-angle-left"></i></span>
-                <span class="timeline-right timeline-arrow"><i class="fa fa-angle-right"></i></span>
+                <span ng-if="schedule.scheduleID > 1"
+                      ng-click="SelectSchedule(schedule.scheduleID - 1)"
+                      class="timeline-left timeline-arrow"><i class="fa fa-angle-left"></i></span>
+                <span  ng-if="schedule.scheduleID < schedules.length"
+                       ng-click="SelectSchedule(schedule.scheduleID + 1)"
+                       class="timeline-right timeline-arrow"><i class="fa fa-angle-right"></i></span>
                 <ul>
                     <li ng-repeat="item in schedule.itinerary">
                         <div class="timeline-duration">
