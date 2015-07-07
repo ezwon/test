@@ -163,7 +163,7 @@ header {
     width: 100%;
     background: #333 url("../images/home-bg.jpg") center bottom scroll no-repeat;
     background-size: cover;
-    padding: 120px 0 200px;
+    padding: 160px 0 160px;
     z-index: 10;
 }
 
@@ -322,6 +322,30 @@ header {
     width: 150px;
     display: block;
     margin: 30px auto 20px;
+}
+
+@media screen and (min-width: 1200px) {
+.platinum-sponsors .left-offset{
+    padding-left: 210px;
+}
+}
+
+@media screen and (min-width: 1200px) {
+.platinum-sponsors .right-offset{
+    padding-right: 250px;
+}
+}
+
+@media screen and (min-width: 992px)  and (max-device-width: 1199px){
+.platinum-sponsors .left-offset{
+    padding-left: 100px;
+}
+}
+
+@media screen and (min-width: 992px)  and (max-device-width: 1199px){
+.platinum-sponsors .right-offset{
+    padding-right: 100px;
+}
 }
 
 .sponsor .gold-sponsors img {
@@ -689,7 +713,7 @@ header {
 }
 
 .company-ticket{
-    min-height: 605px;
+    min-height: 662px;
 }
 
 @media screen and (max-width: 1200px) {
@@ -1562,7 +1586,6 @@ a.market-map{
     display: inline-block;
     height: 85px;
     width: 85px;
-    border-radius: 85px;
     /*background: #ccc;*/
     line-height: 145px;
     margin: 30px;

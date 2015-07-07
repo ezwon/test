@@ -361,14 +361,15 @@
         var mockMajorSponsors = [
             {
                 Name: "Drew Eric Whitman",
-                Position: "DR. Direct",
+                Position: 'Advertising Expert and Author of "Ca$hvertising"',
                 AvatarUrl: "assets/images/speakers/portrait-eric-whitman.png",
-                Description: "Eric Whitman Description",
-                OtherInfo: "Second paragraph to go here.",
+                Description: "Drew worked for the direct-response division of the largest ad-agency in Philadelphia,  was Senior Direct Response Copywriter for one of the largest direct-to-the-consumer insurance companies in the world, and Associate Copy Chief for catalog giant, Day-Timers. ",
+                OtherInfo: "Drew created powerfully effective advertising for companies ranging from small retail shops to giant, multi-million dollar corporations. His work has been used by many of the most successful companies and organisations in the United States including: American Automobile Association, Advertising Specialty Institute, American Legion, Amoco, Office Max, Faber-Castell, Texaco, Staples, TV Guide, and many others.",
+                OtherInfo2: 'He is the author of best-seller, "CA$HVERTISING: How to Use More Than 100 Secrets of Ad-Agency Psychology to Make Big Money Selling Anything to Anyone".',
                 SocialLinks: {
-                    facebook: '',
-                    twitter: '',
-                    website: ''
+                    facebook: 'https://www.facebook.com/pages/Drew-Eric-Whitman-Teaches-You-the-Secrets-of-Advertising-Persuasion/110921085643973',
+                    twitter: 'https://twitter.com/DrewEricWhitman',
+                    website: 'http://www.drewericwhitman.com/'
                 }
             }
         ];
@@ -382,7 +383,7 @@
                 SocialLinks: {
                     facebook: '',
                     twitter: '',
-                    website: ''
+                    website: 'http://www.tetraprmedia.com'
                 }
             },
             {
@@ -390,11 +391,11 @@
                 Position: "Writer and Internet Marketer",
                 AvatarUrl: "assets/images/speakers/portrait-charles-ngo.png",
                 Description: "Charles Ngo is one of the most well-known and respected internet marketers in the world generating several millions dollars in profit within his first year of starting.",
-                OtherInfo: $sce.trustAsHtml("He has gone on to become one of the leading authorities in affiliate marketing information. He and his team specialise in traffic sources such as Facebook, mobile, and display buys."),
+                OtherInfo: $sce.trustAsHtml('He has gone on to become one of the leading authorities in affiliate marketing information. He and his team specialise in traffic sources such as Facebook, mobile, and display buys. He writes on his popular blog and speaks at conferences, and provides affiliate marketing training at <a href="https://affcelerator.instapage.com" target="_blank">AFFcelerator</a>.'),
                 SocialLinks: {
-                    facebook: '',
-                    twitter: '',
-                    website: ''
+                    facebook: 'https://www.facebook.com/charlesngodotcom',
+                    twitter: 'https://twitter.com/dr_ngo',
+                    website: 'http://www.charlesngo.com'
                 }
             },
             {
@@ -404,21 +405,21 @@
                 Description: "Lorenzo Green co-directs Stack That Money forums, the number one rated affiliate forum and is a veteran in the industry with more than nine years experience. He is known for his marketing creativity, and constantly being at the forefront of the next big thing in the affiliate space. This combination has yielded him consistent seven figure/year profits with his affiliate operations.",
                 OtherInfo: $sce.trustAsHtml("He has also founded a number of other successful business including a successful affiliate network and <a href='http://www.greenmantle.co.nz/' target='_blank'>Greenmantle Estate</a>, one of the most prestigious luxury lodges in his home country, New Zealand."),
                 SocialLinks: {
-                    facebook: '',
-                    twitter: '',
-                    website: ''
+                    facebook: 'https://www.facebook.com/mrgreen.stm',
+                    twitter: 'https://twitter.com/mrlorenzogreen',
+                    website: 'http://www.stackthatmoney.com/'
                 }
             },
             {
                 Name: "Hugh Hancock",
-                Position: "Founder of Strange Company",
-                AvatarUrl: "assets/images/speakers/portrait-hugh-hancock.png",
-                Description: "TBC.",
-                OtherInfo: "",
+                Position: "Affiliate Expert and Founder of Strange Company",
+                AvatarUrl: "assets/images/speakers/portrait-hugh2.png",
+                Description: "Hugh has been considered an expert on internet marketing for over 20 years. He has built multiple successful web businesses including one of the most successful online video channels in the world (over 4 billion total views). His work has been featured in the New York Times, live on CNN, and in media around the world from Entertainment Weekly to The Guardian.",
+                OtherInfo: "Currently he uses affiliate marketing to fund his work as a filmmaker, and is Stack That Money Forum’s Guardian Of The Guides, curating, writing and updating many of the most influential guides to affiliate marketing on the internet today.",
                 SocialLinks: {
                     facebook: '',
-                    twitter: '',
-                    website: ''
+                    twitter: 'https://twitter.com/hughhancock',
+                    website: 'http://www.strangecompany.org'
                 }
             },
             {
@@ -429,8 +430,8 @@
                 OtherInfo: $sce.trustAsHtml("Lately he has been focusing on mobile marketing and investing on building new and successful companies including Stack That Money, the number one rated forum in the affiliate industry, which he is co-director of."),
                 SocialLinks: {
                     facebook: '',
-                    twitter: '',
-                    website: ''
+                    twitter: 'https://twitter.com/bbregu',
+                    website: 'http://www.stackthatmoney.com/'
                 }
             }
         ]
