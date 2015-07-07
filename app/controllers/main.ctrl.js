@@ -10,6 +10,8 @@
             $translate.use(key);
         };
         $rootScope.selectedLanguage = 'english';
+        //11:59pm EST Tuesday 4 August 2015.
+        console.log("CountDownDate",new Date('08-4-2015 23:59 EST').getTime());
         $rootScope.openDefault = function () {
             ngDialog.open({
                 template: 'dialogID',

@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular
-        .module('AffiliateWorldAsia', ['ngRoute', 'ngAnimate', 'pascalprecht.translate', 'timer', 'ngDialog','duScroll'])
+        .module('AffiliateWorldAsia', ['ngRoute','ngSanitize', 'ngAnimate', 'pascalprecht.translate', 'timer', 'ngDialog','duScroll'])
         .controller('ScheduleCtrl', ScheduleCtrl)
         .controller('LocationCtrl', LocationCtrl)
         .filter('timeLineStart', timeLineStart)
@@ -90,7 +90,7 @@
 
                 for (var j = 0; j < schedule.itineraries.length; j++) {
                     var itinerary = schedule.itineraries[j];
-
+                    var eventDate = moment(schedule.date_time_start, "MM/DD/YYYY hh:mm");
                     timeEntries = [];
                     for (var k = 0; k < itinerary.entries.length; k++) {
                         var entry = itinerary.entries[k];
@@ -111,7 +111,8 @@
                             shortDescription: entry.short_description,
                             longDescription: entry.long_description,
                             timeStr: moment(entry.time_starts, "hh:mm").format('hh:mma') + " - " + moment(entry.time_ends, "hh:mm").format('hh:mma'),
-                            timeStart: moment(entry.time_starts, "hh:mm"),
+                            timeStart: moment(eventDate.format("MM/DD/YYYY") + " " + entry.time_starts, "MM/DD/YYYY hh:mm"),
+                            timeEnds: moment(eventDate.format("MM/DD/YYYY") + " " + entry.time_ends, "MM/DD/YYYY hh:mm"),
                             duration: moment(entry.time_ends, "hh:mm").diff(moment(entry.time_starts, "hh:mm"), 'minutes')
                         };
 
@@ -130,7 +131,6 @@
                 }
 
                 schedule.timeLineEntries.sort( function (a,b) {
-                    //console.log(a.timeStart.getMilliseconds() + " " + b.timeStart.getMilliseconds());
                     return a.timeStart > b.timeStart;
                 })
 
@@ -139,7 +139,7 @@
                     timeLineEntries: schedule.timeLineEntries,
                     isSelected: i == 0 ? true : false,
                     scheduleDateStr: moment(schedule.date_time_start, "MM/DD/YYYY hh:mm").format('dddd, D MMMM'),
-                    timeLineStart: moment({hour: 10, minute: 0}),
+                    timeLineStart: moment(schedule.date_time_start, "MM/DD/YYYY hh:mm"),
                     itinerary: itineraryList
                 });
 
@@ -306,7 +306,7 @@
         }
     }
 
-    function apiService($http) {
+    function apiService($http, $sce) {
 
         var mockMajorSponsors = [
             {
@@ -314,7 +314,12 @@
                 Position: "DR. Direct",
                 AvatarUrl: "assets/images/speakers/portrait-eric-whitman.png",
                 Description: "Eric Whitman Description",
-                OtherInfo: "Second paragraph to go here."
+                OtherInfo: "Second paragraph to go here.",
+                SocialLinks:{
+                    facebook:'',
+                    twitter:'',
+                    website:''
+                }
             }
         ];
         var mockSponsors = [
@@ -323,21 +328,21 @@
                 Position: "CMO/Co-founder of Tetra Communications",
                 AvatarUrl: "assets/images/speakers/portrait-tim-tetra.png",
                 Description: "Tim Tetra is a serial entrepreneur whose ads reached over 337 million people in 173 countries worldwide in 2014.  Tim has integrated lessons learned from founding six successful businesses to create inimitable edges that separate his company from the rest of the affiliate marketing pack.",
-                OtherInfo: "In his spare time, Tim is a huge advocate of the all-or-nothing mindset.  It is not uncommon for him to pick up a new hobby, spend 80 hours a week immersed in it with the best mentors out there, and then mastering it in record time."
+                OtherInfo: $sce.trustAsHtml("In his spare time, Tim is a huge advocate of the all-or-nothing mindset.  It is not uncommon for him to pick up a new hobby, spend 80 hours a week immersed in it with the best mentors out there, and then mastering it in record time.")
             },
             {
                 Name: "Charles Ngo",
                 Position: "Writer and Internet Marketer",
                 AvatarUrl: "assets/images/speakers/portrait-charles-ngo.png",
                 Description: "Charles Ngo is one of the most well-known and respected internet marketers in the world generating several millions dollars in profit within his first year of starting.",
-                OtherInfo: "He has gone on to become one of the leading authorities in affiliate marketing information. He and his team specialise in traffic sources such as Facebook, mobile, and display buys."
+                OtherInfo: $sce.trustAsHtml("He has gone on to become one of the leading authorities in affiliate marketing information. He and his team specialise in traffic sources such as Facebook, mobile, and display buys.")
             },
             {
                 Name: "Lorenzo Green",
                 Position: "Co-director Stack That Money Forums",
                 AvatarUrl: "assets/images/speakers/portrait-lorenzo-green.png",
                 Description: "Lorenzo Green co-directs Stack That Money forums, the number one rated affiliate forum and is a veteran in the industry with more than nine years experience. He is known for his marketing creativity, and constantly being at the forefront of the next big thing in the affiliate space. This combination has yielded him consistent seven figure/year profits with his affiliate operations.",
-                OtherInfo: "He has also founded a number of other successful business including a successful affiliate network and Greenmantle Estate (link = http://www.greenmantle.co.nz/), one of the most prestigious luxury lodges in his home country, New Zealand."
+                OtherInfo: $sce.trustAsHtml("He has also founded a number of other successful business including a successful affiliate network and <a href='http://www.greenmantle.co.nz/' target='_blank'>Greenmantle Estate</a>, one of the most prestigious luxury lodges in his home country, New Zealand.")
             },
             {
                 Name: "Hugh Hancock",
@@ -351,7 +356,7 @@
                 Position: "Co-director Stack That Money Forums",
                 AvatarUrl: "assets/images/speakers/portrait-besimir-b.png",
                 Description: "Coming from a technical background, Besmir found affiliate marketing by pure coincidence. Besmir has been in the industry long enough to see many trends come and go. He understands that it's not about that special niche or traffic source but it's all about persistence, hard work and loving what you do.",
-                OtherInfo: "Lately he has been focusing on mobile marketing and investing on building new and successful companies including Stack That Money, the number one rated forum in the affiliate industry, which he is co-director of."
+                OtherInfo: $sce.trustAsHtml("Lately he has been focusing on mobile marketing and investing on building new and successful companies including Stack That Money, the number one rated forum in the affiliate industry, which he is co-director of.")
             }
         ]
         var svc = {

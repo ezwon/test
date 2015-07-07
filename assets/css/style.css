@@ -1479,15 +1479,28 @@ a.market-map{
     background-color: #fff !important;
 }
 
+.timeline-hover.show {
+
+}
+
 .timeline-hover {
     position: absolute;
     background: transparent !important;
-    top: -165px;
+    top: -150px;
+    opacity:0;
     z-index: 999;
     cursor: default;
     /*border-bottom: 40px solid transparent;*/
-    display: none;
-    padding-bottom: 15px;
+    display: block;
+    padding-bottom: 0;
+    visibility: hidden;
+
+    -webkit-transition: all linear 200ms;
+    -moz-transition: all linear 200ms;
+    -o-transition: all linear 200ms;
+    transition: all linear 200ms;
+    height: 150px;
+
 }
 
 
@@ -1502,7 +1515,11 @@ a.market-map{
 }
 
 .timeline-link:hover .timeline-hover, .timeline-link:focus .timeline-hover, .timeline-link:active .timeline-hover {
-    display: block;
+    visibility: visible;
+    top: -165px;
+    opacity:1;
+    padding-bottom: 20px;
+    height: 165px;
 }
 
 .timeline-image {
@@ -1552,7 +1569,7 @@ a.market-map{
     border-right: 10px solid transparent;
     border-top: 10px solid #fff;
     position: absolute;
-    bottom: -8px;
+    bottom: 10px;
     left: 10px;
 }
 
@@ -2507,3 +2524,40 @@ div.location-content-5 {
     top: 30px !important;
     right: 30px !important;
 }
+
+.baloon-go-up{
+    transition: none;
+    -webkit-animation: balloon-up 0.2s;
+    animation: balloon-up 0.2s;
+}
+
+
+@-webkit-keyframes balloon-up {
+    0% {
+        -webkit-animation-timing-function: linear;
+        animation-timing-function: linear; }
+
+    50% {
+        opacity: 0;
+        height: 40px;
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in; }
+
+    100% {
+        height: 0;
+        opacity: 0; } }
+
+@keyframes balloon-up {
+    0% {
+        -webkit-animation-timing-function: linear;
+        animation-timing-function: linear; }
+
+    50% {
+        opacity: 0;
+        height: 40px;
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in; }
+
+    100% {
+        height: 0;
+        opacity: 0; } }

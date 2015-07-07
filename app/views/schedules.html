@@ -54,6 +54,7 @@
                             ng-if="item.title != 'custom'">
                         <div class="timeline-duration">
                             <div ng-repeat="entry in item.timeEntries"
+                                 ng-click="ScrollToTimeEntry(schedule.scheduleID, item.id, entry.id, entry);"
                                  style="background-color: {{item.colorScheme}}; left: {{entry.timeStart | timeLineStart:schedule.timeLineStart}}px; width:{{entry.duration | timeLineLength}}px;"
                                  class="timeline-link">
                                 <div class="timeline-hover"
@@ -133,6 +134,8 @@
                                             <i class="fa sched-icon"
                                                ng-class="{'fa-comments-o':entry.itinerary == 'speeches & panels',
                                                'fa-briefcase':entry.itinerary == 'market',
+                                               'fa-gears':entry.itinerary == 'training workshop',
+                                               'fa-bed':entry.itinerary == 'the afterparty',
                                                'fa-glass':entry.itinerary == 'traffic source meetups'}"
                                                style="color:{{entry.showDetails ? '#fff':entry.colorScheme}};"></i>
 
@@ -162,7 +165,8 @@
                                             <div class="col-md-6">
                                                 <div class="speaker-details details-2">
                                                     <p>{{entry.longDescription}}</p>
-                                                    <a target="_blank" href="http://www.google.com/calendar/event?action=TEMPLATE&dates=20140611T170000Z%2F20140611T174500Z&text=Real+Boy+Tech&details=Details%20go%20here"><i class="fa fa-cloud-download"></i>add event to calendar</a>
+                                                    <a target="_blank" href="https://www.google.com/calendar/render?action=TEMPLATE&dates={{entry.timeStart.format('YYYYMMDD[T]hhmmss')}}/{{entry.timeEnds.format('YYYYMMDD[T]hhmmss')}}&text={{entry.title.replace(' ','+')}}&details={{entry.shortDescription.replace(' ','+')}}">
+                                                        <i class="fa fa-cloud-download"></i>add event to calendar </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -187,7 +191,7 @@
                  ng-repeat="entry in schedule.timeLineEntries">
                 <div class="schedule-mobile-title">
                     <h4 style="color:{{entry.colorScheme}};">{{entry.itinerary}}</h4>
-                    <a href="#"><i class="fa fa-calendar"></i></a>
+                    <a target="_blank" href="https://www.google.com/calendar/render?action=TEMPLATE&dates={{entry.timeStart.format('YYYYMMDD[T]hhmmss')}}/{{entry.timeEnds.format('YYYYMMDD[T]hhmmss')}}&text={{entry.title.replace(' ','+')}}&details={{entry.shortDescription.replace(' ','+')}}"><i class="fa fa-calendar"></i></a>
                 </div>
                 <div class="schedule-mobile-info">
                     <h1>{{entry.title}}</h1>
@@ -244,7 +248,7 @@
                                 <div class="speaker-details">
                                     <p>{{item.Description}}</p>
 
-                                    <p>{{item.OtherInfo}}</p>
+                                    <p ng-bind-html="item.OtherInfo"></p>
                                 </div>
                             </div>
                         </div>
@@ -282,7 +286,7 @@
                                 <div class="speaker-details">
                                     <p style="margin:0 0 30px 0">{{item.Description}}</p>
 
-                                    <p>{{item.OtherInfo}}</p>
+                                    <p ng-bind-html="item.OtherInfo"></p>
                                 </div>
                             </div>
                         </div>
