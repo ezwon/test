@@ -646,7 +646,8 @@ header {
 .ticket-timer ul li span {
     display: inline-block;
     height: 44px;
-    padding: 0 10px;
+    width: 50px;
+    text-align: center;
     letter-spacing: 0.100em;
     vertical-align: middle;
     margin: 0 15px 0 0;
@@ -839,30 +840,48 @@ header {
 }
 
 .ticket-toggle-left {
-    width: 85px;
-    height: 35px;
-    background: url("../images/toggle-1.png") no-repeat;
-    background-size: contain;
-    display: block;
+    width: 33px;
+    height: 33px;
+    background: #fff;
+    border-radius: 50%;
     position: absolute;
-    top: 12px;
-    left: 50%;
-    transform: translate(-50%, 0);
-    -webkit-transform: translate(-50%, 0);
-    -moz-transform: translate(-50%, 0);
-    -o-transform: translate(-50%, 0);
-    -ms-transform: translate(-50%, 0);
-    z-index: 10;
+    left:0;
+    box-shadow: 7px 7px rgba(0, 0, 0, 0.3);
+    -webkit-transition: all .7s ease-in-out;
+    -moz-transition: all .7s ease-in-out;
+    -o-transition: all .7s ease-in-out;
+    -ms-transition: all .7s ease-in-out;
+    transition: all .7s ease-in-out;
+}
+.ticket-toggle-left:hover, .ticket-toggle-left:focus{
+    left:5px;
 }
 
 .ticket-toggle-right {
-    width: 85px;
-    height: 35px;
-    background: url("../images/toggle-2.png") no-repeat;
-    background-size: contain;
-    display: block;
+    width: 33px;
+    height: 33px;
+    background: #fff;
+    border-radius: 50%;
     position: absolute;
-    top: 12px;
+    right:0;
+    box-shadow: -7px 7px rgba(0, 0, 0, 0.3);
+    -webkit-transition: all .7s ease-in-out;
+    -moz-transition: all .7s ease-in-out;
+    -o-transition: all .7s ease-in-out;
+    -ms-transition: all .7s ease-in-out;
+    transition: all .7s ease-in-out;
+}
+.ticket-toggle-right:hover, .ticket-toggle-right:focus{
+    right:5px;
+}
+
+.ticket-toggle-button{
+    width: 86px;
+    height: 34px;
+    background: #fa7b65;
+    border-radius: 50px;
+    position: absolute;
+    top:12px; 
     left: 50%;
     transform: translate(-50%, 0);
     -webkit-transform: translate(-50%, 0);
@@ -870,6 +889,7 @@ header {
     -o-transform: translate(-50%, 0);
     -ms-transform: translate(-50%, 0);
     z-index: 10;
+    overflow: hidden;
 }
 
 a.ticket-button {
@@ -904,17 +924,35 @@ a.market-map{
         }
     }
 
+.market-map-content{
+    padding:20px;
+}
+.market-map-content h5{
+    display: inline-block;
+    font-weight: 500;
+}
+.market-map-content i{
+    font-size: 2rem;
+    margin:0 10px 0 0;
+    vertical-align: middle;
+}
+
 /* events */
 .event-content {
     padding: 160px 0 150px 0;
-    background: #2a3338 url("../images/event-bg.jpg") center fixed no-repeat;
+    background: #2a3338 url("../images/event-bg.jpg") center top fixed no-repeat;
 }
-
-@media screen and (min-width: 1900px) {
+    @media screen and (min-width: 1900px) {
     .event-content {
         background-size: cover;
+        }
     }
-}
+    @media screen and (max-width: 991px) {
+    .event-content {
+        background: #2a3338 url("../images/event-bg.jpg") center bottom no-repeat;
+        background-size: cover;
+        }
+    }
 
 .main-content {
     background: #fff;
@@ -1221,15 +1259,18 @@ a.market-map{
     padding: 160px 0 0 0;
     background: #293338 url("../images/speaker-bg.jpg") center top fixed no-repeat;
     overflow: hidden;
-    background-size: contain;
 }
-
-@media screen and (min-width: 1600px) {
+    @media screen and (min-width: 1600px) {
     .schedule-header {
         background-size: cover;
+        }
     }
-}
-
+    @media screen and (max-width: 991px) {
+    .schedule-header{
+        background: #293338 url("../images/speaker-bg.jpg") center top no-repeat;
+        }
+    }
+    
 .schedule-date {
     text-align: center;
 }
@@ -1345,6 +1386,7 @@ a.market-map{
 
 .schedule-grid {
     width: 1042px;
+    height: 250px;
     margin: auto;
     z-index: 100;
     position: absolute;
@@ -1627,7 +1669,7 @@ div.list-width-last {
 }
 
 .list-width {
-    max-width: 1020px;
+    max-width: 980px;
     margin: auto;
     /*border-bottom: 1px solid #f2f2f2;*/
     padding: 30px 0;
@@ -1720,7 +1762,7 @@ li.sched-active .sched-slider{
     height: 130px;
     margin: auto;
     display: block;
-    border-radius: 150px;
+    background: none no-repeat;
     /*background: #ccc;*/ /* causes dotted like border*/
     background-size: contain;
 }
@@ -1878,7 +1920,7 @@ li.sched-active div.speaker-details p {
     color: #fff;
     font-size: 0.875rem;
     line-height: 1rem;
-    padding: 40px 0 0 0;
+    padding: 30px 0 0 0;
     text-transform: uppercase;
     letter-spacing: 0.100em;
     font-weight: 500;
@@ -2188,7 +2230,7 @@ div.location-content-5 {
     transition: all .3s ease-in-out;
 }
 
-.home-nav ul li a h4:hover, .home-nav ul li a h4:focus {
+.home-nav ul li a:hover h4, .home-nav ul li a:focus h4{
     color: #fa7b65;
 }
 
@@ -2398,6 +2440,9 @@ div.location-content-5 {
         padding: 20px 0 0 0;
         }
     }
+.mobile-nav-list ul li.active a{
+    color: #686c6d;
+}
 .mobile-nav-list ul li a{
     color: #fff;
     font-size: 1.8rem;
@@ -2405,6 +2450,11 @@ div.location-content-5 {
     font-weight: 500;
     letter-spacing: 0.100em;
     line-height: 2.2rem;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
 }
     @media screen and (max-width: 768px) {
     .mobile-nav-list ul li a{
@@ -2416,6 +2466,9 @@ div.location-content-5 {
         line-height: 1.5rem;
         }
     }
+.mobile-nav-list ul li a:hover, .mobile-nav-list ul li a:focus{
+    color: #686c6d;
+}
 .mobile-nav-list h3{
     font-size: 1.2rem;
     line-height: 1.5rem;
@@ -2437,4 +2490,20 @@ div.location-content-5 {
 
 .opacity-show{
     opacity: 1 !important;
+}
+
+/* market map ngdialog */
+.ngdialog-content{
+    width: 1024px !important;
+    background: #fff !important;
+    padding: 0 !important;
+    border-radius: 5px;
+}
+.ngdialog-content img{
+    width: 100%;
+}
+.ngdialog.ngdialog-theme-default .ngdialog-close:before{
+    font-size: 62px !important;
+    top: 30px !important;
+    right: 30px !important;
 }
