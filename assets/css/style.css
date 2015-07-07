@@ -106,6 +106,8 @@ header {
     background: #333 url("../images/content-bg.jpg") center no-repeat; 
     background-size: cover;
 }
+
+/* first step */
 .first-step{
     text-align: center;
 }
@@ -126,7 +128,7 @@ header {
 .content h2{
     margin:35px 0 75px 0;
 }
-.content a{
+a.facebook{
     width: 280px;
     height: 64px;
     display: block;
@@ -135,12 +137,10 @@ header {
     font-size: 1.125rem;
     line-height: 64px;
     font-weight: 300;
+    background: #537bbd;
 }
 .first-step a{
     text-align: left; 
-}
-a.facebook{
-    background: #537bbd;
 }
 a.twitter{
     background: #78cdf0;
@@ -148,25 +148,56 @@ a.twitter{
 a.messenger{
     background: #0084ff;
 }
-.social-media{
+a.next-step{
+    display: block;
+    margin: 20px 0 0 0;
+    text-decoration: underline;
+    color: #ccc;
+}
+a.next-step p{
+    text-align: center;
+    color: #939696;
+    font-weight: 500;
+}
+.social-media-child{
+    width: 500px;
+    margin: auto;
+}
+.social-media-child a{
+    display: inline-block;
+    margin: 0 8px 20px;
+    width: 220px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 0.900rem;
+    color: #fff;
+}
+.fb-icon{
+    background: url(../images/facebook.png) center no-repeat;
+    background-size: contain;
     width: 41px;
     height: 41px;
     display: inline-block;
     vertical-align: middle;
     margin: 0 10px 0 15px;
 }
-.fb-icon{
-    background: url(../images/facebook.png) center no-repeat;
-    background-size: contain;
-}
 .tw-icon{
     background: url(../images/twitter.png) center no-repeat;
     background-size: contain;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    vertical-align: middle;
     margin: 0 25px 0 15px;
 }
 .me-icon{
     background: url(../images/messenger.png) center no-repeat;
     background-size: contain;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 10px 0 15px;
 }
 .btn-next{
     width: 280px;
@@ -177,9 +208,77 @@ a.messenger{
     font-weight: 500;
     color: #fff;
     background: #7edc3a;
+    margin:40px 0 0 0;
+    cursor: pointer;
 }
 .disabled{
     color: #e5e5e5;
     background: #fff;
+}
+.page-slider{
+    width: 100px;
+    margin: 30px auto 0;
+    text-align: center;
+}
+.circle{
+    width: 14px;
+    height: 14px;
+    background: #3a4547;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 5px;
+}
+span.active{
+    background: #fff;
+}
 
+/* second step */
+.second-step{
+    text-align: center;
+}
+.textfield{
+    width: 400px;
+    height: 64px;
+    line-height: 64px;
+    color: #777;
+    font-family: 'proxima-nova', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 400;
+    margin: 0 auto 20px;
+    text-align: center;
+    display: block;
+}
+.submit{
+    width: 400px;
+    height: 64px;
+    line-height: 64px;
+    color: #fff;
+    background: #7edc3a;
+    margin: auto;
+    text-align: center;
+    font-family: 'proxima-nova', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 400;
+    border: none;
+    cursor: pointer;
+    display: block;
+}
+.second-step p.step-2{
+    width: 70%;
+    margin: 75px auto 0;
+}
+.second-step a{
+    width: 400px;
+    height: 64px;
+    line-height: 64px;
+    color: #fff;
+    background: #7edc3a;
+    margin: 60px auto 0;
+    text-align: center;
+    font-family: 'proxima-nova', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 400;
+    border: none;
+    cursor: pointer;
+    display: block;
 }
