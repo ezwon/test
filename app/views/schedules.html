@@ -135,10 +135,10 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <i class="fa sched-icon"
-                                               ng-class="{'fa-comments-o':entry.longDescription != 'CUSTOM' && entry.itinerary == 'speeches & panels' && entry.title != 'Last Minute Registrations' ,
+                                               ng-class="{'fa-comments-o':entry.longDescription != 'CUSTOM' && entry.itinerary == 'speeches & panels' && (entry.title != 'Last Minute Registrations' && entry.title != 'Break') ,
                                                'fa-pencil-square-o':entry.title == 'Last Minute Registrations',
-                                               'fa-headphones':entry.longDescription == 'CUSTOM' && entry.title == 'Break',
-                                               'fa-briefcase':entry.longDescription != 'CUSTOM' && entry.itinerary == 'market',
+                                               'fa-headphones':entry.longDescription == '#' && entry.title == 'Break' ,
+                                               'fa-briefcase':entry.longDescription != 'CUSTOM' && entry.itinerary == 'market' && entry.title != 'Break',
                                                'fa-gears':entry.longDescription != 'CUSTOM' && entry.itinerary == 'training workshop',
                                                'fa-bed':entry.longDescription != 'CUSTOM' && entry.itinerary == 'the afterparty',
                                                'fa-glass':entry.longDescription != 'CUSTOM' && entry.itinerary == 'traffic source meetups'}"
@@ -202,7 +202,7 @@
                     <h1>{{entry.title}}</h1>
                     <h4 style="color:{{entry.colorScheme}};">{{entry.secondTitle}}</h4>
 
-                    <p>{{entry.longDescription == 'CUSTOM' ? '':entry.longDescription }}</p>
+                    <p>{{entry.longDescription == 'CUSTOM' || entry.longDescription == '#' ? '':entry.longDescription }}</p>
 
                     <div class="time">
                         <i class="fa fa-clock-o"></i>
