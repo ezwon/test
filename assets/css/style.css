@@ -291,6 +291,12 @@ header {
     width: 300px;
 }
 
+@media screen and (max-width: 991px) {
+.slogan-button a{
+    width: 330px;
+}
+}
+
 /* sponsor homepage*/
 .sponsor {
     padding: 50px 0;
@@ -732,6 +738,21 @@ header {
     height: 94px;
 }
 
+@media screen and (max-width: 991px) {
+.ribbon {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    background: url("../images/ribbon.png") no-repeat;
+    background-size: contain;
+    padding: 0 10px;
+    height: 22px;
+    display: block;
+    width: 140px;
+    height: 140px;
+}
+}
+
 .company-ticket h2{
     font-size: 2rem;
 }
@@ -932,9 +953,20 @@ a.market-map{
     font-weight: 500;
 }
 .market-map-content i{
-    font-size: 2rem;
+    font-size: 1.25rem;
     margin:0 10px 0 0;
     vertical-align: middle;
+}
+
+.market-map-content h5{
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin:0 10px 0 0;
+    vertical-align: middle;
+}
+
+.market-map-content fa{
+    font-size: 0.5rem;
 }
 
 /* events */
@@ -2461,7 +2493,6 @@ div.location-content-5 {
         }
     }
 .mobile-nav-list ul li.active a{
-    color: #686c6d;
 }
 .mobile-nav-list ul li a{
     color: #fff;
