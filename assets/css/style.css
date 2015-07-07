@@ -942,12 +942,17 @@ a.market-map{
     padding: 160px 0 150px 0;
     background: #2a3338 url("../images/event-bg.jpg") center top fixed no-repeat;
 }
-
-@media screen and (min-width: 1900px) {
+    @media screen and (min-width: 1900px) {
     .event-content {
         background-size: cover;
+        }
     }
-}
+    @media screen and (max-width: 991px) {
+    .event-content {
+        background: #2a3338 url("../images/event-bg.jpg") center bottom no-repeat;
+        background-size: cover;
+        }
+    }
 
 .main-content {
     background: #fff;
@@ -1254,15 +1259,18 @@ a.market-map{
     padding: 160px 0 0 0;
     background: #293338 url("../images/speaker-bg.jpg") center top fixed no-repeat;
     overflow: hidden;
-    background-size: contain;
 }
-
-@media screen and (min-width: 1600px) {
+    @media screen and (min-width: 1600px) {
     .schedule-header {
         background-size: cover;
+        }
     }
-}
-
+    @media screen and (max-width: 991px) {
+    .schedule-header{
+        background: #293338 url("../images/speaker-bg.jpg") center top no-repeat;
+        }
+    }
+    
 .schedule-date {
     text-align: center;
 }
@@ -1723,8 +1731,7 @@ li.sched-active div.list-width {
     height: 130px;
     margin: auto;
     display: block;
-    border-radius: 150px;
-    background: #ccc;
+    background: none no-repeat;
     background-size: contain;
 }
 
@@ -2462,4 +2469,9 @@ div.location-content-5 {
 }
 .ngdialog-content img{
     width: 100%;
+}
+.ngdialog.ngdialog-theme-default .ngdialog-close:before{
+    font-size: 62px !important;
+    top: 30px !important;
+    right: 30px !important;
 }
