@@ -1286,6 +1286,7 @@ a.market-map{
 .schedule-time {
     width: 100%;
     margin: 40px 0 0 0;
+    position: relative;
 }
 
 .schedule-time-list {
@@ -1347,6 +1348,7 @@ a.market-map{
     margin: auto;
     z-index: 100;
     position: absolute;
+    bottom:0;
     left: 50%;
     transform: translate(-50%, 0);
     -webkit-transform: translate(-50%, 0);
@@ -1397,6 +1399,11 @@ a.market-map{
     padding: 0;
     font-size: 0;
     margin: 0;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
 }
 
 .schedule-timeline ul li {
@@ -1496,7 +1503,7 @@ a.market-map{
     border-right: 10px solid transparent;
     border-top: 10px solid #fff;
     position: absolute;
-    bottom: -10px;
+    bottom: -8px;
     left: 10px;
 }
 
@@ -1603,7 +1610,6 @@ a.market-map{
 
 .schedule-details ul li:hover {
     background: #f2f2f2;
-    border: #f2f2f2;
     cursor: pointer;
 }
 
