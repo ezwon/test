@@ -50,7 +50,7 @@
                       ng-click="SelectSchedule(schedule.scheduleID + 1)"
                       class="timeline-right timeline-arrow"><i class="fa fa-angle-right"></i></span>
                 <ul>
-                    <li ng-repeat="item in schedule.itinerary "
+                    <li ng-repeat="item in schedule.uniqueItinerary "
                             ng-if="item.title != 'custom'">
                         <div class="timeline-duration">
                             <div ng-repeat="entry in item.timeEntries"
@@ -118,12 +118,12 @@
                                     ng-class="{'sched-active':entry.showDetails}"
                                     style="background-color: {{entry.showDetails ? entry.colorScheme + '!important;':''}}">
                                     <div class="row list-width"
-                                         ng-click="entry.showDetails = !entry.showDetails"
+                                         ng-click="entry.showDetails = entry.longDescription == '#' ? false:!entry.showDetails"
                                          style="border-bottom-color: {{entry.showDetails ? entry.colorScheme:'#f4f4f4'}}">
                                         <div class="col-sm-3">
                                             <i class="fa fa-clock-o sched-icon"></i>
 
-                                            <p>{{entry.timeStr}}</p>
+                                            <p>{{entry.timeStr}} {{entry.orderId}}</p>
                                         </div>
                                         <div class="col-sm-3">
 
@@ -140,7 +140,7 @@
                                                style="color:{{entry.showDetails ? '#fff':entry.colorScheme}};"></i>
 
                                             <p>{{entry.shortDescription}}</p>
-                                            <i class="fa fa-angle-down sched-arrow"></i>
+                                            <i class="fa fa-angle-down sched-arrow" ng-if="entry.longDescription != '#'"></i>
                                         </div>
                                     </div>
                                     <div class="sched-slider">
@@ -153,11 +153,11 @@
                                                 <div class="speaker-details">
                                                     <h2>{{entry.title}}</h2>
                                                     <h5 style="color:{{entry.colorScheme}};">{{entry.secondTitle}}</h5>
-                                                    <a href="{{entry.websiteUrl}}" target="_blank"><i
+                                                    <a ng-if="entry.websiteUrl != '#'" href="{{entry.websiteUrl}}" target="_blank"><i
                                                             class="fa fa-link"></i></a>
-                                                    <a href="{{entry.facebookUrl}}" target="_blank"><i
+                                                    <a ng-if="entry.facebookUrl != '#'" href="{{entry.facebookUrl}}" target="_blank"><i
                                                             class="fa fa-facebook-official"></i></a>
-                                                    <a href="{{entry.twitterUrl}}" target="_blank"><i
+                                                    <a ng-if="entry.twitterUrl != '#'" href="{{entry.twitterUrl}}" target="_blank"><i
                                                             class="fa fa-twitter"></i></a>
                                                     <!--<a href="#"><i class="fa fa-instagram"></i></a>-->
                                                 </div>
