@@ -74,18 +74,18 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="first-step">
+                <div class="first-step" id="">
                     <span class="numbering">
                         <p>STEP 1</p>
                     </span>
                     <h2>Share this page on social media</h2>
-                    <a href="#" class="facebook"><span class="fb-icon"></span>Share this on Facebook</a>
+                    <a href="javascript:void(0);" class="facebook share-trigger" ><span class="fb-icon"></span>Share this on Facebook</a>
                     <div class="social-media-child">
-                        <a href="#" class="twitter"><span class="social-media tw-icon"></span>Share this on Twitter</a>
-                        <a href="#" class="messenger"><span class="social-media me-icon"></span>Share this on Messenger</a>
+                        <a href="javascript:void(0);" class="twitter share-trigger"><span class="social-media tw-icon"></span>Share this on Twitter</a>
+                        <a href="javascript:void(0);" class="messenger share-trigger"><span class="social-media me-icon"></span>Share this on Messenger</a>
                     </div>
-                    <input type="button" class="btn-next disabled" value="Go to the next step" disabled />
-                    <a href="step-2.html" class="next-step"><p>Skip to the next step</p></a>
+                    <input type="button" class="btn-next disabled" onclick="window.location.href='step-2.html'" value="Go to the next step" disabled />
+                    <a href="step-2.html" class="skip-step"><p>Skip to the next step</p></a>
                     <div class="fb-share-button" data-href="http://dev-ftp.istackmanila.com/awa-social-media-sharing/" data-layout="link"></div>
                 </div>
 

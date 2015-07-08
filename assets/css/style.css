@@ -148,13 +148,13 @@ a.twitter{
 a.messenger{
     background: #0084ff;
 }
-a.next-step{
+a.skip-step{
     display: block;
     margin: 20px 0 0 0;
     text-decoration: underline;
     color: #ccc;
 }
-a.next-step p{
+a.skip-step p{
     text-align: center;
     color: #939696;
     font-weight: 500;
@@ -208,8 +208,9 @@ a.next-step p{
     font-weight: 500;
     color: #fff;
     background: #7edc3a;
-    margin:40px 0 0 0;
+    margin:40px auto 0;
     cursor: pointer;
+    display: block;
 }
 .disabled{
     color: #e5e5e5;
