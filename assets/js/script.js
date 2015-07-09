@@ -53,6 +53,12 @@ var share = $(".share-trigger");
 	share.click(function(){
 		if (disabler.hasClass("disabled"))
 			disabler.removeClass("disabled").removeAttr('disabled');
+
+		if($(this).hasClass('messenger'))
+			shareOnMessenger();
+
+		if($(this).hasClass('facebook'))
+			popupwindow('http://www.facebook.com/share.php?u=http://dev.istackmanila.com/awa-social-media-sharing/&title=AWConferences','AWConferences',560,400);
 	});
 
 	share.click(function(){
