@@ -4,6 +4,12 @@ html {
     line-height: 16px;
     color: #fff;
     font-weight: 400;
+    background: #333 url("../images/content-bg.jpg") center no-repeat; 
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover; 
 }
 
 body {
@@ -33,8 +39,8 @@ h1, h2, h3, h4, h5, p {
 }
 
 h1 {
-    font-size: 3.5rem;
-    line-height: 4rem;
+    font-size: 3rem;
+    line-height: 3.5rem;
     font-weight: 200;
 }
 h2 {
@@ -74,39 +80,44 @@ p.bold {
     font-weight: 500;
 }
 
-header {
+.wrapper{
     width: 100%;
-    background: #333 url("../images/header-bg.jpg") center no-repeat;
-    padding: 120px 0 100px 0;
+    height: 100%;
+    position: relative;
 }
-    @media screen and (min-width: 1500px) {
-        header {
-            background-size: cover;
-        }
-    }
+
+header {
+    width: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    height: 100vh;
+    float: left;
+    position: relative;
+}
 
 .title{
     text-align:center;
+    position: absolute;
+    top:50%;
+    left:50%;
+    -transform:translate(-50%,-50%);
+    -webkit-transform:translate(-50%,-50%);
+    -moz-transform:translate(-50%,-50%);
+    -o-transform:translate(-50%,-50%);
+    -ms-transform:translate(-50%,-50%);
 }
 .title img{
     display: block;
-    width: 265px;
+    width: 250px;
     margin:auto;
 }
 .title h1{
     margin: 20px 0 0 0;
 }
-.slogan{
-    text-align: center;
-    padding: 60px 0;
-    background: #fff;
-}
 .content{
-    padding: 75px 0 175px 0;
-    background: #333 url("../images/content-bg.jpg") center no-repeat; 
-    background-size: cover;
     position: relative;
-    height:700px;
+    width: 50%;
+    height:100vh;
+    float:left;
 }
 
 /* first step */
@@ -114,6 +125,13 @@ header {
     text-align: center;
     position: absolute;
     width: 100%;
+    top:50%;
+    left:50%;
+    -transform:translate(-50%,-50%);
+    -webkit-transform:translate(-50%,-50%);
+    -moz-transform:translate(-50%,-50%);
+    -o-transform:translate(-50%,-50%);
+    -ms-transform:translate(-50%,-50%);
 }
 .numbering{
     display: block;
@@ -157,6 +175,11 @@ a.skip-step{
     margin: 20px 0 0 0;
     text-decoration: underline;
     color: #ccc;
+    -webkit-transition:all .5s ease-in-out;
+    -moz-transition:all .5s ease-in-out;
+    -o-transition:all .5s ease-in-out;
+    -ms-transition:all .5s ease-in-out;
+    transition:all .5s ease-in-out;
 }
 a.skip-step p{
     text-align: center;
@@ -222,7 +245,7 @@ a.skip-step p{
     -moz-transition:all .5s ease-in-out;
     -o-transition:all .5s ease-in-out;
     -ms-transition:all .5s ease-in-out;
-    transition:all .5s ease-in-out
+    transition:all .5s ease-in-out;
 }
 .disabled{
     color: #e5e5e5;
@@ -258,12 +281,25 @@ span.active{
     text-align: center;
     position: absolute;
     width: 100%;
+    top:50%;
+    left:50%;
+    -transform:translate(-50%,-50%);
+    -webkit-transform:translate(-50%,-50%);
+    -moz-transform:translate(-50%,-50%);
+    -o-transform:translate(-50%,-50%);
+    -ms-transform:translate(-50%,-50%);
 }
 .congrats-page{
     text-align: center;
     position: absolute;
     width: 100%;
-    
+    top:50%;
+    left:50%;
+    -transform:translate(-50%,-50%);
+    -webkit-transform:translate(-50%,-50%);
+    -moz-transform:translate(-50%,-50%);
+    -o-transform:translate(-50%,-50%);
+    -ms-transform:translate(-50%,-50%);
     opacity: 0;
 }
 .textfield{
@@ -293,7 +329,7 @@ span.active{
     cursor: pointer;
     display: block;
 }
-.second-step p.step-2{
+.second-step p.step-2, .congrats-page p.step-2{
     width: 70%;
     margin: 75px auto 0;
 }

@@ -1,13 +1,45 @@
 // GSAP scripts
-TweenLite.set("#page-1", {x:0, opacity:1, zIndex:3});
-TweenLite.set("#page-2", {x:0, opacity:0, zIndex:2});
-TweenLite.set("#page-3", {x:0, opacity:0, zIndex:1});
+TweenLite.set("#page-1", {opacity:1, zIndex:300});
+TweenLite.set("#page-2", {opacity:0, zIndex:200});
+TweenLite.set("#page-3", {opacity:0, zIndex:100});
 
 $('.skip-step').on('click',
-  function() {
-    TweenMax.to("#page-2", 0.5, {opacity:1, zIndex:2, ease:Power4.easeInOut});
-    TweenMax.to("#page-1", 0.5, {opacity:0, zindex:1, ease:Power4.easeInOut});
-  });
+  	function() {
+    TweenMax.to("#page-2", 0.5, {opacity:1, ease:Power4.easeInOut});
+    TweenMax.to("#page-1", 0.5, {opacity:0, ease:Power4.easeInOut});
+  	TweenMax.set("#page-2", {zIndex:200});
+  	TweenMax.set("#page-1", {zIndex:100});
+  	});
+
+$('#slide-2').on('click',
+  	function() {
+    TweenMax.to("#page-2", 0.5, {opacity:1, ease:Power4.easeInOut});
+    TweenMax.to("#page-1", 0.5, {opacity:0, ease:Power4.easeInOut});
+    TweenMax.to("#page-3", 0.5, {opacity:0, ease:Power4.easeInOut});
+  	TweenMax.set("#page-2", {zIndex:300});
+  	TweenMax.set("#page-1", {zIndex:200});
+  	TweenMax.set("#page-3", {zIndex:100});
+  	});
+
+$('#slide-1').on('click',
+  	function() {
+    TweenMax.to("#page-1", 0.5, {opacity:1, ease:Power4.easeInOut});
+    TweenMax.to("#page-2", 0.5, {opacity:0, ease:Power4.easeInOut});
+    TweenMax.to("#page-3", 0.5, {opacity:0, ease:Power4.easeInOut});
+  	TweenMax.set("#page-1", {zIndex:300});
+  	TweenMax.set("#page-2", {zIndex:200});
+  	TweenMax.set("#page-3", {zIndex:100});
+  	});
+
+$('.submit').on('click',
+	function(){
+    TweenMax.to("#page-2", 0.5, {opacity:0, ease:Power4.easeInOut});
+    TweenMax.to("#page-3", 0.5, {opacity:1, ease:Power4.easeInOut});
+    TweenMax.set("#page-3", {zIndex:300});
+  	TweenMax.set("#page-2", {zIndex:200});
+  	TweenMax.set("#page-1", {zIndex:100});
+	});
+
 
 
 // scripts for schedule page
@@ -15,6 +47,8 @@ $('.skip-step').on('click',
 var share = $(".share-trigger");
 	disabler = $("input[type='button']");
 	skip = $("a.skip-step");
+	sliderButton1 = $(".page-slider a span.circle-1");
+	sliderButton2 = $(".page-slider a span.circle-2");
 
 	share.click(function(){
 		if (disabler.hasClass("disabled"))
@@ -23,6 +57,29 @@ var share = $(".share-trigger");
 
 	share.click(function(){
 		if (skip.hasClass("skip-step"))
-			skip.css({display: "none"})
+			skip.css({opacity: "0"})
 	});
 
+	sliderButton2.click(function(){
+		if (sliderButton1.hasClass("active"))
+			sliderButton1.removeClass("active"), 
+			sliderButton2.addClass("active");
+	});
+
+	sliderButton1.click(function(){
+		if (sliderButton2.hasClass("active"))
+			sliderButton2.removeClass("active"), 
+			sliderButton1.addClass("active");
+	});
+
+	skip.click(function(){
+		if (sliderButton1.hasClass("active"))
+			sliderButton1.removeClass("active"), 
+			sliderButton2.addClass("active");
+	});
+
+	disabler.click(function(){
+		if (sliderButton1.hasClass("active"))
+			sliderButton1.removeClass("active"), 
+			sliderButton2.addClass("active");
+	});
