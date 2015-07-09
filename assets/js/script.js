@@ -56,6 +56,8 @@ var share = $(".share-trigger");
 
 		if($(this).hasClass('messenger'))
 			shareOnMessenger();
+			//popupwindow('http://www.facebook.com/dialog/send?app_id=113669552052912&link=http://dev.istackmanila.com/awa-social-media-sharing/&redirect_uri=http://dev.istackmanila.com/awa-social-media-sharing/','AWConferences',560,400);
+
 
 		if($(this).hasClass('facebook'))
 			popupwindow('http://www.facebook.com/share.php?u=http://dev.istackmanila.com/awa-social-media-sharing/&title=AWConferences','AWConferences',560,400);
