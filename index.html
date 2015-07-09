@@ -14,13 +14,12 @@
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link rel="icon" type="image/ico" href="favicon.ico"/>
-    <link rel="stylesheet" href="assets/fonts/proxima-nova.css">
-    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <!--<link rel="stylesheet" href="assets/fonts/proxima-nova.css">-->
+    <!--<link rel="stylesheet" href="assets/fonts/font-awesome.min.css">-->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/bootstrap-grid.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="assets/js/modernizr-2.6.1.min.js"></script>
-
-
 </head>
  
 <body>
@@ -49,20 +48,11 @@
         });
     }
 
-    function shareOnFacebook(){
-//        FB.ui({
-//            method: 'share',
-//            href: 'http://dev.istackmanila.com/awa-social-media-sharing/',
-//        }, function(response){});
-    }
-
     function popupwindow(url, title, w, h) {
         var left = (screen.width/2)-(w/2);
         var top = (screen.height/2)-(h/2);
         return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
     }
-
-
     twttr.events.bind('tweet', function (event) {});
 </script>
 
@@ -126,7 +116,8 @@
 </div>
 
 <script src="assets/js/jquery-1.11.3.min.js"></script>
-<script src="assets/js/TweenMax.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/TweenMax.min.js"></script>
+<!--<script src="assets/js/TweenMax.min.js"></script>-->
 <script src="assets/js/script.js"></script>
 
 </body>
