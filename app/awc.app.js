@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular
-        .module('AffiliateWorldAsia', ['ngRoute', 'ngSanitize', 'ngLodash', 'ngAnimate', 'pascalprecht.translate', 'timer', 'ngDialog', 'duScroll'])
+        .module('AffiliateWorldAsia', ['ngRoute','ngSanitize', 'ngLodash', 'pascalprecht.translate', 'timer', 'ngDialog', 'duScroll'])
         .controller('ScheduleCtrl', ScheduleCtrl)
         .controller('LocationCtrl', LocationCtrl)
         .filter('timeLineStart', timeLineStart)
@@ -63,21 +63,45 @@
         }
 
 
-
-        $scope.ShowTooltip = function(entry){
+        $scope.ShowTooltip = function (entry) {
             entry.showTooltip = true;
         }
 
-        $scope.HideTooltip = function(entry){
+        $scope.HideTooltip = function (entry) {
             entry.showTooltip = false;
         }
-        $scope.ScrollToTimeEntry = function (entry) {
-            console.log("ScrollToTimeEntry",'time-entry-' + entry.timeStart.format('YYYYMMDDhhmmss') + '-' + entry.id);
+        $scope.ScrollToTimeEntry = function (entry, schedule) {
+            var item;
+            if(entry.extraEntry)
+                item = entry.extraEntry;
+            else
+                item = entry;
 
-            $document.scrollToElementAnimated(angular.element(document.getElementById('time-entry-' + entry.timeStart.format('YYYYMMDDhhmmss') + '-' + entry.id)));
+            $document.scrollToElementAnimated(angular.element(document.getElementById('time-entry-' + item.timeStart.format('YYYYMMDDhhmmss') + '-' + item.id)));
 
-            if(entry.longDescription == '#') return;
-            entry.showDetails = true;
+            if (item.longDescription == '#') return;
+                item.showDetails = true;
+
+            if(entry.extraEntry){
+                for (var i = 0; i < schedule.timeLineEntries.length; i++) {
+                    var itemEntry = schedule.timeLineEntries[i];
+                    if(itemEntry.id == entry.extraEntry.id && itemEntry.itineraryId == entry.extraEntry.itineraryId)
+                        itemEntry.showDetails = true;
+                }
+            }
+        }
+
+        $scope.UpdateSelectedTabColor = function (schedule) {
+            for (var i = 0; i < $scope.schedules.length; i++) {
+                if ($scope.schedules[i].isSelected && schedule.scheduleID != $scope.schedules[i].scheduleID)
+                    $scope.schedules[i].applyOpacity = true;
+            }
+        }
+
+        $scope.RevertSelectedTabColor = function () {
+            for (var i = 0; i < $scope.schedules.length; i++) {
+                $scope.schedules[i].applyOpacity = false;
+            }
         }
 
         $scope.MockMajorSponsors = apiService.mockMajorSponsor;
@@ -105,9 +129,11 @@
                 for (var j = 0; j < schedule.itineraries.length; j++) {
                     var itinerary = schedule.itineraries[j];
                     var eventDate = moment(schedule.date_time_start, "MM/DD/YYYY hh:mm");
+
                     timeEntries = [];
                     for (var k = 0; k < itinerary.entries.length; k++) {
                         var entry = itinerary.entries[k];
+
                         var timeEntry = {
                             id: k + 1,
                             itineraryId: j + 1,
@@ -133,6 +159,33 @@
                             duration: moment(entry.time_ends, "hh:mm").diff(moment(entry.time_starts, "hh:mm"), 'minutes')
                         };
 
+                        if(timeEntry.id == 2 && timeEntry.itineraryId == 4 && itinerary.title == "traffic source meetups"){
+                            timeEntry.extraEntry = {
+                                id: 1,
+                                itineraryId: 4,
+                                itinerary: itinerary.entries[0].title,
+                                colorScheme: itinerary.entries[0].color_scheme,
+                                isKeynote: itinerary.entries[0].is_keynote == '1' ? true : false,
+                                title: itinerary.entries[0].title,
+                                showDetails: false,
+                                secondTitle: itinerary.entries[0].second_title,
+                                websiteUrl: itinerary.entries[0].website,
+                                facebookUrl: itinerary.entries[0].fb_link,
+                                twitterUrl: itinerary.entries[0].twitter_link,
+                                instagramUrl: itinerary.entries[0].instagram_link,
+                                imageUrl: itinerary.entries[0].image_url,
+                                shortDescription: itinerary.entries[0].short_description,
+                                longDescription: itinerary.entries[0].long_description,
+                                timeStr: moment(itinerary.entries[0].time_starts, "hh:mm").format('hh:mma') + " - " + moment(itinerary.entries[0].time_ends, "hh:mm").format('hh:mma'),
+                                orderId: itinerary.entries[0].id,
+                                timeStart: moment(eventDate.format("MM/DD/YYYY") + " " + itinerary.entries[0].time_starts, "MM/DD/YYYY hh:mm"),
+                                timeEnds: moment(eventDate.format("MM/DD/YYYY") + " " + itinerary.entries[0].time_ends, "MM/DD/YYYY hh:mm"),
+                                timeStartCalendar: moment(eventDate.format("MM/DD/YYYY") + " " + itinerary.entries[0].time_starts + " +0700", "MM/DD/YYYY hh:mm Z"),
+                                timeEndsCalendar: moment(eventDate.format("MM/DD/YYYY") + " " + itinerary.entries[0].time_ends + " +0700", "MM/DD/YYYY hh:mm Z"),
+                                duration: moment(itinerary.entries[0].time_ends, "hh:mm").diff(moment(itinerary.entries[0].time_starts, "hh:mm"), 'minutes')
+                            }
+                        }
+
                         timeEntries.push(timeEntry);
                         schedule.timeLineEntries.push(timeEntry);
                     }
@@ -143,7 +196,7 @@
                         }) == -1) {
                         uniqueItineraries.push({
                             title: itinerary.title,
-                            colorScheme:itinerary.color_scheme,
+                            colorScheme: itinerary.color_scheme,
                             timeEntries: []
                         })
                     }
@@ -169,6 +222,7 @@
                 tabs.push({
                     scheduleID: i + 1,
                     timeLineEntries: schedule.timeLineEntries,
+                    applyOpacity: false,
                     isSelected: i == 0 ? true : false,
                     scheduleDateStr: moment(schedule.date_time_start, "MM/DD/YYYY hh:mm").format('dddd, D MMMM'),
                     timeLineStart: moment(schedule.date_time_start, "MM/DD/YYYY hh:mm"),
@@ -185,19 +239,16 @@
                 for (var j = 0; j < schedule.timeLineEntries.length; j++) {
                     var entry = schedule.timeLineEntries[j];
 
-                    console.log(entry.itinerary);
-
                     for (var k = 0; k < schedule.uniqueItinerary.length; k++) {
                         var uniqueItinerary = schedule.uniqueItinerary[k];
 
-                        if(entry.itinerary == uniqueItinerary.title)
+                        if (entry.itinerary == uniqueItinerary.title)
                             uniqueItinerary.timeEntries.push(entry);
-                        
+
                     }
 
                 }
             }
-
 
 
             if ($routeParams.schedule)
