@@ -1,3 +1,34 @@
+// Social Media
+window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '113669552052912',
+            xfbml      : true,
+            version    : 'v2.4'
+        });
+    };
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    function shareOnMessenger(){
+        FB.ui({
+            method: 'send',
+            link: 'http://affiliateworldconferences.com/asia/share/'
+        });
+    }
+
+    function popupwindow(url, title, w, h) {
+        var left = (screen.width/2)-(w/2);
+        var top = (screen.height/2)-(h/2);
+        return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+    }
+    twttr.events.bind('tweet', function (event) {});
+
 // GSAP scripts
 TweenLite.set("#page-1", {opacity:1, zIndex:300});
 TweenLite.set("#page-2", {opacity:0, zIndex:200});
