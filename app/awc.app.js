@@ -72,7 +72,7 @@
         }
         $scope.ScrollToTimeEntry = function (entry, schedule) {
             var item;
-            if(entry.extraEntry)
+            if(entry.extraEntry && schedule)
                 item = entry.extraEntry;
             else
                 item = entry;
