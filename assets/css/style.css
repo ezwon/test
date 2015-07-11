@@ -2331,8 +2331,9 @@ div.location-content-5 {
 }
 .language-list {
     position: absolute;
-    top: 38px;
+    top: 47px;
     right: 40px;
+    display: none;
 }
 
 .language-list ul {
