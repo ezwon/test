@@ -231,21 +231,24 @@ header {
 .schedule {
     text-align: center;
 }
+    @media screen and (max-width: 991px) {
+    .schedule {
+        padding: 0 0 80px 0;
+        }
+    }
 
 .schedule-title {
     display: inline;
     padding: 0 20px;
 }
-
-@media screen and (max-width: 568px) {
+    @media screen and (max-width: 991px) {
     .schedule-title {
         display: block;
-    }
-
+        }
     .schedule-margin {
         margin: 0 0 20px 0;
+        }
     }
-}
 
 .schedule > span > i {
     font-size: 1.5rem;
@@ -259,7 +262,7 @@ header {
 }
     @media screen and (max-width: 991px) {
     .slogan h3 {
-        font-size: 1.5rem;
+        font-size: 2.25rem;
         font-weight: 400;
         }
     }
@@ -268,15 +271,67 @@ header {
     padding: 40px 0 0 0;
     text-align: center;
 }
-
+    @media screen and (max-width: 991px) {
+    .slogan h2 {
+        line-height: 3.125rem;
+        font-weight: 300;
+        padding: 0;
+        }
+    }
+.home-title{
+    width: 1024px;
+    padding: 0 20px;
+    margin: auto;
+}
+    @media screen and (max-width: 1023px) {
+    .home-title{
+        width: 100%;
+        }
+    }
+    @media screen and (max-width: 991px) {
+    .home-title{  
+        padding: 70px 30px 50px 30px;
+        background-color: #fafafa;
+        border-top: 1px solid #ebebeb;
+        }
+    }
+@media screen and (max-width: 991px) {
+    .mob-home-bg{
+        padding: 20px 40px 10px 40px;
+        background: #293338 url(../images/mob-home-bg.jpg) repeat-x
+    }
+}
 .slogan-details {
     margin: 40px 0 0 0;
 }
-
-.slogan p {
-    margin: 0 0 20px 0;
+    @media screen and (max-width: 991px) {
+    .slogan-details{
+        background: #fff;
+        padding:30px 40px;
+        margin: 0 0 50px 0;
+        }
+    }
 }
-
+.slogan-details h4{
+    letter-spacing: 0.100em;
+}
+    @media screen and (max-width: 991px) {
+    .slogan-details h4{
+        text-align: center;
+        margin: 30px 0;
+        color: #fa7b65;
+        }
+    }
+.slogan p {
+    color: #666666;
+    margin: 0 20px 20px 0;
+}
+    @media screen and (max-width: 991px) {
+    .slogan p {
+        color: #666666;
+        text-align: center;
+        }
+    }
 .slogan p.bold {
     margin: 0;
     font-weight: 500;
@@ -286,7 +341,11 @@ header {
     margin: 40px 0 0 0;
     text-align: center;
 }
-
+    @media screen and (max-width: 991px) {
+    .slogan-button {
+        display: none;
+        }
+    }
 .slogan-button a{
     width: 300px;
 }
@@ -313,7 +372,7 @@ header {
 }
 
 .sponsor .diamond-sponsors img {
-    width: 250px;
+    width: 300px;
     display: block;
     margin: 50px auto 30px;
 }
@@ -349,14 +408,14 @@ header {
 }
 
 .sponsor .gold-sponsors img {
-    width: 100px;
+    width: 80px;
     display: block;
     margin: 30px auto 0px;
 }
 
 /* ticket homepage*/
 .ticket {
-    padding: 90px 0;
+    padding: 40px 0 60px 0;
     background: #fafafa;
 }
 
@@ -427,11 +486,12 @@ header {
     background: transparent url("../images/form-submit.png") center no-repeat;
     background-size: contain;
     border: none;
-    width: 50px;
-    height: 53px;
+    width: 40px;
+    height: 43px;
     cursor: pointer;
     z-index: 1;
-    padding: 10px;
+    padding: 25px;
+    opacity: 0.4;
 }
 
 /* footer */
@@ -517,7 +577,7 @@ header {
     }
 
 .stm-footer {
-    margin: 25px auto 10px;
+    margin: 25px auto 0;
     padding: 25px 0;
     background: #d61f26;
     width: 70px;
@@ -2377,7 +2437,7 @@ div.location-content-5 {
 }
 
 .home-nav ul li a {
-    padding: 45px 45px;
+    padding: 45px 40px;
     display: inline-block;
 }
 
@@ -2389,6 +2449,7 @@ div.location-content-5 {
     -o-transition: all .3s ease-in-out;
     -ms-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
+    font-weight: 400;
 }
 
 .home-nav ul li a:hover h4, .home-nav ul li a:focus h4{
